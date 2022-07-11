@@ -1,0 +1,23 @@
+# show_icon: true
+template: esxi-stats-general
+styles:
+  grid:
+    - grid-template-areas: '"i uptime" "n n" "version version" "cpu_total cpu_total" "mem_total mem_total"'
+    - grid-template-columns: 1fr 1fr
+    - grid-template-rows:  min-content min-content min-content min-content
+  custom_fields:
+    version:
+      - font-size: 12px
+      - padding-bottom: 2px
+      - align-self: middle
+      - justify-self: start
+    cpu_total:
+      - font-size: 12px
+      - padding-bottom: 2px
+      - align-self: middle
+      - justify-self: start
+    mem_total:
+      - font-size: 12px
+      - padding-bottom: 2px
+      - align-self: middle
+      - justify-self: start

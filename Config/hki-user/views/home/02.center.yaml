@@ -1,0 +1,90 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 成员概况"
+      - type: horizontal-stack
+        cards:
+          - !include
+            - "../../../hki-user/templates/picture-elements/frontpage-photo.yaml"
+            - person: person.xxxxxxx
+              image_path: /local/images/Person/frontpage-wo.png
+              navigation_path: person_1
+              alignment: left
+              text_color: var(--paper-item-icon-color)
+              phone_battery_sensor: sensor.hassapp_xxxxxxx_iphone7p_battery_level
+              ipad_battery_sensor: sensor.hassapp_xxxxxxx_ipad_battery_level
+              travel_time_to_home: sensor.traffic_office_to_home
+              travel_time_to_work: sensor.traffic_home_to_office
+          - !include
+            - "../../../hki-user/templates/picture-elements/frontpage-photo.yaml"
+            - person: person.yyyyyyyy
+              image_path: /local/images/Person/P2.png
+              navigation_path: person_2
+              alignment: right
+              text_color: var(--paper-item-icon-color)
+              phone_battery_sensor: sensor.hassapp_yyyyyyyy_iphone_battery_level
+              ipad_battery_sensor: sensor.hassapp_yyyyyyyy_ipad_battery_level
+              travel_time_to_home: sensor.traffic_office_to_office
+              travel_time_to_work: sensor.traffic_office_to_office
+      - type: horizontal-stack
+        cards:
+          - !include
+            - "../../../hki-user/templates/picture-elements/frontpage-photo.yaml"
+            - person: person.zzzzzzzzz
+              image_path: /local/images/Person/P3.png
+              navigation_path: person_3
+              alignment: left
+              text_color: var(--paper-item-icon-color)
+              phone_battery_sensor: sensor.xiaoxun_sw766_2d6c_battery_level
+              ipad_battery_sensor: sensor.hassapp_yyyyyyyy_ipad_battery_level
+              travel_time_to_home: sensor.traffic_office_to_school
+              travel_time_to_work: sensor.traffic_office_to_school
+          - !include
+            - "../../../hki-user/templates/picture-elements/frontpage-photo.yaml"
+            - person: person.aaaaa
+              image_path: /local/images/Person/P4.png
+              navigation_path: person_4
+              alignment: right
+              text_color: var(--paper-item-icon-color)
+              phone_battery_sensor: sensor.traccar_aaaaa_battery_obd
+              ipad_battery_sensor: sensor.traccar_aaaaa_battery_obd
+              travel_time_to_home: sensor.traffic_office_to_home
+              travel_time_to_work: sensor.traffic_home_to_office
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: '&nbsp; 时长统计'
+      - type: custom:apexcharts-card #statistics-graph #history-graph
+        style: |
+          ha-card {
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            opacity: 0.8;
+            font-size: 12px;
+            font-family: Helvetica;
+          }
+        graph_span: 24hour
+        header:
+          show: true
+          title: 电视&电脑
+          show_states: true
+          colorize_states: true
+        series:
+        # hours_to_show: 72
+        # refresh_interval: 30
+        entities:
+          - entity: sensor.sony_tv_time_on
+            name: Tv
+          - entity: sensor.bedroom_tv_time_on
+            name: Tv2
+          - entity: sensor.lenovo_m720q_time_on
+            name: Pc
+          - entity: sensor.macmini_time_on
+            name: Mac

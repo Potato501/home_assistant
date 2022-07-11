@@ -1,0 +1,54 @@
+input_boolean.set_temperature:
+  title: 'Climate'
+  style:
+    !include legacy-popup-template.yaml
+  card:
+    type: vertical-stack
+    cards:
+      - type: entities
+        style: |
+          ha-card {
+            box-shadow: none;
+            --ha-card-background: var(--ha-card-background);
+          }
+        show_header_toggle: false              
+        entities: 
+          - entity: input_number.set_temperature
+            name: Temperature
+      - type: entities
+        style: |
+          ha-card {
+            box-shadow: none;
+            --ha-card-background: var(--ha-card-background);
+          }
+        show_header_toggle: false              
+        entities: 
+          - !include
+            - '../button/service-call-with-option-alt.yaml'
+            - name: Set Temperature
+              aspect_ratio: 10/1
+              icon: mdi:thermostat
+              show_icon: false
+              show_label: false
+              service: climate.set_temperature
+              service_entity: all
+              extra: temperature
+              option: "[[[ return `${states['input_number.set_temperature'].state}`; ]]]"
+              margin_right: 40px
+              opacity_off: 0.8
+    
+input_boolean.dummy1:
+  title: 'Notifications'
+  style:
+    !include legacy-popup-template.yaml
+  card:
+    type: custom:mod-card
+    style: |
+      ha-card {
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+    card:
+      type: vertical-stack
+      cards:
+        !include ../../../hki-user/notifications.yaml

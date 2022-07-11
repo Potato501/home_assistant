@@ -1,0 +1,18 @@
+automation:
+  - alias: "homeassistant_setup"
+    trigger:
+      - platform: homeassistant
+        event: start
+    action:
+      - delay:
+          seconds: 60
+      - service: mqtt.publish
+        data:
+          topic: "node-red/homeassistant-setup"
+          payload: "setup"
+
+homeassistant:
+  customize:
+    automation.homeassistant_setup:
+      friendly_name: 重启消息发布
+      icon: mdi:alert-octagon-outline

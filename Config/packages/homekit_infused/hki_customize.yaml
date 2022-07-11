@@ -1,0 +1,139 @@
+homeassistant:
+  customize:
+    automation.themes:
+      friendly_name: 切换主题模式
+      icon: mdi:palette
+    alarm_control_panel.home_alarm_2:
+      friendly_name: 报警面板
+      icon: mdi:shield-home
+    input_boolean.day_night_cycle:
+      friendly_name: 主题自动切换
+    input_boolean.dummy1:
+      friendly_name: 说明提示
+    input_boolean.dummy2:
+      friendly_name: 虚拟开关
+    input_boolean.dummy3:
+      friendly_name: 虚拟开关
+    input_boolean.dummy4:
+      friendly_name: 虚拟开关
+    input_boolean.remote_control:
+      friendly_name: 遥控开关
+    input_boolean.update_ha:
+      friendly_name: 系统信息
+    input_boolean.update_hki:
+      friendly_name: 主题信息
+    input_number.empty:
+      friendly_name: 状态选择
+      icon: mdi:numeric-0-circle-outline
+    input_boolean.empty:
+      friendly_name: 角标开关
+      icon: mdi:numeric-0-circle
+    input_boolean.button_badge:
+      friendly_name: 角标开关
+      icon: mdi:numeric-0-circle
+    input_select.theme_selector:
+      friendly_name: 主题选择
+    input_select.theme_selector_day:
+      friendly_name: 主题选择
+    input_select.theme_selector_night:
+      friendly_name: 主题选择
+    input_select.floor_selector:
+      friendly_name: 房间区域
+    input_select.media_view_selector:
+      friendly_name: 多媒体
+    input_select.xiaomi_vacuum:
+      friendly_name: 扫地机模式
+
+    input_select.show_floor_selector_devices:
+      friendly_name: 开关卡片显示
+    input_select.show_floor_selector_lights:
+      friendly_name: 灯光卡片显示
+    input_select.show_media_view_selector:
+      friendly_name: 媒体卡片显示
+    input_select.show_person_1_selector:
+      friendly_name: 卡片显示
+    input_select.show_person_2_selector:
+      friendly_name: 卡片显示
+    input_select.show_person_3_selector:
+      friendly_name: 卡片显示
+    input_select.show_person_4_selector:
+      friendly_name: 卡片显示
+
+
+    input_select.navigation_bar_direction:
+      friendly_name: 图标位置
+    input_select.navigation_bar_options:
+      friendly_name: 信息显示
+    input_select.navigation_bar:
+      friendly_name: 导航栏设置
+
+
+    input_select.person_1:
+      friendly_name: 我
+    input_select.person_2:
+      friendly_name: 老婆
+    input_select.person_3:
+      friendly_name: 儿子
+    input_select.person_4:
+      friendly_name: 汽车
+
+    input_select.server_select:
+      friendly_name: 服务器
+    input_select.automations_system:
+      friendly_name: 自动化
+    input_select.automations_devices:
+      friendly_name: 自动化
+    input_select.automations_other:
+      friendly_name: 自动化
+
+    input_text.good_morning:
+      friendly_name: 早间问候语设置
+      icon: mdi:weather-sunset-up
+    input_text.good_afternoon:
+      friendly_name: 午间问候语设置
+      icon: mdi:weather-sunny
+    input_text.good_evening:
+      friendly_name: 晚间问候语设置
+      icon: mdi:theme-light-dark
+    input_text.good_night:
+      friendly_name: 夜间问候语设置
+      icon: mdi:weather-night
+      
+    input_text.button_color:
+      friendly_name: 按钮颜色设置
+      icon: mdi:palette
+    input_select.hki_settings_selector:
+      friendly_name: 配置选项
+
+    sensor.current_binary_sensors_on:
+      friendly_name: 当前触发的传感器
+    sensor.current_climate_entities_on:
+      friendly_name: 当前开启的空调
+    sensor.current_covers_open:
+      friendly_name: 当前打开的窗帘
+    sensor.current_detectors_on:
+      friendly_name: 当前触发的探测器
+    sensor.current_devices_on:
+      friendly_name: 当前打开的开关
+    sensor.current_doors_open:
+      friendly_name: 当前打开的房门
+    sensor.current_fans_on:
+      friendly_name: 当前打开的风扇
+    sensor.current_garage_doors_open:
+      friendly_name: 当前打开的车库门
+    sensor.current_lights_on:
+      friendly_name: 当前打开的灯具
+    sensor.current_motion_sensors_on:
+      friendly_name: 当前触发的探测器
+    sensor.current_windows_open:
+      friendly_name: 当前打开的窗户
+    sensor.current_battery_low:
+      friendly_name: 当前低电量传感器
+
+    sensor.hki_current_version:
+      friendly_name: HKI安装版本
+    sensor.hki_latest_version:
+      friendly_name: HKI最新版本
+    sensor.latest_compatible_ha_version:
+      friendly_name: HKI适配版本
+

@@ -1,0 +1,106 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 其他"
+      - type: horizontal-stack
+        cards:
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 天气信息
+              label: Weather
+              icon: mdi:weather-partly-cloudy
+              navigation_path: /homekit-infused/weather
+              notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['weather.home'].state}`; ]]]"
+              background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 自动化
+              label: Automations
+              icon: mdi:brightness-auto
+              navigation_path: /homekit-infused/automations
+              # notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['input_number.empty'].state}`; ]]]"
+              # background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 服务器
+              label: Server
+              icon: mdi:nas
+              navigation_path: /homekit-infused/server
+              notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['sensor.hp_ilo_cpu_fanspeed'].state}%`; ]]]"
+              background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+      - type: horizontal-stack
+        cards:
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 网络&网关
+              label: Network
+              icon: mdi:lan
+              navigation_path: /homekit-infused/network_status
+              notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['sensor.mikrotik_wan_rx'].state} Mb/s`; ]]]"
+              background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 数据下载
+              label: Downloads
+              icon: mdi:database-arrow-down-outline
+              navigation_path: /homekit-infused/downloads
+              notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['sensor.ds416play_down_speed'].state} Mb/s`; ]]]"
+              background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 卡片测试
+              label: test
+              icon: mdi:beta
+              navigation_path: /homekit-infused/development
+              # notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['sensor.mikrotik_wan_rx'].state} Mb`; ]]]"
+              # background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+      - type: horizontal-stack
+        cards:
+          - !include
+            - ../../../hki-base/templates/button/button-badge.yaml
+            - name: 系统设置
+              label: HomeAssistant
+              icon: mdi:home-assistant
+              navigation_path: /homekit-infused/home_assistant_setting
+              notification: "[[[ if (states['sensor.current_version'].state != 0) return `${states['sensor.current_version'].state}`; else return '&nbsp'; ]]]"
+              background_color: "[[[ return 'var(--paper-item-icon-color)'; ]]]"
+
+          - !include
+            - ../../../hki-base/templates/button/button-badge.yaml
+            - name: 主题设置
+              label: Homekit Infused
+              icon: mdi:palette
+              navigation_path: /homekit-infused/homekit_infused_setting
+              notification: "[[[ return '&nbsp'; ]]]"
+              background_color: "[[[ return 'rgba(0,0,0,0.0)'; ]]]"
+          - type: custom:button-card
+            template:
+              - style-default
+              - default-hki-grid
+            name: 关于HKI 
+            size: 25%
+            aspect_ratio: 1/1
+            entity: input_boolean.dummy1
+            label: >
+              [[[ 
+                if (states['sensor.hki_current_version'].state == `${states['sensor.hki_latest_version'].state}`) return `Latest Version`; 
+                if (states['sensor.hki_current_version'].state > `${states['sensor.hki_latest_version'].state}`) return `Beta Version`;
+                if (states['sensor.hki_current_version'].state < `${states['sensor.hki_latest_version'].state}`) return `Update`;
+                else return `Error: Unknown Version!`; 
+              ]]]
+            show_label: true
+            icon: mdi:help-circle
+            tap_action:
+              action: url
+              url_path: 'https://github.com/jimz011/homekit-infused/releases'
+            styles:
+              card:
+                - opacity: 0.8

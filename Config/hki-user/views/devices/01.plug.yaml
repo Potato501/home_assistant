@@ -1,0 +1,95 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: '&nbsp; 插座总控'
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards: 
+              - !include
+                - '../../../hki-user/templates/button/button.yaml'
+                - entity: switch.dc1_livingroom_1
+                  label:  "[[[ return `${states['sensor.dc1_livingroom_power'].state} W`; ]]]" 
+                  name: 播放器总控
+                  hold_action: more-info
+                  lock: true
+              - !include
+                - '../../../hki-user/templates/button/button.yaml'
+                - entity: switch.dc1_bedroom_1
+                  label:  "[[[ return `${states['sensor.dc1_bedroom_power'].state} W`; ]]]" 
+                  name: 次卧总控
+                  hold_action: more-info
+                  lock: true
+              - !include
+                - '../../../hki-user/templates/button/button.yaml'
+                - entity: switch.dc1_bedroom_3
+                  label:  "[[[ return `${states['sensor.dc1_bedroom_power'].state} W`; ]]]" 
+                  name: 电脑总控
+                  hold_action: more-info
+                  lock: true
+                  
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: '&nbsp; 客厅播放器'
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards: 
+              - !include
+                - '../../../hki-user/templates/button/button-badge-plug.yaml'
+                - entity: switch.dc1_livingroom_2
+                  notification:  "[[[ return `${states['media_player.livingroom_logitech_speaker'].state} `; ]]]" 
+                  name: 音响
+                  hold_action: more-info
+                  lock: false
+              - !include
+                - '../../../hki-user/templates/button/button-badge-plug.yaml'
+                - entity: switch.dc1_livingroom_3
+                  notification:  "[[[ return `${states['media_player.sony_tv'].state} `; ]]]" 
+                  name: 客厅电视
+                  hold_action: more-info
+                  lock: false
+              - !include
+                - '../../../hki-user/templates/button/button-badge-plug.yaml'
+                - entity: switch.dc1_livingroom_4
+                  notification:  "[[[ return `${states['media_player.android_tv'].state} `; ]]]" 
+                  name: 神盾盒子
+                  hold_action: more-info
+                  lock: false
+
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: '&nbsp; 客厅插座'
+      - type: horizontal-stack
+        cards: 
+          - !include
+            - '../../../hki-user/templates/button/button-badge-plug.yaml'
+            - entity: switch.broadlink_mp1_02_s3
+              notification:  "[[[ return `${states['media_player.s12_cloud_368719'].state} `; ]]]"
+              name: 小爱同学
+              hold_action: more-info
+              opacity_off: 0.8
+              lock: false
+          - !include
+            - '../../../hki-user/templates/button/button-badge-plug.yaml'
+            - entity: switch.broadlink_mp1_02_s4
+              notification:  !include ../../../hki-base/includes/brightness-label.yaml
+              name: 收音机
+              hold_action: more-info
+              opacity_off: 0.8
+              lock: false
+          - !include
+            - '../../../hki-user/templates/button/button-badge-plug.yaml'
+            - entity: switch.broadlink_mp1_02_s2
+              # notification: !include ../../../hki-base/includes/brightness-label.yaml
+              name: 博联遥控
+              lock: false
+              notification:  "[[[ return `${states['media_player.livingroom_logitech_speaker'].state} `; ]]]"

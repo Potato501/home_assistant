@@ -1,0 +1,209 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 空气质量"
+      - type: horizontal-stack
+        cards:
+          - type: custom:circle-sensor-card
+            entity: sensor.m1_hcho
+            name: 室内甲醛
+            show_card: true
+            fill: "rgba(0,128,128, .7)" #背景颜色
+            max: 2 #状态最大值
+            min: 0 #状态最小值
+            stroke_width: 6 #圆环的宽度
+            stroke_color: "#6BB4B8" #圆环的颜色
+            gradient: true #颜色平滑过渡
+            units: " mg/m³" #单位
+            #      attribute: 'none'                #用某个属性值取代状态值
+            #      attribute_max: 'none'            #属性值的最大值
+            show_max: false #true             #显示最大值
+            font_style: #圆环内字体风格设置
+              color: "white" #字体颜色
+              font-size: "1.0em" #字体大小
+              text-shadow: "0px 0px black" #字体阴影
+              font-family: "Trebuchet MS" #字体
+            color_stops: #不同数值的颜色取值
+              0.5: "#55FF55"
+              1: "#5555FF"
+              1.5: "#FF5555"
+            style: |
+              ha-card {
+                border-radius: var(--border-radius);
+                box-shadow: var(--box-shadow);
+                opacity: 0.8;
+                font-size: 12px;
+                font-family: Helvetica;
+              }
+          - type: custom:circle-sensor-card
+            entity: sensor.m1_pm2_5
+            name: 室内颗粒物
+            show_card: true
+            fill: "rgba(47,79,79, .5)"
+            max: 60
+            min: 1
+            stroke_width: 6
+            stroke_color: "#294552"
+            gradient: true
+            units: "μg/m³"
+            show_max: false #true
+            font_style:
+              color: "white"
+              font-size: "1.0em"
+              text-shadow: "0px 0px black"
+              font-family: "Trebuchet MS"
+            color_stops:
+              1: "#55FF55"
+              10: "#5555FF"
+              20: "#FF5555"
+            style: |
+              ha-card {
+                border-radius: var(--border-radius);
+                box-shadow: var(--box-shadow);
+                opacity: 0.8;
+                font-size: 12px;
+                font-family: Helvetica;
+              }
+          - type: custom:circle-sensor-card
+            entity: sensor.caiyun_hourly_pm25
+            name: 室外颗粒物
+            show_card: true
+            fill: "rgba(0,128,128, .7)" #背景颜色
+            max: 200 #状态最大值
+            min: 20 #状态最小值
+            stroke_width: 6 #圆环的宽度
+            stroke_color: "#6BB4B8" #圆环的颜色
+            gradient: true #颜色平滑过渡
+            units: " mg/m³" #单位
+            #      attribute: 'none'                #用某个属性值取代状态值
+            #      attribute_max: 'none'            #属性值的最大值
+            show_max: false #true             #显示最大值
+            font_style: #圆环内字体风格设置
+              color: "white" #字体颜色
+              font-size: "1.0em" #字体大小
+              text-shadow: "0px 0px black" #字体阴影
+              font-family: "Trebuchet MS" #字体
+            color_stops: #不同数值的颜色取值
+              0.5: "#55FF55"
+              1: "#5555FF"
+              1.5: "#FF5555"
+            style: |
+              ha-card {
+                border-radius: var(--border-radius);
+                box-shadow: var(--box-shadow);
+                opacity: 0.8;
+                font-size: 12px;
+                font-family: Helvetica;
+              }
+          - type: custom:circle-sensor-card
+            entity: sensor.caiyun_hourly_wind
+            name: 室外风速
+            show_card: true
+            fill: "rgba(47,79,79, .5)"
+            max: 20
+            min: 1
+            stroke_width: 6
+            stroke_color: "#294552"
+            gradient: true
+            units: "Km/h"
+            show_max: false #true
+            font_style:
+              color: "white"
+              font-size: "1.0em"
+              text-shadow: "0px 0px black"
+              font-family: "Trebuchet MS"
+            color_stops:
+              1: "#55FF55"
+              10: "#5555FF"
+              20: "#FF5555"
+            style: |
+              ha-card {
+                border-radius: var(--border-radius);
+                box-shadow: var(--box-shadow);
+                opacity: 0.8;
+                font-size: 12px;
+                font-family: Helvetica;
+              }
+
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 风扇卡片"
+      - type: horizontal-stack
+        cards:
+          - type: "custom:fan-xiaomi"
+            name: 主卧落地扇
+            entity: fan.xiaomi_smart_fan_bedroom
+            style: |
+              ha-card {
+                background: var(--paper-card-background-color);
+                border-radius: var(--border-radius);
+                box-shadow: var(--box-shadow);
+                opacity: 0.8;
+                font-size: 14px;
+                font-family: Helvetica;
+              }
+          - type: "custom:fan-xiaomi"
+            name: 次卧落地扇
+            entity: fan.xiaomi_smart_fan
+            style: |
+              ha-card {
+                background: var(--paper-card-background-color);
+                border-radius: var(--border-radius);
+                box-shadow: var(--box-shadow);
+                opacity: 0.8;
+                font-size: 14px;
+                font-family: Helvetica;
+              }
+          # - type: "custom:fan-xiaomi"
+          #   name: 主卧加湿器
+          #   entity: fan.xiaomi_air_humidifier
+          #   style: |
+          #     ha-card {
+          #       background: var(--paper-card-background-color);
+          #       border-radius: var(--border-radius);
+          #       box-shadow: var(--box-shadow);
+          #       opacity: 0.8;
+          #       font-size: 14px;
+          #       font-family: Helvetica;
+          #     }
+
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 风扇&加湿器"
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - !include
+                - "../../../hki-base/templates/button/button.yaml"
+                - entity: fan.xiaomi_smart_fan_bedroom
+                  lock: false
+                  #  tap_action: more-info
+                  hold_action: more-info
+                  show_last_changed: true
+                  spin_on: true
+              - !include
+                - "../../../hki-base/templates/button/button.yaml"
+                - entity: fan.xiaomi_smart_fan
+                  lock: false
+                  #  tap_action: more-info
+                  hold_action: more-info
+                  show_last_changed: true
+                  spin_on: true
+              - !include
+                - "../../../hki-base/templates/button/button.yaml"
+                - entity: fan.xiaomi_air_humidifier
+                  lock: false
+                  #  tap_action: more-info
+                  hold_action: more-info
+                  show_last_changed: true
+                  spin_on: true
+              # - !include ../../../hki-base/includes/empty-button.yaml

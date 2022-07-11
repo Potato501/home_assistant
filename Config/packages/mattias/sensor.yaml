@@ -1,0 +1,67 @@
+sensor:
+
+    ####################################################
+    #                                                  #
+    #                     SENSOR                       #
+    #                                                  #
+    ####################################################
+
+  - platform: version
+    name: hass_version_installed
+    source: local
+
+  - platform: version
+    name: hass_version_latest
+    source: container
+
+  - platform: version
+    name: hass_version_latest_beta
+    source: container
+    beta: true
+
+  - platform: uptime
+
+
+  - platform: rest
+    name: esphome_version_latest
+    resource: https://api.github.com/repos/esphome/esphome/releases/latest
+    value_template: >
+      {{ value_json.tag_name }}
+    scan_interval: 86400
+
+  - platform: scrape
+    name: synology_dsm_latest
+    resource: https://www.synology.com/en-global/releaseNote/DSM
+    select: >
+      #release_notes_content > div:first-child > h3
+    value_template: >
+      {{ value.split(' ')[1] }}
+    scan_interval: 86400
+
+
+  - platform: rest
+    name: covid_19_folkhalsomyndigheten
+    resource: https://www.arcgis.com/sharing/rest/content/items/2dc63e26f509468f896ec69476b0dab3/data
+    value_template: >
+      {{ '无效' if value_json.embedCode == '' else '有效' }}
+    json_attributes_path: $.widgets.widget_1.config
+    json_attributes: [embedCode]
+    scan_interval: 21600
+
+  - platform: rest
+    name: hass_release_notes
+    resource: https://api.github.com/repos/home-assistant/core/releases/latest
+    value_template: >
+      {{ value_json.name }}
+    json_attributes:
+      - body
+    scan_interval: 21600
+
+  - platform: rest
+    name: hass_release_notes_rc
+    resource: https://api.github.com/repos/home-assistant/core/releases?per_page=1
+    value_template: >
+      {{ value_json[0].name }}
+    json_attributes:
+      - body
+    scan_interval: 21600

@@ -1,0 +1,25 @@
+styles:
+  card:
+    - background-color: '#837e80'
+    - border-radius: 10%
+    - padding: 10%
+    - color: ivory
+    - text-shadow: 0px 0px 1px black
+    - text-transform: capitalize
+  grid:
+    - grid-template-columns: 1fr 1fr
+    - grid-template-rows: 1fr min-content min-content min-content min-content
+  icon:
+    - width: 70%
+    - margin-top: -10%
+  name:
+    - font-weight: bold
+    - font-size: 13px
+    - color: white
+    - align-self: middle
+    - justify-self: start
+    - padding-bottom: 4px
+  img_cell:
+    - justify-content: start
+    - align-items: start
+    - margin: none

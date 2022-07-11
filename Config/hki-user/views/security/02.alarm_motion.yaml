@@ -1,0 +1,221 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 门锁"
+      - type: entities
+        show_header_toggle: false
+        style: |
+          ha-card {
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            opacity: 0.8;
+            font-size: 14px;
+            font-family: Helvetica;
+          }
+        entities:
+          - sensor.xiaomi_lock_user
+          - sensor.bmcn03_event_xxxx_lock_lock_action
+          - sensor.bmcn03_event_xxxx_door_door_status
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 警戒模式"
+      - type: horizontal-stack
+        cards:
+          - !include
+            - "../../../hki-user/templates/button/button-simple.yaml"
+            - entity: alarm_control_panel.home_alarm
+              name: 系统警戒
+              # icon: mdi:
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info
+          - !include
+            - "../../../hki-user/templates/button/button-simple.yaml"
+            - entity: alarm_control_panel.can_ting_wang_guan_alarm
+              name: 小米网关
+              # icon: mdi:
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info
+          - !include
+            - "../../../hki-user/templates/button/button-simple.yaml"
+            - entity: alarm_control_panel.0x847127fffe56da7d_alarm
+              name: 多模网关
+              # icon: mdi:
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info
+          - !include
+            - "../../../hki-user/templates/button/button-simple.yaml"
+            - entity: alarm_control_panel.ke_ting_kong_diao_ban_lu_alarm
+              name: 空调伴侣
+              # icon: mdi:
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info
+          # - !include ../../../hki-base/includes/empty-button.yaml
+
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 活动探测"
+      - type: horizontal-stack
+        cards:
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.0x158d0002c15505_motion
+              icon: mdi:redhat
+              opacity_off: 0.8
+              name: 门厅
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.motion_sensor_158d00058a7ef2
+              icon: mdi:food
+              opacity_off: 0.8
+              name: 餐厅
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.motion_sensor_158d0001e02fa1
+              icon: mdi:sofa-outline
+              opacity_off: 0.8
+              name: 客厅
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.0x158d000541759b_motion
+              icon: mdi:shoe-print
+              opacity_off: 0.8
+              name: 过道
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+
+      - type: horizontal-stack
+        cards:
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.motion_sensor_158d0001e53c30
+              icon: mdi:bed-king
+              opacity_off: 0.8
+              name: 主卧
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.motion_sensor_158d0001ad5c41
+              icon: mdi:bed-queen
+              opacity_off: 0.8
+              name: 次卧
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.motion_sensor_158d0005cf8930
+              icon: mdi:fire
+              opacity_off: 0.8
+              name: 厨房
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.motion_sensor_158d0001e59ac8
+              icon: mdi:hand-wash
+              opacity_off: 0.8
+              name: 厕所
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+
+      - type: horizontal-stack
+        cards:              
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.hikvisioncam_door_motion
+              icon: mdi:webcam
+              opacity_off: 0.8
+              name: 门口摄像头
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.motion_sensor_kitchen_light
+              icon: mdi:stove
+              opacity_off: 0.8
+              name: 厨房BLE
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.motion_sensor_bathroom_light
+              icon: mdi:hand-wash
+              opacity_off: 0.8
+              name: 厕所BLE
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.0x158d00026afd0e_contact
+              icon: mdi:toilet
+              opacity_off: 0.8
+              name: 厕所马桶盖
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+

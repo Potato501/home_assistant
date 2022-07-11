@@ -1,0 +1,96 @@
+# Input Booleans
+input_boolean:
+  button_badge:
+    initial: 'on'
+
+# Input Selects
+input_select:
+  floor_selector:
+    options:
+      - '0'
+      - 1
+      - 2
+      - 3
+      - 4
+
+  show_floor_selector_lights:
+    options:
+      - 'Yes'
+      - 'No'
+      
+  show_floor_selector_devices:
+    options:
+      - 'Yes'
+      - 'No'
+
+  media_view_selector:
+    name: media_view_selector
+    options:
+      - Media Players
+      - Remote Control
+      - Google Home
+      - Upcoming Media
+    initial: Media Players
+
+  show_media_view_selector:
+    options:
+      - 'Yes'
+      - 'No'
+
+  person_1:
+    options:
+      - 1
+      - 2
+      - 3
+      - 4
+
+  person_2:
+    options:
+      - 1
+      - 2
+      - 3
+      - 4
+
+
+  person_3:
+    options:
+      - 1
+      - 2
+      - 3
+      - 4
+
+  person_4:
+    options:
+      - 1
+      - 2
+      - 3
+      - 4
+
+  server_select:
+    options:
+      - 1
+      - 2
+      - 3
+      - 4
+
+  automations_system:
+    options:
+      - 1
+      - 2
+      - 3
+      - 4
+
+
+  automations_devices:
+    options:
+      - 1
+      - 2
+      - 3
+      - 4
+
+  automations_other:
+    options:
+      - 1
+      - 2
+      - 3
+      - 4

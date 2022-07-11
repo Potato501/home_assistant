@@ -1,0 +1,67 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 天气信息"
+      - type: weather-forecast
+        style: |
+          ha-card {
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            opacity: 0.8;
+            font-size: 12px;
+            font-family: Helvetica;
+          }
+        entity: weather.home
+        name: 某南
+        backdrop: false
+        show_forecast: false
+        tap_action:
+          action: navigate
+          navigation_path:  /homekit-infused/weather
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 事件提醒"
+      - type: "custom:home-feed-card"
+        style: |
+          ha-card {
+            background: var(--paper-card-background-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            opacity: 0.8;
+            font-size: 14px;
+            font-family: Helvetica;
+          }
+        title: " "
+        card_id: main_feed
+        show_empty: true
+        calendars:
+           ## iPhone
+          - calendar.reminders
+          - calendar.sheng_huo
+          - calendar.jia_ting_shi_xiang
+          ## todoist
+          - calendar.inbox
+          - calendar.jia_ting
+          - calendar.gong_zuo
+          - calendar.todoist_homeassistant
+          - calendar.mylist
+          - calendar.works
+        more_info_on_tap: true
+        state_color: true
+        entities:
+          - entity: sensor.xiaomi_lock_user
+            name: 开门成员
+          - entity: binary_sensor.door_window_sensor_158d0002014310
+            name: 防盗门
+          - entity: sensor.jieqi_jieqi
+          - entity: sensor.jieqi_suit
+            name: 今日宜
+            more_info_on_tap: false

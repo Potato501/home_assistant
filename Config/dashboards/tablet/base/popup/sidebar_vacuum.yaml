@@ -1,0 +1,166 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: 扫地机
+  style:
+    .: |
+      :host .content {
+        width: calc(385px + 300px + 300px);
+        max-width: 90vw;
+      }
+    layout-card$grid-layout:
+      $: |
+        hui-vertical-stack-card {
+          animation: border 1s forwards;
+        }
+        @keyframes border {
+          0%, 100% {
+              border-right: 1.5px solid rgba(0, 0, 0, 0.2);
+          }
+        }
+        /* phone */
+        @media screen and (max-width: 800px) {
+          hui-vertical-stack-card {
+              border-bottom: 1.5px solid rgba(0, 0, 0, 0.2);
+              padding-right: 0;
+              animation: none;
+          }
+        }
+      $hui-vertical-stack-card:
+        $: |
+          hui-horizontal-stack-card {
+            padding: 0em 2em 2.3em 2em;
+          }
+        $hui-entities-card$: |
+          .card-content {
+            padding: var(--card-content-padding);
+          }
+        $hui-horizontal-stack-card$: |
+          #root {
+            justify-content: space-evenly;
+          }
+      $hui-picture-elements-card$: |
+        #root {
+          animation: fadein 0.9s both;
+        }
+        @keyframes fadein {
+          0% {
+            opacity: 0;
+          }
+          75% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+  card:
+    type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: 385px repeat(2, 300px)
+      grid-template-rows: 1fr
+      grid-template-areas: |
+        "info map map"
+      mediaquery:
+        #phone
+        "(max-width: 800px)":
+          grid-template-columns: 1fr
+          grid-template-rows: repeat(2, 1fr)
+          grid-template-areas: |
+            "info"
+            "map"
+    cards:
+
+      #################################################
+      #                                               #
+      #                     设备概况                   #
+      #                                               #
+      #################################################
+
+      - type: vertical-stack
+        cards:
+          - type: entities
+            view_layout:
+              grid-area: info
+            title: 设备信息
+            card_mod:
+              class: header
+            entities:
+
+            - entity: vacuum.xiaomi_vacuum
+
+            - entity: sensor.xiaomi_vacuum_battery_level
+
+            - type: custom:bar-card
+              width: 55%
+              height: 2em
+              decimal: 0
+              unit_of_measurement: '%'
+              positions:
+                icon: outside
+                indicator: 'off'
+                name: outside
+              severity:
+                - color: '#303435'
+                  from: 11
+                  to: 100
+                - color: '#6d2525'
+                  from: 0
+                  to: 10
+              entity_row: true
+              entities:
+                - entity: vacuum.xiaomi_vacuum
+                  attribute: battery_level
+                  name: 电量
+                  icon: mdi:battery
+
+          - type: horizontal-stack
+            cards:
+
+              - type: custom:button-card
+                entity: vacuum.xiaomi_vacuum
+                icon: mdi:play-pause
+                tap_action:
+                  action: call-service
+                  service: >
+                    [[[
+                      return entity.state === 'docked' || entity.state === 'paused'
+                        ? 'vacuum.start'
+                        : 'vacuum.pause';
+                    ]]]
+                  service_data:
+                    entity_id: >
+                      [[[ return entity.entity_id; ]]]
+                template: icon_only
+
+              - type: custom:button-card
+                entity: vacuum.xiaomi_vacuum
+                icon: mdi:battery-charging
+                tap_action:
+                  action: call-service
+                  service: vacuum.return_to_base
+                  service_data:
+                    entity_id: >
+                      [[[ return entity.entity_id; ]]]
+                template: icon_only
+
+              - type: custom:button-card
+                icon: mdi:delete-empty
+                tap_action:
+                  action: call-service
+                  service: mqtt.publish
+                  service_data:
+                    topic: valetudo/robot/GoToLocationCapability/go/set
+                    payload: "c520da4d-7656-4bd1-8d08-62564559d222"
+                template: icon_only
+
+      #################################################
+      #                                               #
+      #                 KARTLÄGGNING                  #
+      #                                               #
+      #################################################
+      - type: picture-entity
+        entity: camera.xiaomi_vacuum_camera
+        camera_view: live
+

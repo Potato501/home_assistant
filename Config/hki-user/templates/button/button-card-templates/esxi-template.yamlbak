@@ -1,0 +1,105 @@
+  ## General template (used in other templates)
+  esxi_stats_general:
+    styles:
+      card:
+        - background-color: '#837e80'
+        - border-radius: 10%
+        - padding: 10%
+        - color: ivory
+        - text-shadow: 0px 0px 1px black
+        - text-transform: capitalize
+      grid:
+        - grid-template-columns: 1fr 1fr
+        - grid-template-rows: 1fr min-content min-content min-content min-content
+      icon:
+        - width: 70%
+        - margin-top: -10%
+      name:
+        - font-weight: bold
+        - font-size: 13px
+        - color: white
+        - align-self: middle
+        - justify-self: start
+        - padding-bottom: 4px
+      img_cell:
+        - justify-content: start
+        - align-items: start
+        - margin: none
+
+  ## hosts template
+  esxi_stats_hosts:
+    show_icon: false
+    template: esxi_stats_general
+    styles:
+      grid:
+        - grid-template-areas: '"i uptime" "n n" "version version" "cpu_total cpu_total" "mem_total mem_total"'
+        - grid-template-columns: 1fr 1fr
+        - grid-template-rows:  min-content min-content min-content min-content
+      custom_fields:
+        version:
+          - font-size: 12px
+          - padding-bottom: 2px
+          - align-self: middle
+          - justify-self: start
+        cpu_total:
+          - font-size: 12px
+          - padding-bottom: 2px
+          - align-self: middle
+          - justify-self: start
+        mem_total:
+          - font-size: 12px
+          - padding-bottom: 2px
+          - align-self: middle
+          - justify-self: start
+
+  ## vm template
+  esxi_stats_vm:
+    icon: 'mdi:server'
+    aspect_ratio: 1/1
+    template: esxi_stats_general
+    styles:
+      grid:
+        - grid-template-areas: '"i uptime" "n n" "cpu cpu" "ram ram" "state state"'
+      custom_fields:
+        uptime:
+          - icon: "mdi:arrow-up"
+        cpu:
+          - font-size: 12px
+          - padding-bottom: 2px
+          - align-self: middle
+          - justify-self: start
+        ram:
+          - font-size: 12px
+          - padding-bottom: 2px
+          - align-self: middle
+          - justify-self: start
+        state:
+          - font-size: 12px
+          - padding-bottom: 2px
+          - align-self: middle
+          - justify-self: start
+
+  ## datastore template
+  esxi_stats_datastores:
+    icon: 'mdi:harddisk'
+    aspect_ratio: 1/1
+    template: esxi_stats_general
+    styles:
+      grid:
+        - grid-template-areas: '"i free" "n n" "capacity capacity" "hosts hosts" "vms vms"'
+      custom_fields:
+        capacity:
+          - font-size: 12px
+          - padding-bottom: 2px
+          - align-self: middle
+          - justify-self: start
+        hosts:
+          - font-size: 12px
+          - padding-bottom: 2px
+          - align-self: middle
+          - justify-self: start
+        vms:
+          - font-size: 12px
+          - padding-bottom: 2px
+          - align-self: middle
+          - justify-self: start

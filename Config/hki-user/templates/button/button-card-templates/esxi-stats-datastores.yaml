@@ -1,0 +1,22 @@
+icon: 'mdi:harddisk'
+aspect_ratio: 1/1
+template: esxi-stats-general
+styles:
+  grid:
+    - grid-template-areas: '"i free" "n n" "capacity capacity" "hosts hosts" "vms vms"'
+  custom_fields:
+    capacity:
+      - font-size: 12px
+      - padding-bottom: 2px
+      - align-self: middle
+      - justify-self: start
+    hosts:
+      - font-size: 12px
+      - padding-bottom: 2px
+      - align-self: middle
+      - justify-self: start
+    vms:
+      - font-size: 12px
+      - padding-bottom: 2px
+      - align-self: middle
+      - justify-self: start

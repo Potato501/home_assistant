@@ -1,0 +1,63 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - type: custom:button-card
+        color_type: blank-card
+        styles:
+          card:
+            - height: 25px
+      - type: markdown
+        style: |
+          ha-card { 
+              --ha-card-background: "rgba(0, 0, 0, 0.0)";
+              --ha-card-box-shadow: 'none';
+              font-size: 20px;
+              text-align: center;
+          }
+        content: |
+          ##### {{ states('sensor.date')}} &nbsp; {{ states('sensor.jieqi_cnday')}}  &nbsp;{{ states('sensor.jieqi_week')}}
+          # {{ states('sensor.time')}}
+      - !include ../../../hki-base/includes/search-card.yaml
+
+      - type: markdown
+        cards: null
+        style: |
+          ha-card {
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            opacity: 0.8;
+            font-size: 12px;
+            font-family: Helvetica;
+            text-align: center;
+          }
+        content: |
+          ## {{ state_attr('sensor.daily_english', 'note')}}
+          #### [ {{ state_attr('sensor.daily_english', 'content')}} ]( {{ state_attr('sensor.daily_english', 'tts')}} )
+            ![aaa]({{ state_attr('sensor.daily_english', 'picture')}})
+
+
+      # - !include
+      #   - ../../../hki-base/templates/other/title-text.yaml
+      #   - name: "&nbsp; 古诗词"
+      - type: markdown
+        cards: null
+        style: |
+          ha-card { 
+            --ha-card-background: "rgba(0, 0, 0, 0.0)";
+            --ha-card-box-shadow: 'none';
+            font-size: 12px;
+            text-align: right;
+          }
+        content: >-
+        
+          <center><h2> {{ state_attr("sensor.short_part_of_poem", "content") }} </h2>
+          </center> <p align="right">
+          {{ state_attr("sensor.short_part_of_poem", "origin")["dynasty"] }} ·
+          {{ state_attr("sensor.short_part_of_poem", "origin")["author"] }} - 《
+          {{ state_attr("sensor.short_part_of_poem", "origin")["title"] }} 》 </p>

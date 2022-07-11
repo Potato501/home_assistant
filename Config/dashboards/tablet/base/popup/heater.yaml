@@ -1,0 +1,18 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: 热水器
+  style:
+    hui-vertical-stack-card:
+      $hui-entities-card$ : |
+        #states {
+          padding-top: 0.5em;
+          padding-bottom: 1.2em;
+        }
+  card:
+    type: vertical-stack
+    cards:
+
+      - type: thermostat
+        entity: climate.bedroom_acpartner
+

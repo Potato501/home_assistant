@@ -1,0 +1,387 @@
+homeassistant:
+  customize:
+    sensor.hki_current_version:
+      friendly_name: HKI安装版本
+    sensor.latest_compatible_ha_version:
+      friendly_name: HKI适配版本
+    sensor.home_assistant_latest_version:
+      friendly_name: HA最新版本
+    sensor.hki_latest_version:
+      friendly_name: HKI最新版本
+
+    script.hki_header_greeting_default:
+      friendly_name: 问候语设置
+
+    sensor.current_entities_on:
+      friendly_name: 当前开启设备统计
+    sensor.current_lights_on:
+      friendly_name: 当前打开的灯
+    sensor.current_devices_on:
+      friendly_name: 当前开启的电源
+    sensor.current_motion_sensors_on:
+      friendly_name: 当前触发的活动传感器
+    sensor.current_binary_sensors_on:
+      friendly_name: 当前触发的传感器
+    sensor.current_doors_open:
+      friendly_name: 当前开启的房门
+    sensor.current_windows_open:
+      friendly_name: 当前开启的窗户
+    sensor.current_climate_entities_on:
+      friendly_name: 当前运行的空调
+    sensor.current_covers_open:
+      friendly_name: 当前开启的窗帘
+    sensor.current_garage_doors_open:
+      friendly_name: 当前开启的车库门
+    sensor.current_fans_on:
+      friendly_name: 当前开启的风扇
+    sensor.current_detectors_on:
+      friendly_name: 当前触发的警报
+    sensor.current_scenes_on:
+      friendly_name: 当前开启的场景
+    sensor.current_indicator_lights_on:
+      friendly_name: 当前开启的指示灯
+    sensor.current_battery_low:
+      friendly_name: 当前低电量传感器
+    sensor.greeting:
+      friendly_name: 日常问候
+
+    input_boolean.dummy1:
+      friendly_name: 辅助开关
+    input_number.empty:
+      friendly_name: 状态选择
+      icon: mdi:numeric-0-circle-outline
+    sensor.empty_sensor:
+      friendly_name: 辅助实体
+
+    input_select.settings_light_dark:
+      friendly_name: 主题参数设置
+    input_select.theme_selector_light:
+      friendly_name: 日间主题选择
+    input_select.theme_selector_dark:
+      friendly_name: 夜间主题选择
+    input_select.navigation_bar_direction:
+      friendly_name: 图标位置
+    input_select.navigation_bar_options:
+      friendly_name: 信息显示
+    input_select.navigation_bar:
+      friendly_name: 导航栏设置
+    input_select.find_my:
+      friendly_name: 查找元素
+
+    input_text.good_morning:
+      friendly_name: 早间问候语设置
+      icon: mdi:weather-sunset-up
+    input_text.good_afternoon:
+      friendly_name: 午间问候语设置
+      icon: mdi:weather-sunny
+    input_text.good_evening:
+      friendly_name: 晚间问候语设置
+      icon: mdi:theme-light-dark
+    input_text.good_night:
+      friendly_name: 夜间问候语设置
+      icon: mdi:weather-night
+
+    automation.themes:
+      friendly_name: 主题模式切换
+      icon: mdi:palette
+    automation.theme_editor:
+      friendly_name: 主题编辑设置
+      icon: mdi:palette
+    automation.first_time_startup_defaults:
+      friendly_name: 主题设置引导
+      icon: mdi:palette
+
+    sensor.pretty_date:
+      friendly_name: 当前日期
+
+    input_text.opacity_on:
+      friendly_name: 开启设备不透明度
+    input_text.opacity_off:
+      friendly_name: 关闭设备不透明度
+    input_text.opacity_unavailable:
+      friendly_name: 未加载设备透明度
+    input_text.card_box_shadow_light_color:
+      friendly_name: 灯光按钮阴影颜色
+
+    input_text.color_unavailable:
+      friendly_name: 未知设备颜色
+    input_text.header_badge_icon_color:
+      friendly_name: 标题角标图标颜色
+    input_text.header_badge_background:
+      friendly_name: 标题角标背景
+    input_text.header_badge_color:
+      friendly_name: 标题角标颜色
+    input_text.header_badge_text_color:
+      friendly_name: 标题角标文字颜色
+    input_text.header_border_radius:
+      friendly_name: 标题角标圆角
+    input_text.header_box_shadow:
+      friendly_name: 标题边框阴影
+    input_text.footer_box_shadow:
+      friendly_name: 页脚边框阴影
+    input_text.nav_bar_color:
+      friendly_name: 导航栏颜色
+    input_text.nav_bar_text_color:
+      friendly_name: 导航栏文字颜色
+    input_text.card_color:
+      friendly_name: 卡片颜色
+    input_text.card_border_style:
+      friendly_name: 卡片边框样式
+    input_text.card_border_width:
+      friendly_name: 卡片边框宽度
+    input_text.card_border_color:
+      friendly_name: 卡片边框颜色
+    input_text.card_border_radius:
+      friendly_name: 卡片边框圆角
+    input_text.card_box_shadow:
+      friendly_name: 卡片边框阴影
+    input_text.header_color:
+      friendly_name: 页眉颜色
+    input_text.header_text_color:
+      friendly_name: 页眉文本颜色
+    input_text.text_color:
+      friendly_name: 主标题文字颜色
+    input_text.secondary_text_color:
+      friendly_name: 副标题文字颜色
+    input_text.background_image:
+      friendly_name: 背景颜色设置
+    input_text.icon_color_default:
+      friendly_name: 默认图标颜色
+    input_text.icon_color_active:
+      friendly_name: 活动图标颜色
+
+    input_text.font_family:
+      friendly_name: 字体设置
+    input_text.header_font_size:
+      friendly_name: 视口字体大小
+    input_text.header_font_weight:
+      friendly_name: 视口字体粗细
+    input_text.subtitle_font_size:
+      friendly_name: 副标题字体大小
+    input_text.subtitle_font_weight:
+      friendly_name: 副标题字体粗细
+    input_text.subtitle_text_color:
+      friendly_name: 副标题字体颜色
+    input_text.title_text_color:
+      friendly_name: 标题字体颜色
+    input_text.title_text_font_size:
+      friendly_name: 标题字体大小
+    input_text.title_text_font_weight:
+      friendly_name: 标题字体粗细
+    input_text.title_text_background_color:
+      friendly_name: 标题字体背景
+    input_text.title_text_justify_self:
+      friendly_name: 标题字体位置
+    input_text.title_text_border_radius:
+      friendly_name: 标题字体圆角
+    input_text.title_text_box_shadow:
+      friendly_name: 标题字体阴影
+    input_text.title_text_padding:
+      friendly_name: 标题字体填充
+    input_text.title_text_border_style:
+      friendly_name: 标题字体边框样式
+    input_text.title_text_border_width:
+      friendly_name: 标题字体边框宽度
+    input_text.title_text_border_color:
+      friendly_name: 标题字体颜色
+    input_text.button_color_active:
+      friendly_name: 活动按钮颜色
+    input_text.button_name_font_size:
+      friendly_name: 按钮名称体大小
+    input_text.button_name_font_weight:
+      friendly_name: 按钮名称体粗细
+    input_text.button_label_font_size:
+      friendly_name: 按钮名称字体大小
+    input_text.button_label_font_weight:
+      friendly_name: 按钮名称字体粗细
+    input_text.button_state_font_size:
+      friendly_name: 按钮状态字体大小
+    input_text.button_state_font_weight:
+      friendly_name: 按钮状态字体粗细
+    input_text.button_name_color:
+      friendly_name: 按钮名称颜色
+    input_text.button_name_color_active:
+      friendly_name: 按钮名称活动状态
+    input_text.button_label_color:
+      friendly_name: 按钮状态文字颜色
+    input_text.button_label_color_active:
+      friendly_name: 按钮活动状态颜色
+    input_text.button_state_color:
+      friendly_name: 按钮状态颜色
+    input_text.button_state_color_active:
+      friendly_name: 按钮活动状态颜色
+    input_text.badge_background_color:
+      friendly_name: 角标背景颜色
+    input_text.badge_text_color:
+      friendly_name: 角标文字颜色
+    input_text.badge_font_size:
+      friendly_name: 角标文字大小
+    input_text.badge_font_weight:
+      friendly_name: 角标文字粗细
+    input_text.badge_text_transform:
+      friendly_name: 角标文字切换
+    input_text.button_box_shadow_active:
+      friendly_name: 按钮激活状态阴影
+    input_text.lock_color_active:
+      friendly_name: 锁定激活状态颜色
+    input_text.lock_color_inactive:
+      friendly_name: 解锁无效状态颜色
+
+    input_text.dark_color_unavailable:
+      friendly_name: 未知设备颜色
+    input_text.dark_header_badge_icon_color:
+      friendly_name: 标题角标图标颜色
+    input_text.dark_header_badge_background:
+      friendly_name: 标题角标背景
+    input_text.dark_header_badge_color:
+      friendly_name: 标题角标颜色
+    input_text.dark_header_badge_text_color:
+      friendly_name: 标题角标文字颜色
+    input_text.dark_header_border_radius:
+      friendly_name: 标题角标圆角
+    input_text.dark_header_box_shadow:
+      friendly_name: 标题边框阴影
+    input_text.dark_footer_box_shadow:
+      friendly_name: 页脚边框阴影
+    input_text.dark_nav_bar_color:
+      friendly_name: 导航栏颜色
+    input_text.dark_nav_bar_text_color:
+      friendly_name: 导航栏文字颜色
+    input_text.dark_card_color:
+      friendly_name: 卡片颜色
+    input_text.dark_card_border_style:
+      friendly_name: 卡片边框样式
+    input_text.dark_card_border_width:
+      friendly_name: 卡片边框宽度
+    input_text.dark_card_border_color:
+      friendly_name: 卡片边框颜色
+    input_text.dark_card_border_radius:
+      friendly_name: 卡片边框圆角
+    input_text.dark_card_box_shadow:
+      friendly_name: 卡片边框阴影
+    input_text.dark_header_color:
+      friendly_name: 页眉颜色
+    input_text.dark_header_text_color:
+      friendly_name: 页眉文本颜色
+    input_text.dark_text_color:
+      friendly_name: 主标题文字颜色
+    input_text.dark_secondary_text_color:
+      friendly_name: 副标题文字颜色
+    input_text.dark_background_image:
+      friendly_name: 背景颜色设置
+    input_text.dark_icon_color_default:
+      friendly_name: 默认图标颜色
+    input_text.dark_icon_color_active:
+      friendly_name: 活动图标颜色
+
+    input_text.dark_font_family:
+      friendly_name: 字体设置
+    input_text.dark_header_font_size:
+      friendly_name: 视口字体大小
+    input_text.dark_header_font_weight:
+      friendly_name: 视口字体粗细
+    input_text.dark_subtitle_font_size:
+      friendly_name: 副标题字体大小
+    input_text.dark_subtitle_font_weight:
+      friendly_name: 副标题字体粗细
+    input_text.dark_subtitle_text_color:
+      friendly_name: 副标题字体颜色
+    input_text.dark_title_text_color:
+      friendly_name: 标题字体颜色
+    input_text.dark_title_text_font_size:
+      friendly_name: 标题字体大小
+    input_text.dark_title_text_font_weight:
+      friendly_name: 标题字体粗细
+    input_text.dark_title_text_background_color:
+      friendly_name: 标题字体背景
+    input_text.dark_title_text_justify_self:
+      friendly_name: 标题字体位置
+    input_text.dark_title_text_border_radius:
+      friendly_name: 标题字体圆角
+    input_text.dark_title_text_box_shadow:
+      friendly_name: 标题字体阴影
+    input_text.dark_title_text_padding:
+      friendly_name: 标题字体填充
+    input_text.dark_title_text_border_style:
+      friendly_name: 标题字体边框样式
+    input_text.dark_title_text_border_width:
+      friendly_name: 标题字体边框宽度
+    input_text.dark_title_text_border_color:
+      friendly_name: 标题字体颜色
+    input_text.dark_button_color_active:
+      friendly_name: 活动按钮颜色
+    input_text.dark_button_name_font_size:
+      friendly_name: 按钮名称体大小
+    input_text.dark_button_name_font_weight:
+      friendly_name: 按钮名称体粗细
+    input_text.dark_button_label_font_size:
+      friendly_name: 按钮名称字体大小
+    input_text.dark_button_label_font_weight:
+      friendly_name: 按钮名称字体粗细
+    input_text.dark_button_state_font_size:
+      friendly_name: 按钮状态字体大小
+    input_text.dark_button_state_font_weight:
+      friendly_name: 按钮状态字体粗细
+    input_text.dark_button_name_color:
+      friendly_name: 按钮名称颜色
+    input_text.dark_button_name_color_active:
+      friendly_name: 按钮名称活动状态
+    input_text.dark_button_label_color:
+      friendly_name: 按钮状态文字颜色
+    input_text.dark_button_label_color_active:
+      friendly_name: 按钮活动状态颜色
+    input_text.dark_button_state_color:
+      friendly_name: 按钮状态颜色
+    input_text.dark_button_state_color_active:
+      friendly_name: 按钮活动状态颜色
+    input_text.dark_badge_background_color:
+      friendly_name: 角标背景颜色
+    input_text.dark_badge_text_color:
+      friendly_name: 角标文字颜色
+    input_text.dark_badge_font_size:
+      friendly_name: 角标文字大小
+    input_text.dark_badge_font_weight:
+      friendly_name: 角标文字粗细
+    input_text.dark_badge_text_transform:
+      friendly_name: 角标文字切换
+    input_text.dark_button_box_shadow_active:
+      friendly_name: 按钮激活状态阴影
+    input_text.dark_lock_color_active:
+      friendly_name: 锁定激活状态颜色
+    input_text.dark_lock_color_inactive:
+      friendly_name: 解锁无效状态颜色
+
+
+    input_boolean.button_badge:
+      friendly_name: 角标开关
+      icon: mdi:numeric-0-circle
+
+    input_select.person_1:
+      friendly_name: 我
+    input_select.person_2:
+      friendly_name: 老婆
+    input_select.person_3:
+      friendly_name: 儿子
+    input_select.person_4:
+      friendly_name: 汽车
+
+    input_select.server_select:
+      friendly_name: 服务器
+    input_select.automations_system:
+      friendly_name: 自动化
+    input_select.automations_devices:
+      friendly_name: 自动化
+    input_select.automations_other:
+      friendly_name: 自动化
+      
+    input_text.button_color:
+      friendly_name: 按钮颜色设置
+      icon: mdi:palette
+    input_select.hki_settings_selector:
+      friendly_name: 配置选项
+
+
+
+
+
+

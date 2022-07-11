@@ -1,0 +1,86 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: 厨房探测器
+  style:
+    hui-vertical-stack-card:
+      $hui-conditional-card>hui-vertical-stack-card$: |
+        hui-horizontal-stack-card {
+          padding: 0em 2em 2.3em 2em;
+        }
+      $hui-conditional-card>hui-vertical-stack-card$hui-horizontal-stack-card$: |
+        #root {
+          justify-content: space-evenly;
+        }
+  card:
+    type: vertical-stack
+    cards:
+      - type: entities
+        state_color: true
+        card_mod:
+          class: content
+        entities:
+          - entity: sensor.dishwasher_status
+          - entity: binary_sensor.28d1272f29c4_motion
+            name: 活动探测
+          - entity: binary_sensor.water_leak_sensor_158d00028ee572
+            name: 漏水检测
+          - entity: binary_sensor.smoke_sensor_158d0002cb5a00
+            name: 烟雾检测
+
+          - type: divider
+
+          - type: custom:bar-card
+            width: 55%
+            height: 2em
+            decimal: 0
+            unit_of_measurement: '%'
+            positions: 
+              icon: outside
+              indicator: 'off'
+              name: outside
+            severity: 
+              - color: '#ed0909'
+                from: 0
+                to: 30
+              - color: '#ff5e08'
+                from: 30
+                to: 40
+              - color: '#ffa408'
+                from: 40
+                to: 50
+              - color: '#edac09'
+                from: 50
+                to: 60
+              - color: '#f7da00'
+                from: 60
+                to: 70
+              - color: '#d9d21c'
+                from: 70
+                to: 80
+              - color: '#ccff00'
+                from: 80
+                to: 90
+              - color: '#3cff00'
+                from: 90
+                to: 100
+            entity_row: true
+            entities:
+
+              - entity: binary_sensor.water_leak_sensor_158d00028ee572
+                attribute: battery_level
+                name: 漏水探测器电量
+                tap_action:
+                  action: call-service
+                  service: homeassistant.update_entity
+                  service_data:
+                    entity_id: binary_sensor.water_leak_sensor_158d00028ee572
+
+              - entity: binary_sensor.smoke_sensor_158d0002cb5a00
+                attribute: battery_level
+                name: 烟雾探测器电量
+                tap_action:
+                  action: call-service
+                  service: homeassistant.update_entity
+                  service_data:
+                    entity_id: binary_sensor.smoke_sensor_158d0002cb5a00

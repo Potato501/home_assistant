@@ -1,0 +1,90 @@
+# lovelace_gen
+
+# Card
+type: 'custom:mini-graph-card'
+style: |
+  ha-card {
+    background: var(--ha-card-background);
+    --paper-item-icon-color: var(--paper-item-icon-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    font-family: var(--font-family);
+    opacity: 0.8;
+  }
+entities: 
+  - entity: {{ entity }}
+hours_to_show: {{ hours_to_show|default('48') }}
+points_per_hour: {{ points_per_hour|default('6') }}
+line_width: {{ line_width|default('3') }}
+hour24: {{ hour24|default('true') }}
+animate: {{ animate|default('true') }}
+decimals: {{ decimals|default('1') }}
+font_size: {{ font_size|default('53') }}
+height: {{ height|default('90') }}
+show:
+  graph: {{ graph_type|default('bar') }}
+  icon: {{ show_icon|default('true') }}
+  fill: {{ fill|default('true') }}
+  extrema: {{ show_extrema|default('true') }}
+  average: {{ show_average|default('false') }}
+font_size_header: {{ font_size_header|default('9') }}
+line_color: "{{ line_color|default('red') }}"
+name: {{ name }}
+icon: {{ icon }}
+color_thresholds:
+  - color: "#20E849"
+    value: 0.1
+  - color: "#1CE86C"
+    value: 0.3
+  - color: "#37F222"
+    value: 0.5
+  - color: "#1DF24E"
+    value: 1
+  - color: "#26DB32"
+    value: 1.5
+  - color: "#7ADB29"
+    value: 5
+  - color: "#5FEB1E"
+    value: 10
+  - color: "#C8F222"
+    value: 50
+  - color: "#DEF202"
+    value: 60
+  - color: "#E8E020"
+    value: 70
+  - color: "#DBD30E"
+    value: 80
+  - color: "#F2DC02"
+    value: 90
+  - color: "#EBC805"
+    value: 100
+  - color: "#E8C723"
+    value: 110
+  - color: "#F2C424"
+    value: 120
+  - color: "#E8C723"
+    value: 130
+  - color: "#E8C723"
+    value: 140
+  - color: "#DBAA2C"
+    value: 150
+  - color: "#F2AC24"
+    value: 160
+  - color: "#EB9C26"
+    value: 180
+  - color: "#DB7837"
+    value: 200
+  - color: "#F26E30"
+    value: 250
+  - color: "#EB5C31"
+    value: 500
+  - color: "#E86823"
+    value: 1000
+  - color: "#F25B24"
+    value: 1500
+  - color: "#F23924"
+    value: 2500
+  - color: "#EB4E46"
+    value: 5000
+  - color: "#ed0909"
+    value: 7000

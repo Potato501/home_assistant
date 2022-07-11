@@ -1,0 +1,45 @@
+## 图标站：https://materialdesignicons.com/
+group:
+  all_lights:
+    name: 所有灯
+    entities:
+      - input_boolean.ke_ting_xi_ding_deng
+      - input_boolean.ke_ting_tong_deng
+      - input_boolean.ke_ting_tai_deng
+      - input_boolean.ke_ting_luo_di_deng
+      - input_boolean.ke_ting_deng_dai
+
+  all_switches:
+    name: 所有开关
+    entities:
+      - input_boolean.ke_ting_cha_zuo
+      - input_boolean.ke_ting_xu_ni_kai_guan
+
+
+
+homeassistant:
+  customize:
+    sun.sun:
+      friendly_name: 日出日落
+    input_boolean.ke_ting_xu_ni_kai_guan:
+      friendly_name: 客厅开关
+      icon: mdi:smoke-detector
+    input_boolean.ke_ting_cha_zuo:
+      friendly_name: 客厅插座
+      icon: mdi:power-plug
+    input_boolean.ke_ting_deng_dai:
+      friendly_name: 客厅灯带
+      icon: mdi:led-strip-variant
+    input_boolean.ke_ting_luo_di_deng:
+      friendly_name: 客厅落地灯
+      icon: mdi:floor-lamp
+    input_boolean.ke_ting_tai_deng:
+      friendly_name: 客厅台灯
+      icon: mdi:lamp
+    input_boolean.ke_ting_tong_deng:
+      friendly_name: 客厅筒灯
+      icon: mdi:light-flood-down
+    input_boolean.ke_ting_xi_ding_deng:
+      friendly_name: 客厅吸顶灯
+      icon: mdi:wall-sconce-flat
+

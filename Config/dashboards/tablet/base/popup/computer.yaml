@@ -1,0 +1,32 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: 我的电脑
+  style:
+    hui-vertical-stack-card:
+      $hui-conditional-card>hui-vertical-stack-card$: |
+        hui-horizontal-stack-card {
+          padding: 0em 2em 2.3em 2em;
+        }
+      $hui-conditional-card>hui-vertical-stack-card$hui-horizontal-stack-card$: |
+        #root {
+          justify-content: space-evenly;
+        }
+  card:
+    type: vertical-stack
+    cards:
+      - type: entities
+        state_color: true
+        card_mod:
+          class: content
+        entities:
+          - type: divider
+          - entity: switch.wol_hzm_mac
+            name: 苹果主机
+            secondary_info: last-changed
+          - type: divider
+          - sensor.huzemin_macmini_connection_type
+          - sensor.huzemin_macmini_ssid
+          - sensor.huzemin_macmini_frontmost_app
+          - sensor.huzemin_macmini_active_microphone
+          - sensor.huzemin_macmini_storage

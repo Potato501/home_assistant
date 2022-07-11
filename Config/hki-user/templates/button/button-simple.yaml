@@ -1,0 +1,105 @@
+# lovelace_gen
+
+# card
+type: custom:button-card
+name: {{ name }}
+icon: {{ icon }}
+show_entity_picture: {{ show_entity_picture|default('false') }}
+entity_picture: "{{ entity_picture }}"
+color: {{ color|default('auto') }}
+size: {{ size|default('25%') }}
+lock:
+  enabled: {{ lock|default('false') }}
+  unlock: {{ lock_unlock|default('tap') }}
+  duration: {{ lock_duration|default('5') }}
+aspect_ratio: {{ aspect_ratio|default('4/3') }}
+entity: {{ entity|default('input_boolean.dummy1') }}
+# label: {{ label|default('"&nbsp;"') }}
+show_name: {{ show_name|default('true') }}
+show_icon: {{ show_icon|default('true') }}
+show_state: {{ show_state|default('false') }}
+show_label: {{ show_label|default('false') }}
+show_last_changed: {{ show_last_changed|default('false') }}
+tap_action: 
+  action: {{ tap_action|default('toggle') }}
+  haptic: light
+hold_action:
+  action: "{{ hold_action|default('none') }}"
+  haptic: heavy
+double_tap_action:
+  action: "{{ hold_action|default('none') }}"
+  haptic: heavy
+extra_styles: " @keyframes bg { background-image: url('/local/images/Device/esxi_hpgen8.png'); } "
+
+styles:
+  card:
+    # - animation: bg 20s linear infinite
+    - border-radius: var(--border-radius) #5px
+    - box-shadow: var(--box-shadow)
+  label:
+    - font-weight: var(--label-font-weight)
+    - font-size: var(--label-font-size)
+    - font-family: var(--font-family)
+    - padding: 0px 10px
+    - justify-self: center
+  state:
+    - font-size: var(--state-font-size)
+    - font-family: var(--font-family)
+    - padding: 0px 10px
+    - justify-self: center
+    - text-transform: capitalize
+    - font-weight: var(--state-font-weight)
+  name:
+    - justify-self: center
+    - padding: 0px 10px
+    - font-weight: var(--name-font-weight)
+    - font-family: var(--font-family) 
+    - font-size: var(--name-font-size)
+state:
+  - value: "on" 
+    spin: {{ spin_on|default('false') }} 
+    styles:
+      card:
+        - --ha-card-background: var(--button-color)
+        - opacity: var(--button-on-opacity)
+        - -webkit-box-shadow: var(--button-on-box-shadow)
+        - box-shadow: var(--button-on-box-shadow)
+      name:
+        - color: var(--button-on-name-color)
+      state:
+        - color: var(--button-on-state-color)
+      lock:
+        - color: var(--button-on-lock-color) 
+      label:
+        - color: var(--button-on-label-color)
+  - value: "off"
+    spin: {{ spin_off|default('false') }}
+    styles:
+      card:
+        - opacity: {{ opacity_off|default('0.8') }}
+        - --ha-card-background: var(--button-color)
+      # icon:
+      #   - color: "{{ icon_color_off|default('var(--paper-item-icon-color)') }}"
+      #   - animation: {{ animation|default('none') }}
+      name:
+        - color: "{{ name_color_off|default('var(--primary-text-color)') }}"
+      state:
+        - color: "{{ state_color_off|default('var(--primary-text-color)') }}"
+      label:
+        - color: "{{ label_color_off|default('var(--primary-text-color)') }}"
+  - value: "disarmed"
+    spin: {{ spin_disarmed|default('false') }}
+    styles:
+      card:
+        - opacity: {{ opacity_disarmed|default('0.8') }}
+        - --ha-card-background: var(--button-color)
+      icon:
+        - color: "{{ icon_color_disarmed|default('var(--paper-item-icon-color)') }}"
+        - animation: {{ animation|default('none') }}
+      name:
+        - color: "{{ name_color_disarmed|default('var(--primary-text-color)') }}"
+      state:
+        - color: "{{ state_color_disarmed|default('var(--primary-text-color)') }}"
+      label:
+        - color: "{{ label_color_disarmedf|default('var(--primary-text-color)') }}"
+

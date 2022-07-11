@@ -1,0 +1,411 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: 设备信息
+  style:
+    .: |
+      :host .content {
+        width: calc(385px + 385px + 385px);
+        max-width: 100vw;
+      }
+    layout-card:
+      $grid-layout$:
+        hui-entities-card:
+          $: |
+            .card-content {
+              padding: 1.5em 2.7em 2.3em 2em;
+            }
+            ha-card {
+              animation: border 1s forwards;
+              border-radius: 0;
+            }
+            @keyframes border {
+              0%, 100% {
+                border-right: 1px solid rgba(0, 0, 0, 0.3);
+              }
+            }
+            /* phone */
+            @media screen and (max-width: 800px) {
+              ha-card {
+                animation: none;
+              }
+            }
+          $hui-horizontal-stack-card$: |
+            #root {
+              justify-content: space-evenly;
+              margin-top: 1.9em;
+              margin-left: 0.8em;
+            }
+  card:
+    type: custom:layout-card
+    layout_type: custom:grid-layout
+    layout:
+      grid-template-columns: repeat(3, 1fr)
+      grid-template-rows: 1fr
+      grid-template-areas: |
+        "hass tablet nas"
+      mediaquery:
+        #phone
+        "(max-width: 800px)":
+          grid-template-columns: 1fr
+          grid-template-rows: repeat(3, 1fr)
+          grid-template-areas: |
+            "hass"
+            "tablet"
+            "nas"
+    cards:
+
+      #################################################
+      #                                               #
+      #                HOME ASSISTANT                 #
+      #                                               #
+      #################################################
+
+      - type: entities
+        view_layout:
+          grid-area: hass
+        title: 系统信息
+        show_header_toggle: false
+        card_mod:
+          class: header
+          style: |
+            ha-card {
+              margin: 0px !important;
+            }
+        entities:
+          - entity: sensor.hacs
+            name: 插件商店
+
+          - entity: sensor.home_assistant_operating_system_version
+            name: 系统版本
+
+          - entity: sensor.home_assistant_latest_version
+            name: 平台版本
+
+          - entity: sensor.disk_use_home
+
+          - entity: sensor.last_boot
+
+          - type: custom:bar-card
+            width: 55%
+            height: 2em
+            decimal: 0
+            unit_of_measurement: '%'
+            positions: &bar_card_positions
+              icon: outside
+              indicator: 'off'
+              name: outside
+            severity: &bar_card_severity
+              - color: '#303435'
+                from: 0
+                to: 89
+              - color: '#6d2525'
+                from: 90
+                to: 200
+            entity_row: true
+            entities:
+
+              - entity: sensor.processor_use_percent
+                tap_action:
+                  action: call-service
+                  service: homeassistant.update_entity
+                  service_data:
+                    entity_id: sensor.processor_use_percent
+
+              - entity: sensor.memory_use_percent
+                tap_action:
+                  action: call-service
+                  service: homeassistant.update_entity
+                  service_data:
+                    entity_id: sensor.memory_use_percent
+
+              - entity: sensor.memory_use_percent
+                tap_action:
+                  action: call-service
+                  service: homeassistant.update_entity
+                  service_data:
+                    entity_id: sensor.disk_use_percent_home
+
+          - type: custom:hui-horizontal-stack-card
+            cards:
+              - type: custom:button-card
+                name: 重启平台 #Home Assistant
+                icon: mdi:reload
+                tap_action:
+                  services: |
+                    [[[
+                      hass.callService('browser_mod', 'toast', {
+                        message: '重载Home Assistant...'
+                      });
+                      hass.callService('homeassistant', 'restart');
+                    ]]]
+                template: icon_name
+
+              - type: custom:button-card
+                name: 重启主机
+                icon: mdi:power
+                tap_action:
+                  action: call-service
+                  service: homeassistant.restart
+                  # service_data:
+                  #   entity_id: script.homeassistant_restart
+                template: icon_name
+
+      #################################################
+      #                                               #
+      #                    TABLET                     #
+      #                                               #
+      #################################################
+
+      - type: entities
+        view_layout:
+          grid-area: tablet
+        title: 平板状态
+        show_header_toggle: false
+        card_mod:
+          class: header
+          style: |
+            ha-card {
+              margin: 0px !important;
+            }
+        entities:
+          - entity: switch.pixel_c_screensaver #switch.broadlink_mp1_01_s2 
+            # name: 电源插座
+
+          - entity: light.pixel_c_screen
+
+          - type: custom:slider-entity-row
+            entity: light.pixel_c_screen
+            name: 亮度调节
+            icon: mdi:brightness-6
+            hide_state: false
+
+          - entity: binary_sensor.pixel_c_plugged_in
+
+          - entity: sensor.pixel_c_foreground_app
+
+          - type: custom:bar-card
+            width: 55%
+            height: 2em
+            decimal: 0
+            unit_of_measurement: '%'
+            positions: *bar_card_positions
+            severity: &bar_card_battery
+              - color: '#ed0909'
+                from: 0
+                to: 30
+              - color: '#ff5e08'
+                from: 30
+                to: 40
+              - color: '#ffa408'
+                from: 40
+                to: 50
+              - color: '#edac09'
+                from: 50
+                to: 60
+              - color: '#f7da00'
+                from: 60
+                to: 70
+              - color: '#d9d21c'
+                from: 70
+                to: 80
+              - color: '#ccff00'
+                from: 80
+                to: 90
+              - color: '#3cff00'
+                from: 90
+                to: 100
+            entity_row: true
+            entities:
+
+              - entity: sensor.pixel_c_battery_level
+                name: 电池电量
+                icon: mdi:battery
+
+          - type: custom:bar-card
+            width: 55%
+            height: 2em
+            decimal: 0
+            unit_of_measurement: '%'
+            positions: *bar_card_positions
+            severity: *bar_card_severity
+            entity_row: true
+            entities:
+
+              - entity: sensor.fullykiosk_memory_percentage
+                name: 内存 - 3GB
+                icon: mdi:memory
+                tap_action:
+                  action: call-service
+                  service: homeassistant.update_entity
+                  service_data:
+                    entity_id: sensor.fullykiosk_memory_percentage
+
+              - entity: sensor.fullykiosk_storage_percentage
+                name: 存储 - 64GB
+                icon: mdi:sd
+                tap_action:
+                  action: call-service
+                  service: homeassistant.update_entity
+                  service_data:
+                    entity_id: sensor.fullykiosk_storage_percentage
+
+          - type: custom:hui-horizontal-stack-card
+            cards:
+              - type: custom:button-card
+                name: 重载主页
+                icon: mdi:reload
+                tap_action:
+                  services: |
+                    [[[
+                      hass.callService('browser_mod', 'toast', {
+                        message: '重新载入 fullykiosk Browser主页...'
+                      });
+                      hass.callService('fullykiosk', 'load_start_url', {
+                        entity_id: 'media_player.pixel_c_media_player'
+                      });
+                    ]]]
+                template: icon_name
+
+              - type: custom:button-card
+                name: 重启Kiosk
+                icon: mdi:reload
+                tap_action:
+                  services: |
+                    [[[
+                      hass.callService('browser_mod', 'toast', {
+                        message: '重新启动 Fully Kiosk Browser...'
+                      });
+                      hass.callService('fullykiosk', 'restart', {
+                        entity_id: 'media_player.pixel_c_media_player'
+                      });
+                    ]]]
+                template: icon_name
+
+      #################################################
+      #                                               #
+      #                      NAS                      #
+      #                                               #
+      #################################################
+
+      - type: entities
+        view_layout:
+          grid-area: nas
+        title: 群晖状态
+        show_header_toggle: false
+        card_mod:
+          class: header
+          style:
+            .: |
+              ha-card {
+                animation: none !important;
+                margin: 0px !important;
+              }
+            mini-graph-card:
+              $: |
+                ha-card {
+                  padding: 0px !important;
+                }
+            hui-horizontal-stack-card:
+              $:
+                .: |
+                  #root {
+                    margin-top: 1em;
+                    margin-right: 1.5em;
+                  }
+                  #root > * {
+                    flex: none !important;
+                  }
+                hui-entities-card:
+                  $:
+                    .: |
+                      #states {
+                        padding: 0;
+                      }
+                    hui-sensor-entity-row:
+                      $hui-generic-entity-row$: |
+                        .info {
+                          margin: 0 8px 0 8px !important;
+                        }
+        entities:
+          - entity: binary_sensor.ds416play_security_status
+            name: 系统状态
+
+          - entity: sensor.ds416play_volume_3_maximum_disk_temp
+            name: RAID盘温度
+
+          - entity: sensor.last_boot
+            name: 启动时间 
+
+          - type: custom:bar-card
+            width: 55%
+            height: 2em
+            decimal: 0
+            unit_of_measurement: '%'
+            positions: *bar_card_positions
+            severity: *bar_card_severity
+            entity_row: true
+            entities:
+
+              - entity: sensor.processor_use_percent
+                name: 处理器
+                tap_action:
+                  action: call-service
+                  service: homeassistant.update_entity
+                  service_data:
+                    entity_id: sensor.processor_use_percent
+
+              - entity: sensor.memory_use_percent
+                name: 内存 - 4GB
+                tap_action:
+                  action: call-service
+                  service: homeassistant.update_entity
+                  service_data:
+                    entity_id: sensor.memory_use_percent
+
+              - entity: sensor.ds416play_volume_3_volume_used
+                name: 磁盘 - 7.5TB
+                tap_action:
+                  action: call-service
+                  service: homeassistant.update_entity
+                  service_data:
+                    entity_id: sensor.ds416play_volume_3_volume_used
+
+          - type: custom:hui-horizontal-stack-card
+            cards:
+              - type: entities
+                entities:
+                  - entity: sensor.ds416play_network_down
+                    name: Down
+                    style: |
+                      :host {
+                        --paper-item-icon-color: green;
+                      }
+
+              - type: entities
+                entities:
+                  - entity: sensor.ds416play_network_up
+                    name: UP
+                    style: |
+                      :host {
+                        --paper-item-icon-color: #385581;
+                      }
+
+        footer:
+          type: custom:mini-graph-card
+          entities:
+            - color: '#385581'
+              entity: sensor.ds416play_network_up
+            - color: green
+              entity: sensor.ds416play_network_down
+          align_state: left
+          group: false
+          points_per_hour: 15
+          line_width: 3
+          hour24: true
+          hours_to_show: 1.5
+          show:
+            {fill: fade, icon: false, name: false, state: false, 
+            name_adaptive_color: true, labels: hover, legend: false}
+          tap_action:
+            action: none

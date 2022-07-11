@@ -1,0 +1,122 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - type: markdown
+        style: |
+          ha-card { 
+              --ha-card-background: "rgba(0, 0, 0, 0.0)";
+              --ha-card-box-shadow: 'none';
+              font-size: 20px;
+              --ha-primary-text-color:  "rgba(255, 255, 255, 1.0)";
+              text-align: center;
+          }
+        content: |
+          ##### {{ states('sensor.date')}} &nbsp; {{ states('sensor.jieqi_cnday')}}  &nbsp;{{ states('sensor.jieqi_week')}}
+          # {{ states('sensor.time')}}
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 快速跳转"
+      - type: horizontal-stack
+        cards:
+          - !include
+            - "../../templates/button/quick-access-menu.yaml"
+            - name: 功能菜单
+              icon: mdi:apps
+              navigation_path: /homekit-infused/menu
+              opacity_off: 0.8
+          - !include
+            - "../../templates/button/quick-access-menu.yaml"
+            - name: 计时器
+              icon: mdi:timer-outline
+              navigation_path: /homekit-infused/devices_timer
+              opacity_off: 0.8
+          - !include
+            - "../../templates/button/quick-access-menu.yaml"
+            - name: 服务器
+              icon: mdi:nas
+              navigation_path: /homekit-infused/server
+              opacity_off: 0.8
+          - !include
+            - "../../templates/button/quick-access-menu.yaml"
+            - name: 系统状态
+              icon: mdi:tools
+              navigation_path: /homekit-infused/home_assistant_setting
+              opacity_off: 0.8
+      - !include ../../../hki-base/includes/search-card.yaml
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 快捷菜单"
+      - type: horizontal-stack
+        cards:
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 灯光控制
+              # label: 灯光开关
+              icon: mdi:lightbulb-group-outline
+              navigation_path: /homekit-infused/lights
+              notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['sensor.current_lights_on'].state}`; ]]]"
+              background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 电源开关
+              # label: 开关插座
+              icon: mdi:power-plug
+              navigation_path: /homekit-infused/devices
+              notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['sensor.current_devices_on'].state}`; ]]]"
+              background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 媒体控制
+              # label: 播放器
+              icon: mdi:play-protected-content
+              navigation_path: /homekit-infused/media_media_players
+              notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['sensor.sony_tv_time_on'].state} 小时`; ]]]"
+              background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 空调控制
+              # label: 温湿度
+              icon: mdi:air-conditioner
+              navigation_path: /homekit-infused/climate
+              notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['sensor.m1_temperature'].state} °C`; ]]]"
+              background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+      - type: horizontal-stack
+        cards:
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 扫地机
+              # label: 设备控制
+              icon: mdi:robot-vacuum
+              navigation_path: /homekit-infused/vacuum
+              notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['vacuum.xiaomi_vacuum'].state}`; ]]]"
+              background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 日历日程
+              # label: 待办事项
+              icon: mdi:calendar-check
+              navigation_path: /homekit-infused/calendar
+              # notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['calendar.todoist_homeassistant'].state}`; ]]]"
+              # background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 安防报警
+              # label: 监控报警
+              icon: mdi:cctv
+              navigation_path: /homekit-infused/security
+              notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['sensor.current_motion_sensors_on'].state}`; ]]]"
+              background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 网络数据
+              # label: 状态监测
+              icon: mdi:web
+              navigation_path: /homekit-infused/network_status
+              notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['sensor.mikrotik_wan_rx'].state} Mb`; ]]]"
+              background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"

@@ -1,0 +1,146 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 房间温湿度"
+      - type: vertical-stack #horizontal-stack
+        cards:
+          # - type: custom:swipe-card
+          #   parameters:
+          #     spaceBetween: 8
+          #     touchEventsTarget: "container"
+          #     pagination:
+          #       type: "bullets"
+          #       dynamicBullets: true
+          #   cards:
+              - type: vertical-stack
+                cards:
+                  - type: custom:mini-graph-card
+                    style: |
+                      ha-card {
+                        background: var(--paper-card-background-color);
+                        border-radius: var(--border-radius);
+                        box-shadow: var(--box-shadow);
+                        font-weight: bold;
+                        opacity: 0.8;
+                        height: 242px;                  
+                      }
+                    entities:
+                      - entity: sensor.m1_temperature
+                        name: 门厅
+              #         color: "#fa0000" # Red
+                      - entity: sensor.t2_cloud_ks5k00
+                        name: 客厅
+              #         color: "#fa0000" # Red
+                      - entity: sensor.temperature_158d00019f912b
+                        name: 主卧
+              #         color: "#FFFF00" # Yellow
+                      - entity: sensor.t2_cloud_qse400
+                        name: 次卧
+              #         color: "#4169E1"
+                      - entity: sensor.0x158d0001b75deb_temperature
+                        name: 厨房
+                      - entity: sensor.0x158d0001b75deb_temperature
+                        name: 厕所
+                      - entity: sensor.temperature_158d0001dc17c3
+                        color: gray
+                        name: 机柜
+                        show_line: false
+                        show_points: false
+                        show_legend: false
+                        y_axis: secondary
+                    name: 温度
+                    hours_to_show: 12
+                    points_per_hour: 6
+                    update_interval: 15
+                    aggregate_func: max
+                    line_width: 2
+                    smoothing: false
+                    font_size: 65
+                    font_size_header: 9
+                    show:
+                      labels: true
+                      labels_secondary: true
+                      average: true
+                      extrema: true
+                    color_thresholds:
+                      - value: 20
+                        color: "#26c941"
+                      - value: 25
+                        color: "#64c91c"
+                      - value: 28
+                        color: "#d4c11c"
+                      - value: 30
+                        color: "#d1861d"
+                      - value: 32
+                        color: "#de4314"
+                      - value: 35
+                        color: "#fa0505"
+                      - value: 40
+                        color: "#c92626"
+                    tap_action: none
+
+              - type: vertical-stack
+                cards:
+                  - type: custom:mini-graph-card
+                    style: |
+                      ha-card {
+                        background: var(--paper-card-background-color);
+                        border-radius: var(--border-radius);
+                        box-shadow: var(--box-shadow);
+                        font-weight: bold;
+                        opacity: 0.8;
+                        height: 242px;                  
+                      }
+                    entities:
+                      - entity: sensor.m1_humidity
+                        name: 门厅
+              #         color: "#fa0000" # Red
+                      - entity: sensor.t2_cloud_ks5k00_humidity
+                        name: 客厅
+              #         color: "#fa0000" # Red
+                      - entity: sensor.humidity_158d00019f912b
+                        name: 主卧
+              #         color: "#FFFF00" # Yellow
+                      - entity: sensor.t2_cloud_qse400_humidity
+                        name: 次卧
+              #         color: "#4169E1"
+                      - entity: sensor.0x158d0001b75deb_humidity
+                        name: 厨房
+                      - entity: sensor.0x158d0001b75deb_humidity
+                        name: 厕所
+                    name: 湿度
+                    hours_to_show: 24
+                    points_per_hour: 6
+                    update_interval: 15
+                    aggregate_func: max
+                    line_width: 3
+                    smoothing: false
+                    font_size: 65
+                    font_size_header: 9
+                    show:
+                      average: true
+                      extrema: true
+                    color_thresholds:
+                      - value: 30
+                        color: "#26c941"
+                      - value: 40
+                        color: "#64c91c"
+                      - value: 45
+                        color: "#d4c11c"
+                      - value: 50
+                        color: "#d1861d"
+                      - value: 60
+                        color: "#de4314"
+                      - value: 70
+                        color: "#fa0505"
+                      - value: 90
+                        color: "#c92626"
+                    tap_action: none

@@ -1,0 +1,17 @@
+# lovelace_gen
+
+# card
+type: custom:light-popup-card
+entity: {{ entity }}
+brightnessWidth: 110px
+brightnessHeight: {{ slider_height|default('410px') }}
+switchWidth: 110px
+switchHeight: {{ slider_height|default('410px') }}
+displayType: {{ display_type|default('auto') }}
+fullscreen: false
+settings: true
+settingsPosition: bottom
+settingsCard:
+  type: custom:more-info-card
+  cardOptions:
+    entity: {{ entity }}

@@ -1,0 +1,60 @@
+homeassistant:
+  name: Home Assistant
+  latitude: 39.55437112293 
+  longitude: 117.05871286816
+  elevation: 3
+  unit_system: metric
+  # external_url:             ## 填入自己的外部访问地址
+  # internal_url:             ## 填入局域网地址
+  currency: CNY
+  time_zone: Asia/Shanghai
+  packages: !include_dir_named packages/
+  customize: !include customize.yaml
+
+
+frontend:
+  themes: !include_dir_merge_named themes
+
+## NGINX Home Assistant SSL proxy插件需要增加的配置
+http:
+  cors_allowed_origins:
+    - https://your:2121  ## 你的域名和路由上映射的端口
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 10.16.100.0/24
+    - 172.30.33.0/24
+
+lovelace:
+  mode: storage
+  dashboards:
+    homekit-infused:
+      mode: yaml
+      title: 主页
+      icon: mdi:monitor-cellphone
+      show_in_sidebar: true
+      filename: "hki-base/homekit-infused.yaml"
+
+    neon-lovelace:
+      mode: yaml
+      title: Neon Lovelace
+      icon: mdi:tablet-android
+      show_in_sidebar: true
+      filename: dashboards/neon/ui-lovelace.yaml
+
+    mattias-lovelace:
+      mode: yaml
+      title: Mattias Lovelace
+      icon: mdi:tablet-cellphone
+      show_in_sidebar: true
+      filename: dashboards/tablet/ui-lovelace.yaml
+
+################## 以下为系统默认配置 ########################
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml

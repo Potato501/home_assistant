@@ -1,0 +1,248 @@
+# This is the notifications page, you can edit notifications that are
+# shown on the frontend in this file. This works with conditional cards.
+# What this means is that the conditions need to be be met before these
+# cards are shown. When there are more entities/states in a conditional
+# card it will always be an 'AND' condition, it will never be an 'OR'
+# condition. Edit the conditions, entities and notification content to
+# your own likings.
+
+#### #### #### #### #### #### #### #### #### #### #### #### #### #### #
+
+# Card Config
+
+# Example Config (You can uncomment this and edit it to your likings, if you want multiple notifications you can simply continue writing a new card below)
+
+#- type: conditional
+#  conditions:
+#    - entity: binary_sensor.smoke_sensor
+#      state: "off"
+#    - entity: binary_sensor.front_door
+#      state: "off"
+#    - entity: vacuum.xiaomi_vacuum_cleaner
+#      state: "docked"
+#    - entity: binary_sensor.bedroom_door
+#      state: "off"
+#    - entity: sensor.dishwasher_status
+#      state_not: "Clean"
+#  card:
+#    !include
+#    - '../hki-base/templates/header/notification-template.yaml'
+#    - icon: mdi:check-box-outline
+#      name: All clear, there are no notifications.
+
+#- type: conditional
+#  conditions:
+#    - entity: binary_sensor.smoke_sensor
+#      state: "on"
+#  card:
+#    !include
+#    - '../hki-base/templates/header/notification-template.yaml'
+#    - icon: mdi:check-box-outline
+#      name: Smoke detected in the Kitchen!
+
+# - type: conditional
+#   conditions:
+#     - entity: input_boolean.dummy1
+#       state_not: "dummy"
+#   card:
+#     !include
+#     - '../hki-base/templates/header/notification-template.yaml'
+#     - icon: mdi:alert
+#       name: Insert Notification, please open user/notifications.yaml
+
+- type: conditional
+  conditions:
+    - entity: binary_sensor.door_window_sensor_158d0002014310
+      state: "off"     
+    - entity: binary_sensor.door_window_sensor_158d00026ba081
+      state: "off" 
+    - entity: binary_sensor.door_window_sensor_158d0002a16231
+      state: "off" 
+    - entity: binary_sensor.door_window_sensor_158d00032604d3
+      state: "off" 
+    - entity: binary_sensor.door_window_sensor_158d00032605b8
+      state: "off" 
+    - entity: binary_sensor.smoke_sensor_158d0002cb5a00
+      state: "off"
+    - entity: binary_sensor.water_leak_sensor_158d00028ee572
+      state: "off"
+    - entity: binary_sensor.motion_sensor_158d0001ad5c41
+      state: "off"
+    - entity: binary_sensor.motion_sensor_158d0001e02fa1
+      state: "off"
+    - entity: binary_sensor.motion_sensor_158d0001e521e9
+      state: "off"
+    - entity: binary_sensor.motion_sensor_158d0001e53c30
+      state: "off"
+    - entity: binary_sensor.motion_sensor_158d0001e59ac8
+      state: "off"
+    - entity: person.baba
+      state_not: "home"
+    - entity: person.mama
+      state_not: "home"
+#      - entity: person.baby
+#        state_not: "home"
+  card:
+    !include
+    - '../hki-base/templates/header/notification-template.yaml'
+    - icon: mdi:check-box-outline
+      name: 爸爸妈妈都不在家，注意查看家中老人情况！
+# Smoke Detector Triggered
+- type: conditional
+  conditions:
+    - entity: binary_sensor.smoke_sensor_158d0002cb5a00
+      state: "on"
+  card:
+    !include
+    - '../hki-base/templates/header/notification-template.yaml'
+    - icon: mdi:smoke-detector  #fal:sensor-smoke
+      name: 厨房有烟雾，请速度查看！
+      spin: true
+# Water Detector Triggered
+- type: conditional
+  conditions:
+    - entity: binary_sensor.water_leak_sensor_158d00028ee572
+      state: "on"
+  card:
+    !include
+    - '../hki-base/templates/header/notification-template.yaml'
+    - icon: mdi:smoke-detector  #fal:sensor-smoke
+      name: 厨房有漏水，请速度查看！
+      spin: true
+
+# Alarm Triggered
+- type: conditional
+  conditions:
+    - entity: alarm_control_panel.home_alarm
+      state: "triggered"
+  card:
+    !include
+    - '../hki-base/templates/header/notification-template.yaml'
+    - icon: mdi:alarm-light
+      name: 家居安防系统被触发！
+# Alarm Armed
+- type: conditional
+  conditions:
+    - entity: alarm_control_panel.home_alarm
+      state_not: disarmed
+    - entity: alarm_control_panel.home_alarm
+      state_not: pending
+  card:
+    !include
+    - '../hki-base/templates/header/notification-template.yaml'
+    - icon: mdi:alarm-light
+      name: 家居安防系统已布控！
+# Alarm Disarmed Not Home
+- type: conditional
+  conditions:
+    - entity: alarm_control_panel.home_alarm
+      state: disarmed
+#    - entity: group.device_status
+#      state_not: home
+  card:
+    !include
+    - '../hki-base/templates/header/notification-template.yaml'
+    - icon: mdi:alarm-light
+      name: 家居安防系统已撤防！
+
+# 厕所浴霸状态
+- type: conditional
+  conditions:
+    - entity: fan.sonoff08
+      state: "on"
+    - entity: binary_sensor.motion_sensor_158d0001e59ac8
+      state: "off"
+  card:
+    !include
+    - '../hki-base/templates/header/notification-template.yaml'
+    - icon: fas:fan
+      name: 洗手间暖风扇开启中，注意及时关闭!
+      spin: true
+# 防盗门状态
+- type: conditional
+  conditions:
+    - entity: binary_sensor.door_window_sensor_158d0002014310
+      state: "on"
+  card:
+    !include
+    - '../hki-base/templates/header/notification-template.yaml'
+    - icon: mdi:door-open
+      name: 防盗门开启中，注意随手关门!
+# 小卧室窗户状态
+- type: conditional
+  conditions:
+    - entity: binary_sensor.door_window_sensor_158d0002a16231
+      state: "on"
+  card:
+    !include
+    - '../hki-base/templates/header/notification-template.yaml'
+    - icon: mdi:window-maximize
+      name: 小卧窗户开启，注意天气预报!
+# 家人位置
+- type: conditional
+  conditions:
+    - entity: person.baba
+      state: "home"
+    - entity: person.mama
+      state: "home"
+    - entity: person.baby
+      state: "home"
+  card:
+    !include
+    - '../hki-base/templates/header/notification-template.yaml'
+    - icon: mdi:account-group 
+      name: 我们都在家里呆着了！
+# 我在上班
+- type: conditional
+  conditions:
+    - entity: person.baba
+      state: "公司"
+  card:
+    !include
+    - '../hki-base/templates/header/notification-template.yaml'
+    - icon: mdi:city-variant-outline
+      name: 我在公司！
+# Current Lights
+- type: conditional
+  conditions:
+    - entity: sensor.current_lights_on
+      state_not: "0"
+  card:
+    !include
+    - '../hki-base/templates/header/notification-template.yaml'
+    - icon: mdi:lightbulb 
+      name: "[[[ if (states['sensor.current_lights_on'].state < 2) return `有1盏灯未关闭！`; else return `当前有 ${states['sensor.current_lights_on'].state} 盏灯开启！`  ]]]"
+      # card_color: 'rgba(79, 255, 161, 0.5)'
+# Current Devices
+- type: conditional
+  conditions:
+    - entity: sensor.current_devices_on
+      state_not: "0"
+  card:
+    !include
+    - '../hki-base/templates/header/notification-template.yaml'
+    - icon: mdi:power-plug 
+      name: "[[[ if (states['sensor.current_devices_on'].state < 2) return `有1个设备电源插座未关闭！`; else return `当前有 ${states['sensor.current_devices_on'].state} 个插座开启！` ]]]"
+      # card_color: 'rgba(18, 180, 255, 0.5)'
+# Current Climate
+- type: conditional
+  conditions:
+    - entity: sensor.current_climate_entities_on
+      state_not: "-1"
+  card:
+    !include
+    - '../hki-base/templates/header/notification-template.yaml'
+    - icon: mdi:thermostat 
+      name: "[[[ if (states['sensor.current_climate_entities_on'].state < 1) return `空调均为关闭状态！`; else return `当前有 ${states['sensor.current_climate_entities_on'].state} 台空调打开！`  ]]]"
+      # card_color: 'rgba(255, 0, 76, 0.5)'
+# Current Fans
+- type: conditional
+  conditions:
+    - entity: sensor.current_fans_on
+      state_not: "-1"
+  card:
+    !include
+    - '../hki-base/templates/header/notification-template.yaml'
+    - icon: mdi:fan 
+      name: "[[[ if (states['sensor.current_fans_on'].state < 1) return `风扇均为关闭状态！`; else return `当前有 ${states['sensor.current_fans_on'].state} 个风扇设备开启！`  ]]]"
+      # card_color: 'rgba(255, 0, 76, 0.5)'

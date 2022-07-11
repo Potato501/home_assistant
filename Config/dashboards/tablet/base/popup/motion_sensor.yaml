@@ -1,0 +1,72 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: 活动状态
+  style:
+    hui-vertical-stack-card:
+      $hui-conditional-card>hui-vertical-stack-card$: |
+        hui-horizontal-stack-card {
+          padding: 0em 2em 2.3em 2em;
+        }
+      $hui-conditional-card>hui-vertical-stack-card$hui-horizontal-stack-card$: |
+        #root {
+          justify-content: space-evenly;
+        }
+  card:
+    type: vertical-stack
+    cards:
+
+      - type: glance
+        state_color: true
+        show_state: true
+        columns: 3
+        card_mod:
+          class: content
+        entities:
+          - entity: binary_sensor.f282d3f14eb6_lock
+            icon: mdi:lock-smart
+            name: 门锁
+          - entity: binary_sensor.motion_sensor_158d0001e521e9
+            icon: mdi:door
+            name: 门磁
+          - entity: binary_sensor.hikvisioncam_door_motion
+            icon: mdi:webcam
+            name: 监控
+      - type: entities
+        entities:
+          - type: divider
+      - type: glance
+        state_color: true
+        show_state: true
+        columns: 3
+        card_mod:
+          class: content
+        entities:
+          - entity: binary_sensor.motion_sensor_158d0001e02fa1
+            icon: mdi:sofa-outline
+            name: 客厅
+          - entity: binary_sensor.motion_sensor_158d0001e53c30
+            icon: mdi:bed-king
+            name: 主卧
+          - entity: binary_sensor.motion_sensor_158d0001ad5c41
+            icon: mdi:bed-queen
+            name: 次卧
+      - type: entities
+        entities:
+          - type: divider
+      - type: glance
+        state_color: true
+        show_state: true
+        columns: 3
+        card_mod:
+          class: content
+        entities:
+          - entity: binary_sensor.motion_sensor_158d0001e59ac8
+            icon: mdi:toilet
+            name: 厕所
+          - entity: binary_sensor.motion_sensor_kitchen_light
+            icon: mdi:stove
+            name: 厨房夜灯
+          - entity: binary_sensor.motion_sensor_bathroom_light
+            icon: mdi:hand-wash
+            name: 厕所夜灯

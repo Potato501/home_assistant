@@ -1,0 +1,92 @@
+- type: custom:mod-card
+  # style: |
+  #   ha-card {
+  #     margin-left: 7px;
+  #     margin-right: 7px;
+  #   }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; Frigate"
+      - type: entities
+        # show_header_toggle: false
+        style: |
+          ha-card {
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            opacity: 0.8;
+            font-size: 14px;
+            font-family: Helvetica;
+          }
+        entities:
+          - entity: sensor.cpu_inference_speed
+          - entity: switch.frigate_addon
+            name: 容器开关
+      - type: horizontal-stack
+        cards:
+          - type: picture-entity
+            style: |
+              ha-card {
+                border-radius: var(--border-radius);
+                box-shadow: var(--box-shadow);
+                opacity: 0.8;
+              }
+            entity: camera.hallway_ezviz_person
+          - type: picture-entity
+            style: |
+              ha-card {
+                border-radius: var(--border-radius);
+                box-shadow: var(--box-shadow);
+                opacity: 0.8;
+              }
+            entity: camera.door_hik_person
+
+      - type: custom:swipe-card
+        parameters:
+          spaceBetween: 8
+          touchEventsTarget: 'container'
+          pagination:
+            type: 'bullets'
+            dynamicBullets: false
+        cards:
+          - type: vertical-stack
+            cards:
+              - !include
+                - ../../../hki-base/templates/other/title-text.yaml
+                - name: "&nbsp; 门厅摄像机"
+              - type: entities
+                show_header_toggle: false
+                style: |
+                  ha-card {
+                    border-radius: var(--border-radius);
+                    box-shadow: var(--box-shadow);
+                    opacity: 0.8;
+                    font-size: 14px;
+                    font-family: Helvetica;
+                  }
+                entities:
+                  - entity: switch.hallway_ezviz_detect
+                  - entity: sensor.door_hik_person
+                  - entity: binary_sensor.door_hik_person_motion
+          - type: vertical-stack
+            cards:
+              - !include
+                - ../../../hki-base/templates/other/title-text.yaml
+                - name: "&nbsp; 门口摄像机"
+              - type: entities
+                show_header_toggle: false
+                style: |
+                  ha-card {
+                    border-radius: var(--border-radius);
+                    box-shadow: var(--box-shadow);
+                    opacity: 0.8;
+                    font-size: 14px;
+                    font-family: Helvetica;
+                  }
+                entities:
+                  - entity: switch.door_hik_detect
+                  - entity: sensor.hallway_ezviz_person
+                  - entity: binary_sensor.hallway_ezviz_person_motion
+

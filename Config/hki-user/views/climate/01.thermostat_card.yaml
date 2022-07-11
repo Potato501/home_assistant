@@ -1,0 +1,113 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 预设模式"
+      - type: horizontal-stack
+        cards:
+          - !include
+            - "../../../hki-base/templates/button/service-call.yaml"
+            - name: 打开空调
+              label: 开机
+              icon: mdi:power
+              service: climate.turn_on
+              service_entity: all
+              margin_right: 40px
+              opacity_off: 0.8
+          - !include
+            - "../../../hki-base/templates/button/service-call-with-option.yaml"
+            - name: 制冷模式
+              label: 冷风
+              icon: mdi:snowflake-melt
+              service: climate.set_temperature
+              service_entity: all
+              extra: temperature
+              option: 22
+              margin_right: 40px
+              opacity_off: 0.8
+          - !include
+            - "../../../hki-base/templates/button/service-call-with-option.yaml"
+            - name: 制热模式
+              label: 暖风
+              icon: mdi:fire
+              service: climate.set_temperature
+              service_entity: all
+              extra: temperature
+              option: 30
+              margin_right: 40px
+              opacity_off: 0.8
+          - !include
+            - "../../../hki-base/templates/button/service-call.yaml"
+            - name: 关闭空调
+              label: 关机
+              icon: mdi:power
+              service: climate.turn_off
+              service_entity: all
+              margin_right: 40px
+              opacity_off: 0.8
+              
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 空调控制"
+      - type: vertical-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: custom:thermostat-card
+                    entity: climate.livingroom_acpartner
+                    title: 客厅
+                    style: |
+                      ha-card {
+                        background: var(--paper-card-background-color);
+                        border-radius: var(--border-radius);
+                        box-shadow: var(--box-shadow);
+                        opacity: 0.8;
+                        font-size: 14px;
+                        font-family: Helvetica;
+                      }
+                  - type: custom:thermostat-card
+                    entity: climate.studyroom_acpartner
+                    title: 次卧
+                    style: |
+                      ha-card {
+                        background: var(--paper-card-background-color);
+                        border-radius: var(--border-radius);
+                        box-shadow: var(--box-shadow);
+                        opacity: 0.8;
+                        font-size: 14px;
+                        font-family: Helvetica;
+                      }
+
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 空调控制"
+      - type: horizontal-stack
+        cards:
+          - !include
+            - "../../../hki-user/templates/button/thermostat.yaml"
+            - entity: climate.livingroom_acpartner
+              lock: false
+              ambient_entity: climate.livingroom_acpartner
+              attributes: attributes.current_temperature
+          - !include
+            - "../../../hki-user/templates/button/thermostat.yaml"
+            - entity: climate.studyroom_acpartner
+              lock: false
+              ambient_entity: climate.studyroom_acpartner
+              attributes: attributes.current_temperature
+          - !include
+            - "../../../hki-user/templates/button/thermostat.yaml"
+            - entity: climate.bedroom_acpartner
+              lock: false
+              ambient_entity: climate.bedroom_acpartner
+              attributes: attributes.current_temperature
+

@@ -1,0 +1,9 @@
+{
+  "domain": "baidu_travel_time_v3",
+  "name": "baidu_travel_time_v3",
+  "version": "1.0.0",
+  "documentation": "https://bbs.hassbian.com/thread-4679-1-1.html",
+  "dependencies": [],
+  "codeowners": [],
+  "requirements": []
+}

@@ -1,0 +1,70 @@
+view_config: # For examples check out https://github.com/jimz011/homekit-infused/tree/4.x.x-personal
+
+# Home
+  home:
+    title: greeting
+    show_in_navbar: true
+    show_in_menu: false
+    columns: 
+      # buttons: 4
+    favorites:
+      show_title: false
+    welcome_message: false
+## 布局卡片
+    layout:
+      # layout_type: custom:horizontal-layout
+      options:
+        - max_cols: 2
+          max_width: 500
+          width: 400
+## 可能会弃用的自定义卡片形式
+    custom_cards: 
+      position: top
+      type: default
+## 新版的自定义卡片形式
+    custom:
+      - position: after
+        cards:
+          - !include ../../hki-user/custom/home/mix_cards.yaml
+      - title: '我的房间' 
+        position: before
+        cards:
+          - !include ../../hki-user/custom/home/rooms.yaml
+
+  menu:
+    show_in_navbar: true
+    show_in_menu: false
+    icon: mdi:apps
+    subtitle: "[[[ return `Homekit Infused Version: ${states['sensor.hki_current_version'].state}`; ]]]"
+    search:
+    favorites: 
+    menu: 
+    hki_menu:
+
+# You can remove this line and the example views below or continue to build on them.
+# NOTE: If you have no views it might throw an error, you can safely ignore this since the error will go away once you setup some views!
+
+# Example
+  # lights:
+  #   icon: mdi:floor-lamp
+  #   show_in_favorites: true
+  #   subtitle: Overview
+  #   devices:
+  #     - title: My Example
+  #       entities:
+  #         - sensor.time_date
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

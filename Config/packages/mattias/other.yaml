@@ -1,0 +1,64 @@
+timer:
+  laundry:
+    duration: 01:00:00
+    icon: mdi:washing-machine
+
+ios:
+  push:
+    categories:
+      - name: Home Assistant
+        identifier: ios_hass
+        actions:
+          - identifier: start_watchtower
+            title: Uppdatera
+
+input_boolean:
+  laundry_display:
+
+  computer_lock:
+    name: 电脑锁
+    icon: custom:lock
+
+notify:
+  - platform: file
+    name: vacuum_last_cleaned
+    filename: vacuum_last_cleaned.txt
+    timestamp: true
+
+lock:
+  - platform: template
+    name: pc
+    value_template: >
+      {{ states('input_boolean.computer_lock') }}
+    lock:
+      service: input_boolean.turn_on
+      entity_id: input_boolean.computer_lock
+    unlock:
+      service: input_boolean.turn_off
+      entity_id: input_boolean.computer_lock
+
+switch:
+  - platform: template
+    switches:
+      computer_mac:
+        friendly_name: 我的电脑
+        icon_template: custom:imac-alternative
+        value_template: >
+          {{ is_state('switch.wol_hzm_mac', 'on') }}
+        turn_on:
+          - service: shell_command.imac_switchbot
+          - service: light.turn_on
+            entity_id: light.dator
+        turn_off:
+          - choose:
+            - conditions:
+                - condition: state
+                  entity_id: input_boolean.computer_lock
+                  state: 'on'
+              sequence:
+                - service: browser_mod.toast
+                  data:
+                    duration: 8000
+                    message: 电脑即将关闭...
+            default:
+              - service: shell_command.imac_off

@@ -1,0 +1,2014 @@
+kiosk_mode:
+  hide_header: true
+
+views:
+  - title: padui  
+    panel: true
+    # theme: mobile
+    cards:
+      - type: picture-elements
+        card_mod:
+          style: |
+            ha-card {
+            --ha-card-border-radius: 0px;
+            background: transparent;}
+        image: local/box.png
+        elements:
+          - type: 'custom:button-card'
+            styles:
+              card:
+                - background-color: '#2c2d43'
+                - border-radius: 10px
+                - height: 1028px
+                - width: 770px
+                - opacity: 40%
+            style:
+              top: 32px
+              left: 32px
+              transform: 'translate(0%, 0%)'
+          - type: 'custom:button-card'
+            icon: 'mdi:checkbox-blank-circle'
+            color: auto
+            entity: light.gateway_light_34ce008c099b
+            show_name: false
+            styles:
+              card:
+                - background: transparent
+                - height: 400px
+                - width: 400px
+              icon:
+                - width: 250px
+                - filter: blur(30px)
+            state:
+              - value: 'off'
+                styles:
+                  icon:
+                    - display: none
+            style:
+              top: 275px
+              left: 330px
+          - type: 'custom:button-card'
+            show_icon: false
+            show_state: true
+            show_name: false
+            entity: sensor.time
+            styles:
+              card:
+                - background-color: transparent
+                - height: 200px
+                - width: 300px
+              state:
+                - font-size: 60px
+                - color: var(--secondary-text-color)
+                - font-weight: lighter
+            style:
+              top: 110px
+              left: 150px
+          - type: conditional
+            conditions:
+              - entity: media_player.spotify_potato
+                state_not: idle
+            elements:
+              - type: 'custom:mini-media-player'
+                entity: media_player.spotify_potato
+                card_mod:
+                  style: |
+                    ha-card {
+                    --ha-card-background: transparent;
+                    width: 340px;
+                    height: 100px; }                       
+                hide:
+                  power: true
+                  name: true
+                  source: true
+                  volume: false
+                  controls: false
+                  progress: true
+                  icon: true
+                artwork: none
+                info: scroll
+                style:
+                  top: 115px
+                  left: 415px
+          - type: conditional
+            conditions:
+              - entity: binary_sensor.f282d3f14eb6_lock
+                state: 'on'
+              - entity: binary_sensor.door_window_sensor_158d0002014310
+                state: 'on'
+            elements:
+              - type: 'custom:button-card'
+                entity: binary_sensor.door_window_sensor_158d0002014310
+                icon: 'mdi:door'
+                show_state: false
+                name: 入户门
+                label: 注意关门
+                tap_action:
+                  action: none
+                show_label: true
+                styles:
+                  grid:
+                    - grid-template-areas: '"i n" "i s" "i l"'
+                    - grid-template-columns: 1fr 60%
+                  card:
+                    - width: 120px
+                    - height: 45px
+                    - background-color: transparent
+                  icon:
+                    - width: 35px
+                  name:
+                    - font-weight: bold
+                    - font-size: 12px
+                    - justify-self: start
+                  label:
+                    - font-size: 12px
+                    - justify-self: start
+                state:
+                  - value: 'on'
+                    label: 危险,门未关
+                    styles:
+                      icon:
+                        - color: red #var(--accent-color)
+                style:
+                  top: 67px
+                  left: 550px
+          - type: conditional
+            conditions:
+              - entity: binary_sensor.f282d3f14eb6_lock
+                state: 'off'
+              - entity: binary_sensor.door_window_sensor_158d0002014310
+                state: 'off'
+            elements:
+              - type: 'custom:button-card'
+                entity: switch.dc1_bedroom_4
+                icon: 'ios:lock'
+                show_state: false
+                name: 门锁
+                label: 注意关门
+                tap_action:
+                  action: none
+                show_label: true
+                styles:
+                  grid:
+                    - grid-template-areas: '"i n" "i s" "i l"'
+                    - grid-template-columns: 1fr 60%
+                  card:
+                    - width: 120px
+                    - height: 45px
+                    - background-color: transparent
+                  icon:
+                    - width: 30px
+                  name:
+                    - font-weight: bold
+                    - font-size: 12px
+                    - justify-self: start
+                  label:
+                    - font-size: 12px
+                    - justify-self: start
+                state:
+                  - value: 'off'
+                    label: 已上锁
+                    styles:
+                      icon:
+                        - color: var(--accent-color)
+                style:
+                  top: 67px
+                  left: 550px
+          - type: 'custom:button-card'
+            show_icon: true
+            entity_picture: /local/tablet/door.png
+            show_entity_picture: true
+            tap_action:
+              action: navigate
+              navigation_path: '#p1'
+            entity: alarm_control_panel.home_alarm
+            name: 家
+            show_label: true
+            styles:
+              custom_fields:
+                graph:
+                  - position: absolute
+                  - left: 0px
+                  - top: 143px
+                topleft:
+                  - position: absolute
+                  - left: 15px
+                  - top: 10px
+                topright:
+                  - position: absolute
+                  - left: 115px
+                  - top: 10px
+              grid:
+                - grid-template-areas: '"i" "n" "l"'
+                - grid-template-columns: 1fr
+                - grid-template-rows: 1fr min-content min-content
+              card:
+                - border-radius: 10px
+                - box-shadow: '5px 5px 20px rgba(0, 0, 0, 0.2)'
+                - height: 220px
+                - width: 150px
+              icon:
+                - width: 50px
+              img_cell:
+                - padding-top: 30px
+              name:
+                - color: var(--secondary-text-color)
+                - justify-self: center
+              label:
+                - font-size: 12px
+                - justify-self: center
+                - padding-bottom: 70px
+            state:
+              - value: disarmed
+                label: 已撤防
+                # entity_picture: /local/tablet/siren.png
+              - value: armed
+                label: 布防中
+                entity_picture: /local/tablet/siren.png
+              - value: partially_armed
+                label: 局部
+                entity_picture: /local/tablet/siren.png
+            custom_fields:
+              graph:
+                card:
+                  type: 'custom:mini-graph-card'
+                  card_mod:
+                    style: |
+                      ha-card {
+                      --ha-card-background: transparent; 
+                      color: var(--secondary-text-color);
+                      width: 150px;
+                      border-radius: 0px;
+                      }
+                  entities:
+                    - entity: sensor.t2_cloud_ks5k00
+                  show:
+                    icon: false
+                    name: false
+                    points: false
+                  font_size: 40
+                  color_thresholds:
+                    - value: 19
+                      color: '#b0abf4'
+                    - value: 21
+                      color: '#c696eb'
+                    - value: 23
+                      color: '#cd79b3'
+              topright:
+                card:
+                  type: 'custom:button-card'
+                  entity: alarm_control_panel.home_alarm
+                  show_state: false
+                  show_name: false
+                  icon: 'mdi:shield-outline'
+                  styles:
+                    icon:
+                      - width: 20px
+              topleft:
+                card:
+                  type: 'custom:button-card'
+                  entity: group.all_binary_sensor_entities ##待定
+                  show_state: false
+                  show_name: false
+                  icon: 'ios:house'
+                  styles:
+                    card:
+                      - transition: all 2s ease-out
+                    icon:
+                      - width: 20px
+            style:
+              top: 270px
+              left: 150px
+              width: 150px
+          - type: 'custom:button-card'
+            show_icon: true
+            entity_picture: /local/tablet/light2.png
+            show_entity_picture: true
+            entity: sensor.current_lights_on
+            show_state: true
+            tap_action:
+              action: navigate
+              navigation_path: '#p2'
+            name: 灯光
+            styles:
+              custom_fields:
+                graph:
+                  - position: absolute
+                  - left: 0px
+                  - top: 143px
+              grid:
+                - grid-template-areas: '"i" "n" "s"'
+                - grid-template-columns: 1fr
+                - grid-template-rows: 1fr min-content min-content
+              card:
+                - border-radius: 10px
+                - box-shadow: '5px 5px 20px rgba(0, 0, 0, 0.2)'
+                - height: 220px
+                - width: 150px
+              img_cell:
+                - padding-top: 30px
+              icon:
+                - width: 50px
+              name:
+                - color: var(--secondary-text-color)
+              state:
+                - padding-bottom: 70px
+                - font-size: 12px
+            custom_fields:
+              graph:
+                card:
+                  type: 'custom:mini-graph-card'
+                  card_mod:
+                    style: |
+                      ha-card {
+                      --ha-card-background: transparent; 
+                      color: var(--secondary-text-color);
+                      width: 150px;
+                      border-radius: 0px;
+                      }
+                  entities:
+                    - entity: sensor.illumination_158d0001e02fa1
+                  show:
+                    icon: false
+                    name: false
+                    points: false
+                  font_size: 40
+                  color_thresholds:
+                    - value: 10
+                      color: '#9f882b'
+                    - value: 20
+                      color: '#f6d44c'
+                    - value: 30
+                      color: '#ffcc00'
+            style:
+              top: 270px
+              left: 329px
+          - type: 'custom:button-card'
+            show_icon: true
+            entity_picture: /local/tablet/person_1.png
+            show_entity_picture: true
+            tap_action:
+              action: navigate
+              navigation_path: '#p3'
+            entity: person.huzemin
+            show_state: true
+            name: 我
+            show_name: true
+            styles:
+              custom_fields:
+                graph:
+                  - position: absolute
+                  - left: 0px
+                  - top: 143px
+                topleft:
+                  - position: absolute
+                  - left: 15px
+                  - top: 15px
+                topright:
+                  - position: absolute
+                  - left: 85px
+                  - top: 10px
+                  - width: 50px
+              grid:
+                - grid-template-areas: '"i" "n" "s"'
+                - grid-template-columns: 1fr
+                - grid-template-rows: 1fr min-content min-content
+              card:
+                - border-radius: 10px
+                - box-shadow: '5px 5px 20px rgba(0, 0, 0, 0.2)'
+                - height: 220px
+                - width: 150px
+              img_cell:
+                - padding-top: 30px
+              icon:
+                - width: 50px
+              name:
+                - color: var(--secondary-text-color)
+              state:
+                - font-size: 12px
+                - padding-bottom: 70px
+            state:
+              - value: not_home
+                styles:
+                  icon:
+                    - filter: grayscale(100%)
+            custom_fields:
+              graph:
+                card:
+                  type: 'custom:mini-graph-card'
+                  card_mod:
+                    style: |
+                      ha-card {
+                      --ha-card-background: transparent; 
+                      color: var(--secondary-text-color);
+                      width: 150px;
+                      border-radius: 0px;
+                      }
+                  entities:
+                    - entity: sensor.hassapp_huzemin_iphone7p_steps
+                  show:
+                    icon: false
+                    name: false
+                    points: false
+                  font_size: 40
+                  color_thresholds:
+                    - value: 100
+                      color: '#afbfdf'
+                    - value: 1000
+                      color: '#8cadea'
+                    - value: 5000
+                      color: '#454ab0'
+              topright:
+                card:
+                  type: 'custom:button-card'
+                  entity: sensor.hassapp_huzemin_iphone7p_battery_level
+                  tap_action:
+                    action: none
+                  show_state: true
+                  show_name: false
+                  styles:
+                    grid:
+                      - grid-template-areas: '"i s s"'
+                      - grid-template-columns: 1fr
+                      - grid-template-rows: 1fr min-content min-content
+                    icon:
+                      - width: 20px
+                    state:
+                      - font-size: 10px
+              topleft:
+                card:
+                  type: 'custom:button-card'
+                  entity: sensor.hassapp_huzemin_iphone7p_distance
+                  tap_action:
+                    action: none
+                  show_state: true
+                  show_icon: false
+                  show_name: false
+                  styles:
+                    icon:
+                      - width: 20px
+                    state:
+                      - font-size: 10px
+            style:
+              top: 270px
+              left: 508px
+          - type: 'custom:button-card'
+            show_icon: true
+            entity_picture: /local/tablet/person_2.png
+            show_entity_picture: true
+            tap_action:
+              action: navigate
+              navigation_path: '#p4'
+            entity: person.sunyujiao
+            show_state: true
+            name: 老婆
+            show_name: true
+            styles:
+              custom_fields:
+                graph:
+                  - position: absolute
+                  - left: 0px
+                  - top: 143px
+                topleft:
+                  - position: absolute
+                  - left: 15px
+                  - top: 15px
+                topright:
+                  - position: absolute
+                  - left: 85px
+                  - top: 10px
+                  - width: 50px
+              grid:
+                - grid-template-areas: '"i" "n" "s"'
+                - grid-template-columns: 1fr
+                - grid-template-rows: 1fr min-content min-content
+              card:
+                - border-radius: 10px
+                - box-shadow: '5px 5px 20px rgba(0, 0, 0, 0.2)'
+                - height: 220px
+                - width: 150px
+              img_cell:
+                - padding-top: 30px
+              icon:
+                - width: 50px
+              name:
+                - color: var(--secondary-text-color)
+              state:
+                - font-size: 12px
+                - padding-bottom: 70px
+            state:
+              - value: not_home
+                styles:
+                  icon:
+                    - filter: grayscale(100%)
+            custom_fields:
+              graph:
+                card:
+                  type: 'custom:mini-graph-card'
+                  card_mod:
+                    style: |
+                      ha-card {
+                      --ha-card-background: transparent; 
+                      color: var(--secondary-text-color);
+                      width: 150px;
+                      border-radius: 0px;
+                      }
+                  entities:
+                    - entity: sensor.sunyujiao_iphone_steps
+                  show:
+                    icon: false
+                    name: false
+                    points: false
+                  font_size: 40
+                  color_thresholds:
+                    - value: 100
+                      color: '#afbfdf'
+                    - value: 1000
+                      color: '#8cadea'
+                    - value: 5000
+                      color: '#454ab0'
+              topright:
+                card:
+                  type: 'custom:button-card'
+                  entity: sensor.sunyujiao_iphone_battery_level
+                  tap_action:
+                    action: none
+                  show_state: true
+                  show_name: false
+                  styles:
+                    grid:
+                      - grid-template-areas: '"i s s"'
+                      - grid-template-columns: 1fr
+                      - grid-template-rows: 1fr min-content min-content
+                    icon:
+                      - width: 20px
+                    state:
+                      - font-size: 10px
+              topleft:
+                card:
+                  type: 'custom:button-card'
+                  entity: sensor.sunyujiao_iphone_distance
+                  tap_action:
+                    action: none
+                  show_state: true
+                  show_icon: false
+                  show_name: false
+                  styles:
+                    icon:
+                      - width: 20px
+                    state:
+                      - font-size: 10px
+            style:
+              top: 270px
+              left: 687px
+          - type: 'custom:swipe-card'
+            start_card: 1
+            reset_after: 20
+            cards:
+              - type: picture-elements
+                card_mod:
+                  style: |
+                    ha-card {
+                    background: transparent;
+                    }
+                image: local/box.png
+                elements:
+                  - type: 'custom:button-card'
+                    show_icon: false
+                    show_state: true
+                    show_name: true
+                    tap_action:
+                      action: none
+                    name: 环境监测
+                    styles:
+                      card:
+                        - background-color: transparent
+                      name:
+                        - font-size: 25px
+                        - color: var(--secondary-text-color)
+                        - font-weight: lighter
+                    style:
+                      top: 35px
+                      left: 45px
+                      transform: 'translate(0%, 0%)'
+                  - type: 'custom:button-card'
+                    entity: group.all_motion_sensor_entities
+                    icon: 'mdi:radar'
+                    show_state: false
+                    name: 活动检测
+                    label: 无人
+                    tap_action:
+                      action: more-info
+                    # tap_action:
+                    #   action: call-service
+                    #   service: switch.toggle
+                    #   service_data:
+                    #     entity_id: switch.dc1_bedroom_2
+                    show_label: true
+                    styles:
+                      grid:
+                        - grid-template-areas: '"i n" "i s" "i l"'
+                        - grid-template-columns: 1fr 60%
+                      card:
+                        - width: 130px
+                        - height: 45px
+                        - background-color: transparent
+                      icon:
+                        - width: 35px
+                      name:
+                        - font-weight: bold
+                        - font-size: 12px
+                        - justify-self: start
+                      label:
+                        - font-size: 12px
+                        - justify-self: start
+                    state:
+                      - value: 'on'
+                        label: 有人
+                        icon: 'mdi:run-fast'
+                        styles:
+                          icon:
+                            - color: var(--accent-color)
+                    style:
+                      top: 53px
+                      left: 273px
+                  - type: 'custom:button-card'
+                    entity: camera.ezvizcam_hallway
+                    icon: 'mdi:webcam'
+                    show_state: false
+                    name: 视频监控
+                    label: 门厅
+                    show_label: true
+                    styles:
+                      grid:
+                        - grid-template-areas: '"i n" "i s" "i l"'
+                        - grid-template-columns: 1fr 50%
+                      card:
+                        - width: 120px
+                        - height: 45px
+                        - background-color: transparent
+                      icon:
+                        - width: 35px
+                      name:
+                        - font-weight: bold
+                        - font-size: 12px
+                        - justify-self: start
+                      label:
+                        - font-size: 12px
+                        - justify-self: start
+                    style:
+                      top: 53px
+                      left: 420px
+                  - type: 'custom:button-card'
+                    entity: camera.hikvisioncam_door
+                    icon: 'mdi:cctv'
+                    show_state: false
+                    name: 视频监控
+                    label: 门口
+                    show_label: true
+                    styles:
+                      grid:
+                        - grid-template-areas: '"i n" "i s" "i l"'
+                        - grid-template-columns: 1fr 50%
+                      card:
+                        - width: 120px
+                        - height: 45px
+                        - background-color: transparent
+                      icon:
+                        - width: 35px
+                      name:
+                        - font-weight: bold
+                        - font-size: 12px
+                        - justify-self: start
+                      label:
+                        - font-size: 12px
+                        - justify-self: start
+                    style:
+                      top: 53px
+                      left: 560px
+                  - type: 'custom:button-card'
+                    icon: 'mdi:gesture-swipe-left'
+                    styles:
+                      icon:
+                        - color: var(--accent-color)
+                        - width: 35px
+                      card:
+                        - width: 50px
+                        - height: 50px
+                        - background-color: transparent
+                    style:
+                      top: 50px
+                      left: 700px
+                  - type: 'custom:circle-sensor-card'
+                    entity: sensor.m1_temperature
+                    stroke_width: 10
+                    max: 70
+                    name: 客厅温度
+                    gradient: true
+                    fill: '#3a3c55'
+                    font_style:
+                      color: 'rgba(255, 255, 255, 0.4)'
+                      font-size: 16px
+                    stroke_color: '#d580fc'
+                    color_stops:
+                      28: "#55FF55"
+                      29: "#FF5555"
+                    style:
+                      top: 85px
+                      left: 45px
+                      width: 150px
+                  - type: 'custom:circle-sensor-card'
+                    entity: sensor.m1_humidity
+                    stroke_width: 10
+                    max: 90
+                    name: 客厅湿度
+                    gradient: true
+                    fill: '#3a3c55'
+                    font_style:
+                      color: 'rgba(255, 255, 255, 0.4)'
+                      font-size: 16px
+                    stroke_color: '#d580fc'
+                    style:
+                      top: 85px
+                      left: 400px
+                      width: 150px
+                  - type: 'custom:hui-element'
+                    card_type: entities
+                    card_mod:
+                      style:
+                        .: |
+                          #states > * {
+                              margin: -9px 0px !important;
+                          }    
+                          ha-card {
+                          --ha-card-background: transparent; 
+                          width: 220px;
+                          font-size: 12px;
+                          }
+                    entities:
+                      - entity: sensor.t2_cloud_ks5k00
+                        name: 客厅
+                        icon: 'mdi:none'
+                      - entity: sensor.m1_temperature
+                        name: 门厅
+                        icon: 'mdi:none'
+                      - entity: sensor.temperature_158d00019f912b
+                        name: 主卧
+                        icon: 'mdi:none'
+                      - entity: sensor.t2_cloud_qse400
+                        name: 次卧
+                        icon: 'mdi:none'
+                      - entity: sensor.temperature_158d0001dc17c3
+                        name: 柜子
+                        icon: 'mdi:none'
+                    style:
+                      top: 165px
+                      left: 260px
+                  - type: 'custom:hui-element'
+                    card_type: entities
+                    card_mod:
+                      style:
+                        .: |
+                          #states > * {
+                              margin: -9px 0px !important;
+                          }    
+                          ha-card {
+                          --ha-card-background: transparent; 
+                          width: 220px;
+                          font-size: 12px;
+                          }
+                    entities:
+                      - entity: binary_sensor.f282d3f14eb6_lock
+                        name: 入户门锁
+                        icon: 'mdi:none'
+                      - entity: binary_sensor.door_window_sensor_158d0002014310
+                        name: 防盗门
+                        icon: 'mdi:none'
+                      - entity: binary_sensor.door_window_sensor_158d00026ba081
+                        name: 客厅窗户
+                        icon: 'mdi:none'
+                      - entity: binary_sensor.door_window_sensor_158d0002a16231
+                        name: 次卧窗户
+                        icon: 'mdi:none'
+                      - entity: binary_sensor.door_window_sensor_158d00032605b8
+                        name: 主卧窗户
+                        icon: 'mdi:none'
+                    style:
+                      top: 160px
+                      left: 618px
+              - type: picture-elements
+                card_mod:
+                  style: |
+                    ha-card {
+                    background: transparent;
+                    }
+                image: local/box.png
+                elements:
+                  - type: 'custom:button-card'
+                    show_icon: false
+                    show_state: true
+                    show_name: true
+                    tap_action:
+                      action: none
+                    name: 设备控制
+                    styles:
+                      card:
+                        - background-color: transparent
+                      name:
+                        - font-size: 25px
+                        - color: var(--secondary-text-color)
+                        - font-weight: lighter
+                    style:
+                      top: 35px
+                      left: 45px
+                      transform: 'translate(0%, 0%)'
+                  - type: 'custom:button-card'
+                    entity: group.all_climate_entities
+                    icon: 'mdi:air-conditioner'
+                    show_state: false
+                    name: 房间空调
+                    label: 关机
+                    tap_action:
+                      action: none
+                    show_label: true
+                    styles:
+                      grid:
+                        - grid-template-areas: '"i n" "i s" "i l"'
+                        - grid-template-columns: 1fr 60%
+                      card:
+                        - width: 120px
+                        - height: 45px
+                        - background-color: transparent
+                      icon:
+                        - width: 35px
+                      name:
+                        - font-weight: bold
+                        - font-size: 12px
+                        - justify-self: start
+                      label:
+                        - font-size: 12px
+                        - justify-self: start
+                    state:
+                      - value: 'on'
+                        label: 运行中
+                        styles:
+                          icon:
+                            - color: var(--accent-color)
+                    style:
+                      top: 53px
+                      left: 273px
+                  - type: 'custom:button-card'
+                    entity: group.all_fan_entities
+                    icon: 'mdi:fan'
+                    show_state: false
+                    name: 房间风扇
+                    label: 关机
+                    tap_action:
+                      action: none
+                    show_label: true
+                    styles:
+                      grid:
+                        - grid-template-areas: '"i n" "i s" "i l"'
+                        - grid-template-columns: 1fr 60%
+                      card:
+                        - width: 120px
+                        - height: 45px
+                        - background-color: transparent
+                      icon:
+                        - width: 35px
+                      name:
+                        - font-weight: bold
+                        - font-size: 12px
+                        - justify-self: start
+                      label:
+                        - font-size: 12px
+                        - justify-self: start
+                    state:
+                      - value: 'on'
+                        label: 运行中
+                        styles:
+                          icon:
+                            - color: var(--accent-color)
+                    style:
+                      top: 53px
+                      left: 420px
+                  - type: 'custom:button-card'
+                    entity: group.all_device_switch_entities
+                    icon: 'mdi:power-cycle'
+                    show_state: false
+                    name: 房间插座
+                    label: 关机
+                    tap_action:
+                      action: none
+                    show_label: true
+                    styles:
+                      grid:
+                        - grid-template-areas: '"i n" "i s" "i l"'
+                        - grid-template-columns: 1fr 60%
+                      card:
+                        - width: 120px
+                        - height: 45px
+                        - background-color: transparent
+                      icon:
+                        - width: 35px
+                      name:
+                        - font-weight: bold
+                        - font-size: 12px
+                        - justify-self: start
+                      label:
+                        - font-size: 12px
+                        - justify-self: start
+                    state:
+                      - value: 'on'
+                        label: 运行中
+                        styles:
+                          icon:
+                            - color: var(--accent-color)
+                    style:
+                      top: 53px
+                      left: 560px
+                  - type: 'custom:button-card'
+                    entity: group.all_light_entities
+                    icon: 'mdi:lightbulb-multiple'
+                    show_state: false
+                    name: 房间灯
+                    label: 关机
+                    tap_action:
+                      action: none
+                    show_label: true
+                    styles:
+                      grid:
+                        - grid-template-areas: '"i n" "i s" "i l"'
+                        - grid-template-columns: 1fr 60%
+                      card:
+                        - width: 120px
+                        - height: 45px
+                        - background-color: transparent
+                      icon:
+                        - width: 35px
+                      name:
+                        - font-weight: bold
+                        - font-size: 12px
+                        - justify-self: start
+                      label:
+                        - font-size: 12px
+                        - justify-self: start
+                    state:
+                      - value: 'on'
+                        label: 运行中
+                        styles:
+                          icon:
+                            - color: var(--accent-color)
+                    style:
+                      top: 53px
+                      left: 700px
+
+                  - type: 'custom:mini-media-player'
+                    artwork: none
+                    icon: 'ios:tv'
+                    card_mod:
+                      style: |
+                        ha-card {
+                        --ha-card-background: transparent;
+                        width: 360px;}  
+                    entity: media_player.chromecastgroup
+                    toggle_power: true
+                    volume_stateless: true
+                    name: 群组播放
+                    hide:
+                      source: true
+                      controls: true
+                      icon_state: false
+                    style:
+                      top: 85px
+                      left: 385px
+                      transform: 'translate(0%, 0%)'
+                  - type: 'custom:hui-element'
+                    card_type: entities
+                    card_mod:
+                      style: |
+                        ha-card {
+                        --ha-card-background: transparent; 
+                        font-size: 12px;
+                        width: 355px;
+                        }
+                    entities:
+                      - entity: climate.livingroom_acpartner
+                        name: 客厅空调
+                        icon: 'mdi:air-conditioner'
+                      - entity: climate.studyroom_acpartner
+                        name: 次卧空调
+                        icon: 'mdi:air-conditioner'
+                      - entity: climate.bedroom_acpartner
+                        name: 热水器
+                        icon: 'mdi:thermostat'
+                        state_color: true
+                    style:
+                      top: 170px
+                      left: 228px
+                      width: 400px
+                  - type: 'custom:mini-media-player'
+                    artwork: none
+                    card_mod:
+                      style: |
+                        ha-card {
+                        --ha-card-background: transparent;
+                        width: 360px;}  
+                    entity: media_player.appletv
+                    toggle_power: true
+                    volume_stateless: true
+                    name: Apple TV
+                    hide:
+                      source: true
+                      icon_state: false
+                      volume: true
+                    style:
+                      top: 132px
+                      left: 385px
+                      transform: 'translate(0%, 0%)'
+              - type: picture-elements
+                card_mod:
+                  style: |
+                    ha-card {
+                    background: transparent;
+                    }
+                image: local/box.png
+                elements:
+                  - type: 'custom:button-card'
+                    show_icon: false
+                    show_state: true
+                    show_name: true
+                    tap_action:
+                      action: none
+                    name: 其他
+                    styles:
+                      card:
+                        - background-color: transparent
+                      name:
+                        - font-size: 25px
+                        - color: var(--secondary-text-color)
+                        - font-weight: lighter
+                    style:
+                      top: 35px
+                      left: 45px
+                      transform: 'translate(0%, 0%)'
+                  - type: 'custom:hui-element'
+                    card_type: entities
+                    card_mod:
+                      style: |
+                        ha-card {
+                        --ha-card-background: transparent; 
+                        font-size: 12px;
+                        width: 355px;
+                        }
+                    entities:
+                      - entity: light.gateway_light_34ce008c099b
+                        name: 灯1
+                        icon: 'ios:lightbulb'
+                      - entity: light.gateway_light_34ce008c099b
+                        name: 灯2
+                        icon: 'ios:lightbulb'
+                      - entity: light.gateway_light_34ce008c099b
+                        name: 灯3
+                        icon: 'ios:lightbulb'
+                        state_color: true
+                    style:
+                      top: 170px
+                      left: 228px
+                      width: 400px
+                  - type: 'custom:button-card'
+                    entity: camera.hikvisioncam_door
+                    icon: 'mdi:cctv'
+                    show_state: false
+                    name: 视频监控
+                    label: 门口
+                    show_label: true
+                    styles:
+                      grid:
+                        - grid-template-areas: '"i n" "i s" "i l"'
+                        - grid-template-columns: 1fr 50%
+                      card:
+                        - width: 120px
+                        - height: 45px
+                        - background-color: transparent
+                      icon:
+                        - width: 35px
+                      name:
+                        - font-weight: bold
+                        - font-size: 12px
+                        - justify-self: start
+                      label:
+                        - font-size: 12px
+                        - justify-self: start
+                    style:
+                      top: 53px
+                      left: 280px
+                  - type: 'custom:button-card'
+                    entity: camera.ezvizcam_hallway
+                    icon: 'mdi:cctv'
+                    show_state: false
+                    name: 视频监控
+                    label: 门厅
+                    show_label: true
+                    styles:
+                      grid:
+                        - grid-template-areas: '"i n" "i s" "i l"'
+                        - grid-template-columns: 1fr 50%
+                      card:
+                        - width: 120px
+                        - height: 45px
+                        - background-color: transparent
+                      icon:
+                        - width: 35px
+                      name:
+                        - font-weight: bold
+                        - font-size: 12px
+                        - justify-self: start
+                      label:
+                        - font-size: 12px
+                        - justify-self: start
+                    style:
+                      top: 53px
+                      left: 420px
+            style:
+              top: 780px
+              left: 418px
+              width: 770px
+          - type: 'custom:simple-weather-card'
+            tap_action:
+              action: navigate
+              navigation_path: '#p5'
+            card_mod:
+              style: |
+                ha-card {
+                --ha-card-background: transparent; 
+                font-weight: normal !important;
+                font-size: 12px;
+                width: 300px
+                } 
+                .weather__info__item {
+                display: none !important; }
+            entity: weather.home
+            name: 天津
+            backdrop:
+              day: transparent
+              night: transparent
+            style:
+              top: 70px
+              left: 770px
+          - type: 'custom:state-switch'
+            entity: hash
+            style:
+              top: 830px
+              left: 425px
+              width: 770px
+              height: 300px
+            default: p1
+            states:
+              p1:
+                type: picture-elements
+                card_mod:
+                  style: |
+                    ha-card {
+                    --ha-card-background: transparent; }
+                elements:
+                  - type: 'custom:button-card'
+                    show_icon: false
+                    show_state: true
+                    show_name: true
+                    tap_action:
+                      action: none
+                    name: 事件提醒
+                    styles:
+                      card:
+                        - background-color: transparent
+                      name:
+                        - font-size: 25px
+                        - color: var(--secondary-text-color)
+                        - font-weight: lighter
+                    style:
+                      top: 0px
+                      left: 36px
+                      transform: 'translate(0%, 0%)'
+                  # - type: 'custom:atomic-calendar-revive'
+                  #   entities: calendar.todoist_homeassistant
+                  #   maxDaysToShow: 14
+                  #   maxEventCount: 4
+                  #   disableEventLink: true
+                  #   disableLocationLink: true
+                  #   showRelativeTime: false
+                  #   showWeekDay: true
+                  #   showHiddenText: false
+                  #   dayWrapperLineColor: transparent
+                  #   dateSize: 150
+                  #   fullDayEventText: 你是谁
+                  #   noEventsForTodayText: 你要干什么
+                  #   noEventsForNextDaysText: 明天你需要干这些事儿
+                  - type: "custom:home-feed-card"
+                    title: " "
+                    card_id: main_feed
+                    show_empty: true
+                    # calendars:
+                    #   ## iPhone
+                    #   - calendar.reminders
+                    #   - calendar.sheng_huo
+                    #   - calendar.jia_ting_shi_xiang
+                    #   ## todoist
+                    #   - calendar.inbox
+                    #   - calendar.jia_ting
+                    #   - calendar.gong_zuo
+                    #   - calendar.todoist_homeassistant
+                    #   - calendar.mylist
+                    #   - calendar.works
+                    # # id_filter: ^home_feed_.*
+                    more_info_on_tap: true
+                    state_color: true
+                    entities:
+                      - entity: sensor.xiaomi_lock_user
+                        name: 开门人员
+                      - entity: binary_sensor.door_window_sensor_158d0002014310
+                        name: 入户门
+                      - entity: sensor.caiyun_alert_alert
+                      - entity: sensor.caiyun_minutely_description
+                      - entity: sensor.caiyun_hourly_description
+                      # - entity: sensor.jieqi_jieqi
+                      # - entity: sensor.jieqi_suit
+                      #   name: 今日宜
+                        more_info_on_tap: false
+                    card_mod:
+                      style: |
+                        ha-card {
+                        --ha-card-border-radius: 0px;  
+                        background: transparent; 
+                        font-size: 12px; }  
+                        .hoursHTML { 
+                        font-weight: bold;
+                        background: #3a3c55;
+                        color: var(--secondary-text-color);
+                        border-radius: 5px;
+                        padding: 5px;
+                        }
+                        .event-left { 
+                        text-transform: lowercase;
+                        text-align: left !important;
+                        }
+                    style:
+                      top: 210px
+                      left: 180px
+                      width: 350px
+                  - type: 'custom:button-card'
+                    show_icon: false
+                    show_state: true
+                    show_name: true
+                    tap_action:
+                      action: none
+                    name: 音乐
+                    styles:
+                      card:
+                        - background-color: transparent
+                      name:
+                        - font-size: 25px
+                        - color: var(--secondary-text-color)
+                        - font-weight: lighter
+                    style:
+                      top: 0px
+                      left: 395px
+                      transform: 'translate(0%, 0%)'
+                  - type: 'custom:state-switch'
+                    entity: media_player.spotify_potato
+                    transition: flip
+                    transition_time: 200
+                    default: idle
+                    states:
+                      playing:
+                        type: 'custom:mini-media-player'
+                        entity: media_player.spotify_potato
+                        tap_action:
+                          action: none
+                        card_mod:
+                          style: |
+                            ha-card {
+                            --ha-card-border-radius: 10px;
+                            width: 335px;
+                            height: 265px; }                       
+                        hide:
+                          power: true
+                          name: true
+                          source: true
+                          volume: true
+                          controls: true
+                          info: true
+                          icon: true
+                        artwork: cover-fit
+                      idle:
+                        type: 'custom:spotify-card'
+                        limit: 6
+                        spotify_entity: media_player.spotify_potato
+                        account: default
+                        display_style: grid
+                        hide_top_header: true
+                        hide_playback_controls: true
+                        hide_warning: true
+                        grid_covers_per_row: '3'
+                        playlist_type: discover-weekly
+                        hide_currently_playing: true
+                        # known_connect_devices:
+                        #   - id: 22bb7ddf-2792-4de4-9b68-77820573f7fa
+                        #     name: 群组
+                        #     entity_id: media_player.chromecastgroup
+                        #   - id: 707b5b27-31a5-b254-4f92-2dcc8b64dbda
+                        #     name: 客厅
+                        #     entity_id: media_player.ke_ting_googlehomemini
+                        #   - id: 281cbc7e-ad3f-be45-48a7-bb6b0796b058
+                        #     name: 客厅TV
+                        #     entity_id: media_player.android_tv
+                        #   - id: ec230201-2b86-c440-c062-2e588973b5ba
+                        #     name: 主卧
+                        #     entity_id: media_player.zhu_wo_googlehomemini
+                        #   - id: 125f32f7-467f-0008-5d47-38cea62540a3
+                        #     name: 次卧
+                        #     entity_id: media_player.ci_wo_googlehomemini
+                        #   - id: 2f58276d-1119-c6ce-5f8e-432dff1c0ed5
+                        #     name: 厕所
+                        #     entity_id: media_player.ce_suo_googlehomemini
+                        #   - id: 5286e66e-45c9-2dae-b2cb-ba110fd4650a
+                        #     name: 厨房
+                        #     entity_id: media_player.chu_fang_googlehomemini
+                        #   - id: 1d746174-c015-0d84-7fa7-a65dfff02c06
+                        #     name: 次卧cast
+                        #     entity_id: media_player.ci_wo_chromecast
+                        card_mod:
+                          style: |
+                            ha-card {
+                            --ha-card;
+                            background: transparent; 
+                            width: 335px;
+                            }
+                            #content {
+                            border: 0px !important;
+                            background-color: transparent !important;
+                            }
+                            .grid-item:hover {
+                              box-shadow: none !important;
+                              border-radius: 10px;
+                            }
+                            .grid-item {
+                              box-shadow: none !important;
+                            }
+                            .grid-item-album-image > img {
+                            border-radius: 10px;
+                            } 
+                            .grid-item-album-image.playing {
+                            border-radius: 10px; }
+                            }  
+                    style:
+                      top: 220px
+                      left: 558px
+                image: local/box.png
+              p2:
+                type: picture-elements
+                card_mod:
+                  style: |
+                    ha-card {
+                    --ha-card-background: transparent; }
+                elements:
+                  - type: 'custom:button-card'
+                    show_icon: false
+                    show_state: true
+                    show_name: true
+                    tap_action:
+                      action: none
+                    name: 常用灯&开关
+                    styles:
+                      card:
+                        - background-color: transparent
+                        - height: 200px
+                        - width: 300px
+                      name:
+                        - font-size: 25px
+                        - justify-self: start
+                        - color: var(--secondary-text-color)
+                        - font-weight: lighter
+                    style:
+                      top: 30px
+                      left: 185px
+                  - type: 'custom:light-popup-card'
+                    card_mod:
+                      style: |
+                        ha-card {
+                        }
+                        h4 {
+                        font-size: 12px; 
+                        color: var(--primary-text-color); }
+                    entity: light.midesklamp1s_f8cc
+                    icon: 'ios:lightbulb'
+                    hideState: null
+                    sliderColor: var(--accent-color)
+                    brightnessHeight: 140px
+                    brightnessWidth: 50px
+                    fullscreen: true
+                    sliderThumbColor: var(--accent-color)
+                    sliderTrackColor: '#3a3c55'
+                    style:
+                      top: 190px
+                      left: 65px
+                      height: 400px
+                  - type: 'custom:button-card'
+                    tap_action:
+                      action: more-info
+                      entity: light.midesklamp1s_f8cc
+                    styles:
+                      card:
+                        - background: >-
+                            radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255,
+                            255, 255, 0) 80%), conic-gradient(rgb(120, 39, 230),
+                            rgb(230, 34, 231), rgb(228, 5, 136), rgb(228, 25, 25), 
+                            rgb(229, 105, 30), rgb(232, 226, 46), rgb(125, 230, 41),
+                            rgb(52, 232, 40), rgb(51, 231, 92),  rgb(52, 232, 224),
+                            rgb(32, 125, 229), rgb(18, 39, 229), rgb(120, 39, 230))
+                        - width: 30px
+                        - height: 30px
+                        - border-radius: 50%
+                    style:
+                      top: 340px
+                      left: 65px
+                  - type: 'custom:button-card'
+                    name: 阅读灯
+                    styles:
+                      card:
+                        - font-size: 12px
+                        - font-weight: bold
+                    style:
+                      top: 150px
+                      left: 64px
+                      width: 80px
+                  - type: 'custom:light-popup-card'
+                    card_mod:
+                      style: |
+                        ha-card {
+                        }
+                        h4 {
+                        font-size: 12px; 
+                        color: var(--primary-text-color); }
+                    entity: light.gateway_light_34ce008c099b
+                    icon: 'ios:lightbulb'
+                    hideState: null
+                    sliderColor: var(--accent-color)
+                    brightnessHeight: 140px
+                    brightnessWidth: 50px
+                    fullscreen: true
+                    sliderThumbColor: var(--accent-color)
+                    sliderTrackColor: '#3a3c55'
+                    style:
+                      top: 190px
+                      left: 175px
+                      height: 400px
+                  - type: 'custom:button-card'
+                    name: 壁灯
+                    styles:
+                      card:
+                        - font-size: 12px
+                        - font-weight: bold
+                    style:
+                      top: 150px
+                      left: 174px
+                      width: 80px
+                  - type: 'custom:button-card'
+                    tap_action:
+                      action: more-info
+                      entity: light.gateway_light_34ce008c099b
+                    styles:
+                      card:
+                        - background: >-
+                            radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255,
+                            255, 255, 0) 80%), conic-gradient(rgb(120, 39, 230),
+                            rgb(230, 34, 231), rgb(228, 5, 136), rgb(228, 25, 25), 
+                            rgb(229, 105, 30), rgb(232, 226, 46), rgb(125, 230, 41),
+                            rgb(52, 232, 40), rgb(51, 231, 92),  rgb(52, 232, 224),
+                            rgb(32, 125, 229), rgb(18, 39, 229), rgb(120, 39, 230))
+                        - width: 30px
+                        - height: 30px
+                        - border-radius: 50%
+                    style:
+                      top: 340px
+                      left: 175px
+                  - type: 'custom:light-popup-card'
+                    card_mod:
+                      style: |
+                        ha-card {
+                        }
+                        h4 {
+                        font-size: 12px; 
+                        color: var(--primary-text-color); }
+                    entity: light.gateway_light_34ce008c099b
+                    icon: 'ios:lightbulb'
+                    hideState: null
+                    sliderColor: var(--accent-color)
+                    brightnessHeight: 140px
+                    brightnessWidth: 50px
+                    fullscreen: true
+                    sliderThumbColor: var(--accent-color)
+                    sliderTrackColor: '#3a3c55'
+                    style:
+                      top: 190px
+                      left: 285px
+                      height: 400px
+                  - type: 'custom:button-card'
+                    name: 灯带
+                    styles:
+                      card:
+                        - font-size: 12px
+                        - font-weight: bold
+                    style:
+                      top: 150px
+                      left: 284px
+                      width: 80px
+                  - type: 'custom:button-card'
+                    tap_action:
+                      action: more-info
+                      entity: light.gateway_light_34ce008c099b
+                    styles:
+                      card:
+                        - background: >-
+                            radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255,
+                            255, 255, 0) 80%), conic-gradient(rgb(120, 39, 230),
+                            rgb(230, 34, 231), rgb(228, 5, 136), rgb(228, 25, 25), 
+                            rgb(229, 105, 30), rgb(232, 226, 46), rgb(125, 230, 41),
+                            rgb(52, 232, 40), rgb(51, 231, 92),  rgb(52, 232, 224),
+                            rgb(32, 125, 229), rgb(18, 39, 229), rgb(120, 39, 230))
+                        - width: 30px
+                        - height: 30px
+                        - border-radius: 50%
+                    style:
+                      top: 340px
+                      left: 285px
+                      width: 80px
+                  - type: 'custom:light-popup-card'
+                    entity: switch.dc1_bedroom_2
+                    card_mod:
+                      style: |
+                        ha-card {
+                        }
+                        h4 {
+                        font-size: 12px; 
+                        color: var(--primary-text-color); }
+                    icon: 'ios:lightbulb'
+                    hideState: null
+                    switchColor: var(--accent-color)
+                    switchHeight: 140px
+                    switchWidth: 50px
+                    fullscreen: true
+                    switchTrackColor: '#3a3c55'
+                    style:
+                      top: 190px
+                      left: 398px
+                      height: 400px
+                  - type: 'custom:button-card'
+                    name: 落地灯
+                    styles:
+                      card:
+                        - font-size: 12px
+                        - font-weight: bold
+                    style:
+                      top: 150px
+                      left: 397px
+                      width: 80px
+                  - type: 'custom:light-popup-card'
+                    entity: switch.dc1_bedroom_4
+                    card_mod:
+                      style: |
+                        ha-card {
+                        }
+                        h4 {
+                        font-size: 12px; 
+                        color: var(--primary-text-color); }
+                    icon: 'ios:lightbulb'
+                    hideState: null
+                    switchColor: var(--accent-color)
+                    switchHeight: 140px
+                    switchWidth: 50px
+                    fullscreen: true
+                    switchTrackColor: '#3a3c55'
+                    style:
+                      top: 190px
+                      left: 494px
+                      height: 400px
+                  - type: 'custom:button-card'
+                    name: 台灯
+                    styles:
+                      card:
+                        - font-size: 12px
+                        - font-weight: bold
+                    style:
+                      top: 150px
+                      left: 493px
+                      width: 80px
+                  - type: 'custom:light-popup-card'
+                    entity: switch.wol_hzm_mac
+                    card_mod:
+                      style: |
+                        ha-card {
+                        }
+                        h4 {
+                        font-size: 12px; 
+                        color: var(--primary-text-color); }
+                    icon: 'ios:display'
+                    hideState: null
+                    switchColor: var(--accent-color)
+                    switchHeight: 140px
+                    switchWidth: 50px
+                    fullscreen: true
+                    switchTrackColor: '#3a3c55'
+                    style:
+                      top: 190px
+                      left: 591px
+                      height: 400px
+                  - type: 'custom:button-card'
+                    name: 电脑
+                    styles:
+                      card:
+                        - font-size: 12px
+                        - font-weight: bold
+                    style:
+                      top: 150px
+                      left: 590px
+                      width: 80px
+                  - type: 'custom:light-popup-card'
+                    entity: switch.harmonylivingroomgoogletv
+                    card_mod:
+                      style: |
+                        ha-card {
+                        }
+                        h4 {
+                        font-size: 12px; 
+                        color: var(--primary-text-color); }
+                    icon: 'ios:tv'
+                    hideState: null
+                    switchColor: var(--accent-color)
+                    switchHeight: 140px
+                    switchWidth: 50px
+                    fullscreen: true
+                    switchTrackColor: '#3a3c55'
+                    style:
+                      top: 190px
+                      left: 688px
+                      height: 400px
+                  - type: 'custom:button-card'
+                    name: 电视
+                    styles:
+                      card:
+                        - font-size: 12px
+                        - font-weight: bold
+                    style:
+                      top: 150px
+                      left: 687px
+                      width: 80px
+                image: local/box.png
+              p3:
+                type: picture-elements
+                card_mod:
+                  style: |
+                    ha-card {
+                    --ha-card-background: transparent; }
+                elements:
+                  - type: 'custom:button-card'
+                    show_icon: false
+                    show_state: true
+                    show_name: true
+                    tap_action:
+                      action: none
+                    name: 我
+                    styles:
+                      card:
+                        - background-color: transparent
+                        - height: 200px
+                        - width: 300px
+                      name:
+                        - font-size: 25px
+                        - justify-self: start
+                        - color: var(--secondary-text-color)
+                        - font-weight: lighter
+                    style:
+                      top: 30px
+                      left: 185px
+                  - type: 'custom:mini-graph-card'
+                    card_mod:
+                      style: |
+                        ha-card {
+                        --ha-card-background: transparent; 
+                        color: var(--secondary-text-color);
+                        border-radius: 10px;
+                        }
+                    entities:
+                      - entity: sensor.hassapp_huzemin_iphone7p_steps
+                    show:
+                      icon: false
+                      name: false
+                      points: false
+                    font_size: 60
+                    color_thresholds:
+                      - value: 100
+                        color: '#7ac1cc'
+                      - value: 1000
+                        color: '#45b5c6'
+                      - value: 5000
+                        color: '#139db2'
+                    style:
+                      top: 290px
+                      left: 185px
+                      width: 330px
+                  - type: 'custom:mini-graph-card'
+                    card_mod:
+                      style: |
+                        ha-card {
+                        --ha-card-background: transparent; 
+                        color: var(--secondary-text-color);
+                        border-radius: 10px;
+                        }
+                    entities:
+                      - entity: sensor.hassapp_huzemin_iphone7p_distance
+                    show:
+                      icon: false
+                      name: false
+                      points: false
+                    font_size: 60
+                    color_thresholds:
+                      - value: 500
+                        color: '#7cde52'
+                      - value: 1000
+                        color: '#5fce2f'
+                      - value: 1500
+                        color: '#44a51b'
+                    style:
+                      top: 290px
+                      left: 570px
+                      width: 330px
+                  - type: 'custom:mini-graph-card'
+                    card_mod:
+                      style: |
+                        ha-card {
+                        --ha-card-background: transparent; 
+                        color: var(--secondary-text-color);
+                        border-radius: 10px;
+                        }
+                    entities:
+                      - entity: sensor.hassapp_huzemin_iphone7p_battery_level
+                    show:
+                      icon: false
+                      name: false
+                      points: false
+                    font_size: 60
+                    color_thresholds:
+                      - value: 500
+                        color: '#d4a1d4'
+                      - value: 1000
+                        color: '#d070d1'
+                      - value: 1500
+                        color: '#b644b8'
+                    style:
+                      top: 141px
+                      left: 570px
+                      width: 330px
+                  - type: 'custom:button-card'
+                    entity: input_boolean.dummy4
+                    name: 凑数(脚本)
+                    show_state: false
+                    icon: 'mdi:bell-ring'
+                    tap_action:
+                      action: toggle
+                    hold_action:
+                      action: none
+                    styles:
+                      card:
+                        - background-color: transparent
+                        - width: 145px
+                        - padding: 5px
+                      name:
+                        - font-size: 12px
+                        - font-weight: bold
+                        - justify-self: end
+                        - margin-top: '-30px'
+                        - margin-right: 2px
+                      icon:
+                        - width: 30px
+                        - margin-left: 0px
+                    style:
+                      top: 30px
+                      left: 280px
+                  - type: 'custom:hui-element'
+                    card_type: entities
+                    card_mod:
+                      style:
+                        .: |
+                          #states > * {
+                              margin: -9px 0px !important;
+                          }    
+                          ha-card {
+                          --ha-card-background: transparent; 
+                          width: 400px;
+                          font-size: 12px;
+                          }
+                    entities:
+                      - entity: person.huzemin
+                        name: 活动区域
+                        icon: 'mdi:none'
+                      - entity: sensor.hassapp_huzemin_iphone7p_geocoded_location
+                        name: 我的位置
+                        icon: 'mdi:none'
+                      - entity: sensor.hassapp_huzemin_iphone7p_floors_ascended
+                        name: 已上楼层
+                        icon: 'mdi:none'
+                      - entity: sensor.hassapp_huzemin_iphone7p_battery_level
+                        name: 手机电量
+                        icon: 'mdi:none'
+                    style:
+                      top: 150px
+                      left: 165px
+                image: local/box.png
+              p4:
+                type: picture-elements
+                card_mod:
+                  style: |
+                    ha-card {
+                    --ha-card-background: transparent; }
+                elements:
+                  - type: 'custom:button-card'
+                    show_icon: false
+                    show_state: true
+                    show_name: true
+                    tap_action:
+                      action: none
+                    name: 老婆
+                    styles:
+                      card:
+                        - background-color: transparent
+                        - height: 200px
+                        - width: 300px
+                      name:
+                        - font-size: 25px
+                        - justify-self: start
+                        - color: var(--secondary-text-color)
+                        - font-weight: lighter
+                    style:
+                      top: 30px
+                      left: 185px
+                  - type: 'custom:mini-graph-card'
+                    card_mod:
+                      style: |
+                        ha-card {
+                        --ha-card-background: transparent; 
+                        color: var(--secondary-text-color);
+                        border-radius: 10px;
+                        }
+                    entities:
+                      - entity: sensor.sunyujiao_iphone_steps
+                    show:
+                      icon: false
+                      name: false
+                      points: false
+                    font_size: 60
+                    color_thresholds:
+                      - value: 100
+                        color: '#7ac1cc'
+                      - value: 1000
+                        color: '#45b5c6'
+                      - value: 5000
+                        color: '#139db2'
+                    style:
+                      top: 290px
+                      left: 185px
+                      width: 330px
+                  - type: 'custom:mini-graph-card'
+                    card_mod:
+                      style: |
+                        ha-card {
+                        --ha-card-background: transparent; 
+                        color: var(--secondary-text-color);
+                        border-radius: 10px;
+                        }
+                    entities:
+                      - entity: sensor.sunyujiao_iphone_distance
+                    show:
+                      icon: false
+                      name: false
+                      points: false
+                    font_size: 60
+                    color_thresholds:
+                      - value: 500
+                        color: '#d4a1d4'
+                      - value: 1000
+                        color: '#d070d1'
+                      - value: 1500
+                        color: '#b644b8'
+                    style:
+                      top: 290px
+                      left: 570px
+                      width: 330px
+                  - type: 'custom:mini-graph-card'
+                    card_mod:
+                      style: |
+                        ha-card {
+                        --ha-card-background: transparent; 
+                        color: var(--secondary-text-color);
+                        border-radius: 10px;
+                        }
+                    entities:
+                      - entity: sensor.sunyujiao_iphone_battery_level
+                    show:
+                      icon: false
+                      name: false
+                      points: false
+                    font_size: 60
+                    color_thresholds:
+                      - value: 500
+                        color: '#d4a1d4'
+                      - value: 1000
+                        color: '#d070d1'
+                      - value: 1500
+                        color: '#b644b8'
+                    style:
+                      top: 141px
+                      left: 570px
+                      width: 330px
+                  - type: 'custom:button-card'
+                    entity: input_boolean.dummy4
+                    name: 凑数待改
+                    show_state: false
+                    icon: 'mdi:bell-ring'
+                    tap_action:
+                      action: toggle
+                    hold_action:
+                      action: none
+                    styles:
+                      card:
+                        - background-color: transparent
+                        - width: 145px
+                        - padding: 5px
+                      name:
+                        - font-size: 12px
+                        - font-weight: bold
+                        - justify-self: end
+                        - margin-top: '-30px'
+                        - margin-right: 2px
+                      icon:
+                        - width: 30px
+                        - margin-left: 0px
+                    style:
+                      top: 30px
+                      left: 280px
+                  - type: 'custom:hui-element'
+                    card_type: entities
+                    card_mod:
+                      style:
+                        .: |
+                          #states > * {
+                              margin: -9px 0px !important;
+                          }    
+                          ha-card {
+                          --ha-card-background: transparent;          
+                          width: 400px;
+                          font-size: 12px;
+                          }
+                    entities:
+                      - entity: person.sunyujiao
+                        name: 活动区域
+                        icon: 'mdi:none'
+                      - entity: sensor.sunyujiao_iphone_ssid
+                        name: 网络连接
+                        icon: 'mdi:none'
+                      - entity: sensor.sunyujiao_iphone_battery_state
+                        name: 充电状态
+                        icon: 'mdi:none'
+                      - entity: sensor.sunyujiao_iphone_battery_level
+                        name: 电池电量
+                        icon: 'mdi:none'
+                    style:
+                      top: 150px
+                      left: 165px
+                image: local/box.png
+              p5:
+                type: picture-elements
+                card_mod:
+                  style: |
+                    ha-card {
+                    --ha-card-background: transparent; }
+                elements:
+                  - type: 'custom:weather-card'
+                    entity: weather.home
+                    card_mod:
+                      style: |
+                        ha-card {
+                        --ha-card-background: transparent;          
+                        width: 700px;
+                        font-size: 12px;
+                        }
+                    style:
+                      top: 185px
+                      left: 375px
+                    hour_forecast: true
+                    show_forecast: true
+                    theme: neon
+                    icon: /hacsfiles/lovelace-colorfulclouds-weather-card/icon/animated/
+                    secondary_info_attribute: wind_speed
+                image: local/box.png
+

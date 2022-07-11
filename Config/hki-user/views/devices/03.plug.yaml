@@ -1,0 +1,107 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: '&nbsp; 主卧插座'
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards: 
+              - !include
+                - '../../../hki-user/templates/button/button.yaml'
+                - entity: switch.212a01_cloud_439778
+                  label: "[[[ return `${states['sensor.212a01_cloud_439778_power'].state} W`; ]]]"
+                  name: 主卧电脑
+                  hold_action: more-info
+                  lock: true
+              - !include
+                - '../../../hki-user/templates/button/button-badge-plug.yaml'
+                - entity: switch.bedroom_chuangmi_plug
+                  name: 主卧电视
+                  lock: false
+                  notification: "[[[ return `${states['sensor.xiaomi_plug_wifi02_load_power'].state} W`; ]]]"
+              - !include
+                - '../../../hki-user/templates/button/button-badge-plug.yaml'
+                - entity: switch.bedroom_chuangmi_plug_usb
+                  name: 电视果
+                  lock: false
+                  notification: "[[[ return `${states['sensor.xiaomi_plug_wifi02_load_power'].state} W`; ]]]"
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: '&nbsp; 次卧服务器'
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards: 
+              - !include
+                - '../../../hki-user/templates/button/button.yaml'
+                - entity: switch.studyroom_chuangmi_plug
+                  name: 服务器
+                  lock: true
+                  label:   "[[[ return `${states['sensor.xiaomi_plug_wifi01_load_power'].state} W`; ]]]"
+              - !include
+                - '../../../hki-user/templates/button/button-badge-plug.yaml'
+                - entity: switch.dc1_bedroom_2
+                  notification: !include ../../../hki-base/includes/brightness-label.yaml
+                  name: 树莓派
+                  hold_action: more-info
+                  lock: false
+              - !include
+                - '../../../hki-user/templates/button/button.yaml'
+                - entity: switch.broadlink_mp1_03_s2
+                  name: 音箱
+                  lock: false
+                  label:   "[[[ return `${states['media_player.bedroom_edifier_speaker'].state} `; ]]]"
+                  
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: '&nbsp; 次卧电脑'
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards: 
+              - !include
+                - '../../../hki-user/templates/button/button.yaml'
+                - entity: switch.broadlink_mp1_03_s4
+                  label: "[[[ return `${states['switch.wol_hzm_mac'].state} `; ]]]"  
+                  name: 小主机
+                  hold_action: more-info
+                  lock: true
+              - !include
+                - '../../../hki-user/templates/button/button-badge-plug.yaml'
+                - entity: switch.broadlink_mp1_03_s3
+                  notification:  "[[[ return `${states['sensor.dc1_bedroom_power'].state} W`; ]]]"  
+                  name: 显示器(主)
+                  hold_action: more-info
+                  lock: false
+              - !include
+                - '../../../hki-user/templates/button/button-badge-plug.yaml'
+                - entity: switch.broadlink_mp1_03_s1
+                  notification:  "[[[ return `${states['sensor.dc1_bedroom_power'].state} W`; ]]]"  
+                  name: 显示器(副)
+                  hold_action: more-info
+                  lock: false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

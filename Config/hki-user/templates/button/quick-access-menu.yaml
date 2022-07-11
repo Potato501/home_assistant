@@ -1,0 +1,66 @@
+# lovelace_gen
+
+# card
+type: custom:button-card
+name: {{ name }}
+icon: {{ icon }}
+color: {{ color|default('auto') }}
+size: {{ size|default('25%') }}
+aspect_ratio: {{ aspect_ratio|default('4/3') }}
+entity: {{ entity|default('input_boolean.dummy1') }}
+show_name: {{ show_name|default('true') }}
+show_icon: {{ show_icon|default('true') }}
+show_state: {{ show_state|default('false') }}
+tap_action: 
+  action: navigate
+  navigation_path: "{{ navigation_path|default('/hki/about') }}"
+hold_action:
+  action: "{{ hold_action|default('none') }}"
+  haptic: heavy
+double_tap_action:
+  action: "{{ hold_action|default('none') }}"
+  haptic: heavy
+styles:
+  card:
+    - border-radius: var(--border-radius) #5px
+    - box-shadow: var(--box-shadow)
+    - ha-card-background: var(--button-color)
+  name:
+    - justify-self: center
+    - padding: 0px 10px
+    - font-weight: var(--name-font-weight)
+    - font-family: var(--font-family) 
+    - font-size: var(--name-font-size)
+  state:
+    - font-size: var(--state-font-size)
+    - font-family: var(--font-family)
+    - padding: 0px 10px
+    - justify-self: center
+    - text-transform: capitalize
+    - font-weight: var(--state-font-weight)
+state:
+  - value: "on" 
+    spin: {{ spin_on|default('false') }} 
+    styles:
+      card:
+        - --ha-card-background: var(--button-color)
+        - opacity: var(--button-on-opacity)
+        - -webkit-box-shadow: var(--button-on-box-shadow)
+        - box-shadow: var(--button-on-box-shadow)
+      name:
+        - color: var(--button-on-name-color)
+      state:
+        - color: var(--button-on-state-color)
+  - value: "off"
+    spin: {{ spin_off|default('false') }}
+    styles:
+      card:
+        - opacity: {{ opacity_off|default('0.5') }}
+        - --ha-card-background: var(--button-color)
+      icon:
+        - color: var(--paper-item-icon-color)
+        - animation: 'none'
+      name:
+        - color: var(--primary-text-color)
+      state:
+        - color: var(--primary-text-color)

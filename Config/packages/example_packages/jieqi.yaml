@@ -1,0 +1,69 @@
+sensor:
+  - platform: mqtt
+    name: "jieqi_calendar"
+    state_topic: "node-red/jieqi"
+    value_template: '{{ value_json.gongli }}'
+  - platform: mqtt
+    name: "jieqi_week"
+    state_topic: "node-red/jieqi"
+    value_template: '{{ value_json.week }}'
+  - platform: mqtt
+    name: "jieqi_day"
+    state_topic: "node-red/jieqi"
+    value_template: '{{ value_json.nongli }}'
+  - platform: mqtt
+    name: "jieqi_constellation"
+    state_topic: "node-red/jieqi"
+    value_template: '{{ value_json.xingzuo }}'
+  - platform: mqtt
+    name: "jieqi_year"
+    state_topic: "node-red/jieqi"
+    value_template: '{{ value_json.nianci }}'
+  - platform: mqtt
+    name: "jieqi_suit"
+    state_topic: "node-red/jieqi"
+    value_template: '{{ value_json.do }}'
+  - platform: mqtt
+    name: "jieqi_taboo"
+    state_topic: "node-red/jieqi"
+    value_template: '{{ value_json.nodo }}'
+  - platform: mqtt
+    name: "jieqi_animal"
+    state_topic: "node-red/jieqi"
+    value_template: '{{ value_json.shengxiao }}'
+  - platform: mqtt
+    name: "jieqi_jieqi"
+    state_topic: "node-red/jieqi"
+    value_template: '{{ value_json.jieqi }}'
+  - platform: mqtt
+    name: "jieqi_leapyear"
+    state_topic: "node-red/jieqi"
+    value_template: '{{ value_json.runnian }}'       
+  - platform: mqtt
+    name: "jieqi_cnday"
+    state_topic: "node-red/nongli"
+    value_template: '{{ value }}'
+homeassistant:
+  customize:
+    sensor.jieqi_calendar:
+      friendly_name: 公历日期
+    sensor.jieqi_day:
+      friendly_name: 农历日期
+    sensor.jieqi_cnday:
+      friendly_name: 农历日期
+    sensor.jieqi_jieqi:
+      friendly_name: 本月节气
+    sensor.jieqi_animal:
+      friendly_name: 生肖
+    sensor.jieqi_week:
+      friendly_name: 星期
+    sensor.jieqi_constellation:
+      friendly_name: 星座
+    sensor.jieqi_year:
+      friendly_name: 年号
+    sensor.jieqi_leapyear:
+      friendly_name: 润年
+    sensor.jieqi_suit:
+      friendly_name: 宜
+    sensor.jieqi_taboo:
+      friendly_name: 忌

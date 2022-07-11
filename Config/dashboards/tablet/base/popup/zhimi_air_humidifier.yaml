@@ -1,0 +1,118 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: "主卧加湿器"
+  card:
+    type: vertical-stack
+    cards:
+      - type: entities
+        show_header_toggle: false
+        card_mod:
+          class: header
+          style: |
+            ha-card {
+              margin: 0px !important;
+            }
+        entities:
+          - type: "custom:fan-xiaomi"
+            # name: 主卧加湿器
+            entity: fan.xiaomi_air_humidifier
+
+          - type: custom:bar-card
+            width: 55%
+            height: 2em
+            decimal: 0
+            # unit_of_measurement: '%'
+            positions: 
+              icon: outside
+              indicator: 'off'
+              name: outside
+            severity: 
+              - color: "#c92626"
+                from: 1
+                to: 10
+              - color: "#fa0505"
+                from: 11
+                to: 15 
+              - color: "#de4314"
+                from: 16
+                to: 20  
+              - color: "#d1861d"
+                from: 21
+                to: 30  
+              - color: "#d4c11c"
+                from: 31
+                to: 35  
+              - color: "#26c941"
+                from: 36
+                to: 40
+              - color: "#64c91c"
+                from: 46
+                to: 50              
+              - color: "#d4c11c"
+                from: 51
+                to: 55              
+              - color: "#d1861d"
+                from: 56
+                to: 60              
+              - color: "#de4314"
+                from: 61
+                to: 70              
+              - color: "#fa0505"
+                from: 71
+                to: 80              
+              - color: "#c92626"
+                from: 81
+                to: 100
+
+            entity_row: true
+            entities:
+
+              - entity: fan.xiaomi_air_humidifier
+                attribute: mode
+                name: 运行模式/切换静音
+                # unit_of_measurement: '%'
+                # icon: mdi:water
+                tap_action: 
+                  action: call-service
+                  service: fan.set_preset_mode
+                  service_data:
+                    entity_id: fan.xiaomi_air_humidifier
+                    preset_mode: Silent
+
+              - entity: fan.xiaomi_air_humidifier
+                attribute: temperature
+                name: 当前温度
+                unit_of_measurement: °C
+                icon: mdi:thermometer
+                tap_action: none
+
+              - entity: fan.xiaomi_air_humidifier
+                attribute: humidity
+                name: 当前湿度
+                unit_of_measurement: '%'
+                icon: mdi:water-percent
+                tap_action: none
+
+              - entity: fan.xiaomi_air_humidifier
+                attribute: depth
+                name: 当前水位
+                unit_of_measurement: '%'
+                icon: mdi:water
+                tap_action: none
+
+      - type: custom:mini-graph-card
+        entities:
+          - color: green
+            entity: sensor.humidity_158d00019f912b
+        align_state: left
+        group: false
+        points_per_hour: 10
+        line_width: 3
+        hour24: true
+        hours_to_show: 6
+        show:
+          {fill: fade, icon: false, name: false, state: false, 
+          name_adaptive_color: true, labels: hover, legend: false}
+        tap_action:
+          action: none

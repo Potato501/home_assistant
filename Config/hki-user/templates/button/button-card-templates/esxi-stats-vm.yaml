@@ -1,0 +1,24 @@
+icon: 'mdi:server'
+aspect_ratio: 1/1
+template: esxi-stats-general
+styles:
+  grid:
+    - grid-template-areas: '"i uptime" "n n" "cpu cpu" "ram ram" "state state"'
+  custom_fields:
+    uptime:
+      - icon: "mdi:arrow-up"
+    cpu:
+      - font-size: 12px
+      - padding-bottom: 2px
+      - align-self: middle
+      - justify-self: start
+    ram:
+      - font-size: 12px
+      - padding-bottom: 2px
+      - align-self: middle
+      - justify-self: start
+    state:
+      - font-size: 12px
+      - padding-bottom: 2px
+      - align-self: middle
+      - justify-self: start

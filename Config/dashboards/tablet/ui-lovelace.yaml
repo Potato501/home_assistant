@@ -1,0 +1,772 @@
+button_card_templates: !include base/button_card_templates.yaml
+
+kiosk_mode:
+  hide_header: true
+
+views:
+  - type: custom:grid-layout
+    path: home
+    layout:
+      #default
+      grid-gap: var(--custom-layout-card-padding)
+      grid-template-columns: repeat(4, 1fr) 0
+      grid-template-rows: 0 repeat(2, fit-content(100%)) 0fr
+      grid-template-areas: |
+        "sidebar  .                 .                 .               ."
+        "sidebar  lights-control    tv-pc             other-devices   ."
+        "sidebar  my-family         security-camera   media-player    ."
+        "sidebar  footer            footer            footer          ."
+      mediaquery:
+        #phone
+        "(max-width: 800px)":
+          grid-gap: calc(var(--custom-layout-card-padding) * 1.5)
+          grid-template-columns: 0 repeat(2, 1fr) 0
+          grid-template-rows: 0 repeat(5, fit-content(100%)) 0fr
+          grid-template-areas: |
+            ".  .                .                  ."
+            ".  sidebar          sidebar            ."
+            ".  lights-control   other-devices      ."
+            ".  tv-pc            security-camera    ."
+            ".  my-family        media-player       ."
+            ".  footer           footer             ."
+            ".  .                .                  ."
+        #portrait
+        "(max-width: 1200px)":
+          grid-gap: var(--custom-layout-card-padding)
+          grid-template-columns: repeat(3, 1fr) 0
+          grid-template-rows: 0 repeat(3, fit-content(100%)) 0fr
+          grid-template-areas: |
+            "sidebar    .                 .                 ."
+            "sidebar    lights-control    other-devices     ."
+            "sidebar    tv-pc             security-camera   ."
+            "sidebar    media-player      my-family         ."
+            "sidebar    footer            footer            ."
+            "sidebar    .                 .                 ."
+    cards:
+
+      - type: custom:button-card #extra_styles fix
+
+      #################################################
+      #                                               #
+      #                    SIDEBAR                    #
+      #                                               #
+      #################################################
+
+      - type: vertical-stack
+        view_layout:
+          grid-area: sidebar
+        cards:
+          - type: custom:button-card
+            entity: sensor.template_sidebar
+            template: sidebar_template
+
+          - type: grid
+            cards:
+
+              - type: button
+                icon: mdi:information-variant
+                tap_action:
+                  !include base/popup/sidebar_update.yaml
+                hold_action:
+                  action: call-service
+                  service: homeassistant.update_entity
+                  service_data:
+                    entity_id: sensor.hacs
+
+              - type: button
+                icon: mdi:broom
+                tap_action:
+                  !include base/popup/sidebar_vacuum.yaml
+                hold_action:
+                  action: none
+
+              - type: button
+                icon: mdi:dots-grid
+                tap_action:
+                  !include base/popup/sidebar_information.yaml
+                hold_action:
+                  action: none
+
+      #################################################
+      #                                               #
+      #                      灯光控制                  #
+      #                                               #
+      #################################################
+
+      - type: grid
+        title: 灯光
+        view_layout:
+          grid-area: lights-control
+        columns: 1
+        cards:
+
+          - type: custom:swipe-card
+            start_card: 1
+            parameters:
+              roundLengths: true
+              effect: coverflow
+              speed: 650
+              spaceBetween: 20
+              threshold: 7
+              coverflowEffect:
+                rotate: 80
+                depth: 300
+            cards:
+
+              - type: grid
+                columns: 2
+                cards:
+
+                  - type: custom:button-card
+                    entity: light.menting_xdd
+                    name: 门厅灯
+                    template:
+                      - base
+                      - icon_ceiling_light
+
+                  - type: custom:button-card
+                    entity: light.guodao_dd
+                    name: 门厅灯带
+                    template:
+                      - base
+                      - icon_light_belt
+
+                  - type: custom:button-card
+                    entity: light.gateway_light_34ce008c099b
+                    name: 餐厅壁灯
+                    template:
+                      - light
+                      - icon_hue
+
+                  - type: custom:button-card
+                    entity: light.canting_dd
+                    name: 餐厅吊灯
+                    template:
+                      - base
+                      - icon_ceiling_light
+
+              - type: grid
+                columns: 2
+                cards:
+
+                  - type: custom:button-card
+                    entity: light.keting_xdd
+                    name: 客厅灯
+                    template:
+                      - base
+                      - icon_ceiling_light
+
+                  - type: custom:button-card
+                    entity: light.dianshiqiang_td
+                    name: 客厅筒灯
+                    template:
+                      - base
+                      - icon_spot
+
+                  - type: custom:button-card
+                    entity: light.dianshiqiang_dd
+                    name: 客厅灯带
+                    template:
+                      - base
+                      - icon_light_belt2
+
+                  - type: custom:button-card
+                    entity: light.chufang_xdd
+                    name: 厨房灯
+                    template:
+                      - base
+                      - icon_ceiling_light
+
+              - type: grid
+                columns: 2
+                cards:
+
+                  - type: custom:button-card
+                    entity: light.midesklamp1s_f8cc
+                    name: 阅读灯
+                    template:
+                      - light
+                      - icon_lamp
+
+                  - type: custom:button-card
+                    entity: light.yeelight_strip4_0x0000000010df65ba
+                    name: 餐厅灯带
+                    template:
+                      - light
+                      - icon_light_belt
+
+                  - type: custom:button-card
+                    entity: light.cesuo_xdd
+                    name: 厕所灯
+                    template:
+                      - base
+                      - icon_ceiling_light
+
+                  - type: custom:button-card
+                    entity: light.sonoff03
+                    name: 镜前灯
+                    template:
+                      - base
+                      - icon_spot
+
+              - type: grid
+                columns: 2
+                cards:
+
+                  - type: custom:button-card
+                    entity: light.woshi_xdd
+                    name: 主卧灯
+                    template:
+                      - base
+                      - icon_ceiling_light
+
+                  - type: custom:button-card
+                    entity: light.sonoff01
+                    name: 落地灯
+                    template:
+                      - base
+                      - icon_shade
+
+                  - type: custom:button-card
+                    entity: light.shufang_xdd
+                    name: 次卧灯
+                    template:
+                      - base
+                      - icon_ceiling_light
+
+                  - type: custom:button-card
+                    entity: switch.dc1_bedroom_4
+                    name: 次卧台灯
+                    template:
+                      - base
+                      - icon_lamp
+
+
+      #################################################
+      #                                               #
+      #                    电脑电视                    #
+      #                                               #
+      #################################################
+
+      - type: grid
+        title: Tv/Pc
+        view_layout:
+          grid-area: tv-pc
+        columns: 2
+        cards:
+
+          - type: custom:button-card
+            entity: media_player.logitech_harmony_tv
+            name: 客厅电视
+            hold_action:
+              !include base/popup/livingroom_tv.yaml
+            template:
+              - base
+              - icon_tv
+              - loader
+
+          - type: custom:button-card
+            entity: media_player.huzemin_xboxone
+            name: 游戏机
+            hold_action:
+              !include base/popup/xbox.yaml
+            template:
+              - base
+              - icon_xbox
+              - loader
+
+
+          - type: custom:button-card
+            entity: switch.wol_hzm_lenovo
+            name: 我的电脑
+            triggers_update:
+              - lock.pc
+            hold_action:
+              !include base/popup/computer.yaml
+            template:
+              - base
+              - icon_imac
+              - loader
+              - lock
+              
+          - type: custom:button-card
+            entity: media_player.bedroom_edifier_speaker
+            name: 次卧音箱
+            # triggers_update: switch.wol_hzm_mac
+            hold_action:
+              !include base/popup/speaker.yaml
+            template:
+              - base
+              - icon_monitors
+              - circle
+              - loader
+            variables:
+              circle_input: >
+                [[[
+                  var entity_id = 'sensor.edifvolshow';
+                  return states[entity_id] === undefined ? null : states[entity_id].state;
+                ]]]
+
+      #################################################
+      #                                               #
+      #                    其他设备                    #
+      #                                               #
+      #################################################
+
+      - type: grid
+        title: 其它...
+        view_layout:
+          grid-area: other-devices
+        columns: 1
+        cards:
+
+          - type: custom:swipe-card
+            start_card: 1
+            parameters:
+              roundLengths: true
+              effect: coverflow
+              speed: 650
+              spaceBetween: 20
+              threshold: 7
+              coverflowEffect:
+                rotate: 80
+                depth: 300
+            cards:
+
+              - type: grid
+                columns: 2
+                cards:
+
+                  - type: custom:button-card
+                    entity: sensor.m1_temperature
+                    name: 室内温度
+                    tap_action: more-info #!include popup/temperature.yaml
+                    # hold_action:
+                    #   action: none
+                    custom_fields:
+                      graph:
+                        card:
+                          entities:
+                            - sensor.m1_temperature
+                    template:
+                      - temperature
+                      - icon_temperature
+                    variables:
+                      popup_name: 温度监测
+
+                  - type: custom:button-card
+                    entity: sensor.m1_humidity
+                    name: 室内湿度
+                    tap_action: more-info #!include popup/temperature.yaml
+                    hold_action:
+                      action: none
+                    custom_fields:
+                      graph:
+                        card:
+                          entities:
+                            - sensor.m1_humidity
+                    template:
+                      - humidity
+                      - icon_humidity
+                    variables:
+                      popup_name: 湿度监测
+
+                  - type: custom:button-card
+                    entity: fan.xiaomi_air_humidifier
+                    name: 加湿器
+                    hold_action: 
+                      !include base/popup/zhimi_air_humidifier.yaml
+                    template:
+                      - base
+                      - icon_climate
+                      - climate
+                    variables:
+                      circle_input: >
+                        [[[
+                          if (entity) {
+                            return entity.state == 'on' ?
+                              entity.attributes.target_humidity :
+                              entity.attributes.humidity;
+                          }
+                        ]]]
+
+                  - type: custom:button-card
+                    entity: switch.dc1_bedroom_2
+                    name: 净化器
+                    template:
+                      - base
+                      - icon_climate
+
+              - type: grid
+                columns: 2
+                cards:
+
+                  - type: custom:button-card
+                    entity: fan.xiaomi_smart_fan_bedroom
+                    name: 主卧风扇
+                    hold_action: 
+                      !include base/popup/mijia_fan2.yaml
+                    template:
+                      - base
+                      - icon_fan2
+                      - loader
+                    variables:
+                      circle_input: >
+                        [[[
+                          if (entity) {
+                            return entity.state == 'on' ?
+                              entity.attributes.percentage :
+                              entity.attributes.raw_speed;
+                          }
+                        ]]]
+
+                  - type: custom:button-card
+                    entity: fan.xiaomi_smart_fan
+                    name: 次卧风扇
+                    hold_action: 
+                      !include base/popup/mijia_fan.yaml
+                    template:
+                      - base
+                      - icon_fan2
+                      - loader
+                    variables:
+                      circle_input: >
+                        [[[
+                          if (entity) {
+                            return entity.state == 'on' ?
+                              entity.attributes.percentage :
+                              entity.attributes.raw_speed;
+                          }
+                        ]]]
+
+
+                  - type: custom:button-card
+                    entity: fan.sonoff09
+                    name: 排气扇
+                    template:
+                      - base
+                      - icon_fan2
+                      - loader
+
+                  - type: custom:button-card
+                    entity: fan.sonoff08
+                    name: 暖风扇
+                    template:
+                      - base
+                      - icon_fan2
+                      - loader
+
+              - type: grid
+                columns: 2
+                cards:
+
+                  - type: custom:button-card
+                    entity: climate.livingroom_acpartner
+                    name: 客厅空调
+                    tap_action:
+                      !include base/popup/livingroom_climate.yaml
+                    template:
+                      - base
+                      - icon_climate
+                      - climate
+                    variables:
+                      circle_input: >
+                        [[[
+                          if (entity) {
+                            return entity.state == 'cool' ?
+                              entity.attributes.temperature :
+                              entity.attributes.current_temperature;
+                          }
+                        ]]]
+
+
+                  - type: custom:button-card
+                    entity: climate.studyroom_acpartner
+                    name: 次卧空调
+                    tap_action:
+                      !include base/popup/climate.yaml
+                    template:
+                      - base
+                      - icon_climate
+                      - climate
+                    variables:
+                      circle_input: >
+                        [[[
+                          if (entity) {
+                            return entity.state == 'cool' ?
+                              entity.attributes.temperature :
+                              entity.attributes.current_temperature;
+                          }
+                        ]]]
+
+                  - type: custom:button-card
+                    entity: cover.livingroom
+                    name: 客厅窗帘
+                    tap_action: more-info
+                    template:
+                      - icon_cover #icon_curtains_combined
+                      - base
+                      - circle
+                    variables:
+                      circle_input: >
+                        [[[
+                          if (entity) {
+                            return entity.state == 'on' ?
+                              entity.attributes.current_position :
+                              entity.attributes.current_position;
+                          }
+                        ]]]
+
+                  - type: custom:button-card
+                    entity: cover.bedroom
+                    name: 主卧窗帘
+                    tap_action: more-info
+                    template:
+                      - icon_cover #icon_curtains_combined
+                      - base
+                      - circle
+
+                  # - type: custom:button-card
+                  #   entity: switch.dc1_bedroom_2
+                  #   name: 电源插座
+                  #   # tap_action:
+                  #   #   !include base/popup/vardagsrum_balkong.yaml
+                  #   # hold_action:
+                  #   #   !include base/popup/vardagsrum_balkong.yaml
+                  #   template:
+                  #     - base
+                  #     - icon_plug
+                  #     - loader
+
+      #################################################
+      #                                               #
+      #                     播放器                    #
+      #                                               #
+      #################################################
+
+      - type: grid
+        title: 播放器
+        view_layout:
+          grid-area: media-player
+        columns: 1
+        cards:
+
+          - type: custom:swipe-card
+            start_card: 1
+            parameters:
+              roundLengths: true
+              effect: coverflow
+              speed: 650
+              spaceBetween: 20
+              threshold: 7
+              coverflowEffect:
+                rotate: 80
+                depth: 300
+            cards:
+
+              - type: horizontal-stack
+                cards:
+
+                  - type: conditional
+                    conditions:
+                      - entity: sensor.harmony_activity
+                        state: "PowerOff"
+                    card:
+                      type: custom:button-card
+                      entity: sensor.plex_recently_added_tv
+                      tap_action:
+                        action: none
+                      template:
+                        - conditional_media
+                        - recently_downloaded
+                        - icon_plex
+
+                  - type: conditional
+                    conditions:
+                      - entity: sensor.harmony_activity
+                        state: "LivingroomAppleTV"
+                    card:
+                      type: custom:button-card
+                      entity: media_player.appletv
+                      template:
+                        - conditional_media
+                        - icon_apple_tv
+
+                  - type: conditional
+                    conditions:
+                      - entity: sensor.harmony_activity
+                        state: "LivingroomGoogleTV"
+                    card:
+                      type: custom:button-card
+                      entity: media_player.livingroom_androidtv
+                      template:
+                        - conditional_media
+                        - icon_android_tv
+
+                  - type: conditional
+                    conditions:
+                      - entity: sensor.harmony_activity
+                        state: "LivingroomOppoPlayer"
+                    card:
+                      type: custom:button-card
+                      entity: media_player.spotify_potato
+                      template:
+                        - conditional_media
+                        - icon_spotify
+
+                  - type: conditional
+                    conditions:
+                      - entity: sensor.harmony_activity
+                        state: "LivingroomGames"
+                    card:
+                      type: custom:button-card
+                      entity: media_player.ci_wo_chromecast
+                      template:
+                        - conditional_media
+                        - icon_nest_mini
+
+              - type: grid
+                columns: 2
+                cards:
+
+                  - type: custom:button-card
+                    entity: media_player.appletv
+                    name: AppleTv
+                    template:
+                      - media
+                      - icon_apple_tv
+
+                  - type: custom:button-card
+                    name: ShieldTv
+                    entity: media_player.livingroom_androidtv
+                    template:
+                      - media
+                      - icon_android_tv
+
+                  - type: custom:button-card
+                    entity: media_player.spotify_potato
+                    name: Spotify
+                    template:
+                      - media
+                      - icon_spotify
+
+                  - type: custom:button-card
+                    entity: media_player.ci_wo_chromecast
+                    name: Mini
+                    template:
+                      - media
+                      - icon_nest_mini
+
+      #################################################
+      #                                               #
+      #                    安全报警                    #
+      #                                               #
+      #################################################
+
+      - type: grid
+        title: 安全
+        view_layout:
+          grid-area: security-camera
+        columns: 2
+        cards:
+
+          - type: custom:button-card
+            entity: binary_sensor.f282d3f14eb6_lock
+            name: 入户门锁
+            tap_action:
+              !include base/popup/outdoor.yaml
+            template:
+              - base
+              - icon_closet
+
+          - type: custom:button-card
+            entity: group.all_motion_sensor_entities
+            name: 活动检测
+            tap_action:
+              !include base/popup/motion_sensor.yaml
+            hold_action:
+              !include base/popup/motion_sensor.yaml
+            template:
+              - base
+              - icon_motion
+
+          - type: custom:button-card
+            entity: camera.hikvisioncam_door
+            name: 视频监控
+            # tap_action:
+              # !include base/popup/cameras.yaml
+            template:
+              - base
+              - icon_webcam
+
+          - type: custom:button-card
+            entity: binary_sensor.smoke_sensor_158d0002cb5a00
+            name: 厨房监测
+            tap_action:
+              !include base/popup/water.yaml
+            template:
+              - base
+              - icon_fire
+              - light
+
+      #################################################
+      #                                               #
+      #                     家人                      #
+      #                                               #
+      #################################################
+
+      - type: grid
+        title: 家人
+        view_layout:
+          grid-area: my-family
+        columns: 2
+        cards:
+
+          - type: custom:button-card
+            entity: person.tudou
+            name: 我
+            tap_action:
+              !include base/popup/person_1.yaml
+            hold_action:
+              action: none
+            template: person
+
+          - type: custom:button-card
+            entity: person.laopo
+            name: 妈妈
+            # tap_action:
+            #   !include base/popup/person_2.yaml
+            hold_action:
+              action: none
+            template: person
+
+          - type: custom:button-card
+            entity: person.erzi
+            name: 儿子
+            # tap_action:
+            #   !include base/popup/person_3.yaml
+            hold_action:
+              action: none
+            template: person
+
+          - type: custom:button-card
+            entity: person.car
+            name: 汽车
+            # tap_action:
+            #   !include base/popup/person_4.yaml
+            hold_action:
+              action: none
+            template: person
+
+      #################################################
+      #                                               #
+      #                    FOOTER                     #
+      #                                               #
+      #################################################
+
+      - type: custom:button-card
+        view_layout:
+          grid-area: footer
+        entity: sensor.bvid_id
+        template: bilibili
+

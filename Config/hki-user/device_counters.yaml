@@ -1,0 +1,400 @@
+# Homekit Infused Device Counters
+
+# Fill this file to have the badges and device counters work in HKI.
+# You can use these sensors in your badges.
+
+
+# All Radiator Valves or Climate entities (ONLY climate entities can be used here!, if you have a single thermostat put it here as well)
+all_climate_entities:
+  name: 所有空调
+  icon: mdi:fan
+  entities:
+    - climate.livingroom_acpartner
+    - climate.bedroom_acpartner
+    - climate.studyroom_acpartner
+# All Fans (Enter all your fans in here)
+all_fan_entities:
+  name: 所有风扇
+  icon: mdi:fan
+  entities:
+    # - fan.sonoff06
+    - fan.sonoff08
+    - fan.sonoff09
+    - fan.xiaomi_air_humidifier
+    - fan.xiaomi_smart_fan
+    - fan.xiaomi_smart_fan_bedroom
+# Window Sensors
+all_window_sensor_entities:
+  name: 所有窗磁
+  entities:
+    - binary_sensor.door_window_sensor_158d00026ba081
+    - binary_sensor.door_window_sensor_158d0002a16231
+    - binary_sensor.door_window_sensor_158d00032605b8
+# Door Sensors
+all_door_sensor_entities:
+  name: 所有门磁
+  entities:
+    - binary_sensor.door_window_sensor_158d0002014310
+    - binary_sensor.door_window_sensor_158d00032604d3
+# Motion Sensors
+all_motion_sensor_entities:
+  name: 所有活动探测器
+  entities:
+    - binary_sensor.motion_sensor_158d0001ad5c41
+    - binary_sensor.motion_sensor_158d0001e02fa1
+    - binary_sensor.motion_sensor_158d0001e521e9
+    - binary_sensor.motion_sensor_158d0001e53c30
+    - binary_sensor.motion_sensor_158d0001e59ac8
+
+# All Detectors (smoke/gas/fire etc)
+all_detector_entities:
+  name: 所有烟感和漏水探测器
+  entities:
+    - binary_sensor.water_leak_sensor_158d00028ee572
+    - binary_sensor.smoke_sensor_158d0002cb5a00
+# All Binary Sensors (put all your binary sensors here e.g. smoke/gas/fire/door/window/motion etc. You can use this as a counter on the security button)
+all_binary_sensor_entities:
+  name: 所有小米探测器
+  entities:
+    - binary_sensor.door_window_sensor_158d0002014310
+    - binary_sensor.door_window_sensor_158d00026ba081
+    - binary_sensor.door_window_sensor_158d0002a16231
+    - binary_sensor.door_window_sensor_158d00032604d3
+    - binary_sensor.door_window_sensor_158d00032605b8
+    - binary_sensor.motion_sensor_158d0001ad5c41
+    - binary_sensor.motion_sensor_158d0001e02fa1
+    - binary_sensor.motion_sensor_158d0001e521e9
+    - binary_sensor.motion_sensor_158d0001e53c30
+    - binary_sensor.motion_sensor_158d0001e59ac8
+    - binary_sensor.water_leak_sensor_158d00028ee572
+    - binary_sensor.smoke_sensor_158d0002cb5a00
+# All Lights
+all_light_entities:
+  name: 所有灯
+  entities:
+    - light.canting_dd
+    - light.cesuo_xdd
+    - light.chufang_xdd
+    - light.dianshiqiang_dd
+    - light.dianshiqiang_td
+    - light.gateway_light_34ce008c099b
+    - light.guodao_dd
+    - light.keting_xdd
+    - light.menting_xdd
+    - light.shufang_xdd
+    - light.sonoff01
+    - light.sonoff02
+    - light.sonoff03
+    - light.sonoff11
+    - light.woshi_xdd
+    - light.midesklamp1s_f8cc #yeelight_lamp4_0x000000001030593c
+    - light.yeelight_strip4_0x0000000010df65ba
+    - switch.dc1_bedroom_4
+
+# All Devices
+all_device_switch_entities:
+  name: 所有插座
+  entities:
+    - switch.dc1_livingroom_2
+    - switch.dc1_livingroom_3
+    - switch.dc1_livingroom_4
+    - switch.dc1_bedroom_2
+    - switch.dc1_bedroom_3
+    - switch.xiaomi_gateway
+    - switch.xiaomi_gateway_2
+    - switch.plug_158d0001b196a8
+    - switch.xiaomi_plug_01 
+    - switch.xiaomi_plug_01_usb
+    - switch.xiaomi_plug_02
+    - switch.xiaomi_plug_02_usb
+    - switch.212a01_58b623ecd9a0
+    - switch.212a01_58b623ed06ca
+    - switch.broadlink_mp1_01_s2
+    - switch.broadlink_mp1_01_s3
+    - switch.broadlink_mp1_01_s4
+    - switch.broadlink_mp1_02_s1
+    - switch.broadlink_mp1_02_s2
+    - switch.broadlink_mp1_02_s3
+    - switch.broadlink_mp1_02_s4
+    - switch.broadlink_mp1_03_s1
+    - switch.broadlink_mp1_03_s2
+    - switch.broadlink_mp1_03_s3
+    - switch.broadlink_mp1_03_s4
+    - switch.broadlink_mp1_04_s1
+    - switch.broadlink_mp1_04_s2
+    - switch.broadlink_mp1_04_s3
+    - switch.broadlink_mp1_04_s4
+# All Covers
+all_cover_entities:
+  name: 所有窗帘
+  entities:
+    - cover.bedroom
+    - cover.livingroom
+
+# All Temperature Sensors
+all_temperature_sensors:
+  name: 所有温度传感器
+  entities:
+    - sensor.temperature_158d00019f912b
+    - sensor.temperature_158d0001dc17c3
+    - sensor.m1_temperature
+    - sensor.t2_cloud_ks5k00
+    - sensor.t2_cloud_qse400
+
+# All Humidity Sensors
+all_humidity_sensors:
+  name: 所有湿度传感器
+  entities:
+    - sensor.humidity_158d00019f912b
+    - sensor.humidity_158d0001dc17c3
+    - sensor.m1_humidity
+    - sensor.t2_cloud_ks5k00_humidity
+    - sensor.t2_cloud_qse400_humidity
+
+# All Air Pressure Sensors
+all_air_pressure_sensors:
+  name: 所有气压传感器
+  entities:
+    - sensor.pressure_158d0001dc17c3
+
+# All Air Pressure Sensors
+all_air_quality_sensors:
+  name: 所有空气质量传感器
+  entities:
+    - sensor.m1_hcho
+    - sensor.m1_pm2_5
+
+# Camera's
+all_cameras:
+  name: 所有摄像头
+  entities:
+    - camera.hikvisioncam_door
+    - camera.ezvizcam_hallway
+
+# All Computers
+all_wol_computers:
+  name: 所有服务器
+  entities:
+    - switch.wol_ds416p
+    - switch.wol_gen8
+    - switch.wol_hzm_lenovo
+    - switch.wol_hzm_mac
+    - switch.wol_hzm_pc
+
+# All TV's
+all_tvs:
+  name: 所有电视
+  entities:
+    - media_player.bedroom_sony_tv
+    - media_player.sony_tv
+
+# All TV's
+all_hardware_media_players:
+  name: 所有播放器
+  entities:
+    - media_player.appletv
+    - media_player.android_tv
+    - media_player.huzemin_xboxone
+    - media_player.forked_daapd_output_oppo_udp_203
+    - media_player.ci_wo_chromecast
+    - media_player.chromecastgroup
+    - media_player.chu_fang_googlehomemini
+    - media_player.ke_ting_googlehomemini
+    - media_player.zhu_wo_googlehomemini
+    - media_player.ce_suo_googlehomemini
+    - media_player.ci_wo_googlehomemini
+    - media_player.livingroom_logitech_speaker
+    - media_player.bedroom_edifier_speaker
+all_software_media_players:
+  name: 所有软件播放器
+  entities:
+    - media_player.livingroom_androidtv
+    - media_player.android
+
+all_alarm_control_panel:
+  name: 所有警戒开关
+  entities:
+    - alarm_control_panel.home_alarm
+    - alarm_control_panel.0x847127fffe56da7d_alarm
+    - alarm_control_panel.xiaomi_gateway_alarm
+    - alarm_control_panel.xiaomi_gateway_alarm_2
+    - alarm_control_panel.xiaomi_gateway_alarm_3
+    - alarm_control_panel.xiaomi_gateway_alarm_4
+
+all_person:
+  name: 所有人
+  entities:
+    - person.xxx
+    - person.yyy
+
+all_remote:
+  name: 所有遥控器
+  entities:
+    - remote.appletv
+    - remote.broadlink_bedroom_remote
+    - remote.broadlink_livingroom_remote
+    - remote.broadlink_studyroom_remote
+    - remote.huzemin_xboxone_remote
+    - remote.myharmony
+
+Livingroom_lights:
+  name: 客厅灯
+  icon: mdi:lightbulb-group
+  entities:
+    - light.keting_xdd
+    - light.dianshiqiang_dd
+    - light.dianshiqiang_td
+bedroom_lights:
+  name: 主卧灯
+  icon: mdi:lightbulb-group
+  entities:
+    - light.woshi_xdd
+    - light.sonoff01
+studyroom_lights:
+  name: 次卧灯
+  icon: mdi:lightbulb-group
+  entities:
+    - light.shufang_xdd
+    - switch.dc1_bedroom_4
+diningroom_lights:
+  name: 餐厅灯
+  icon: mdi:lightbulb-group
+  entities:
+    - light.canting_dd
+    - light.gateway_light_34ce008c099b
+    - light.yeelight_strip4_0x0000000010df65ba
+    - light.midesklamp1s_f8cc
+kitchen_lights:
+  name: 厨房灯
+  icon: mdi:lightbulb-group
+  entities:
+    - light.chufang_xdd
+    - light.sonoff02
+    - light.sonoff11
+hallway_lights:
+  name: 门厅灯
+  icon: mdi:lightbulb-group
+  entities:
+    - light.menting_xdd
+    - light.guodao_dd
+    - light.aosp_on_dragon_screen
+toilet_lights:
+  name: 厕所灯
+  icon: mdi:lightbulb-group
+  entities:
+    - light.cesuo_xdd
+    - light.sonoff03
+
+## 插座
+
+Livingroom_devices_socket:
+  name: 客厅插座
+  icon: mdi:power-plug
+  entities:
+    - switch.xiaomi_gateway
+    - switch.dc1_livingroom_1
+    - switch.dc1_livingroom_2
+    - switch.dc1_livingroom_3
+    - switch.dc1_livingroom_4
+    - switch.broadlink_mp1_02_s1
+    - switch.broadlink_mp1_02_s2
+    - switch.broadlink_mp1_02_s3
+    - switch.broadlink_mp1_02_s4
+bedroom_devices_socket:
+  name: 主卧插座
+  icon: mdi:power-plug
+  entities:
+    - switch.bedroom_chuangmi_plug
+    - switch.bedroom_chuangmi_plug_usb
+studyroom_devices_socket:
+  name: 次卧插座
+  icon: mdi:power-plug
+  entities:
+    - switch.xiaomi_gateway_2
+    - switch.dc1_bedroom_1
+    - switch.dc1_bedroom_2
+    - switch.dc1_bedroom_3
+    - switch.212a01_58b623ed06ca
+    - switch.studyroom_chuangmi_plug
+    - switch.studyroom_chuangmi_plug_usb
+    - switch.broadlink_mp1_03_s1
+    - switch.broadlink_mp1_03_s2
+    - switch.broadlink_mp1_03_s3
+    - switch.broadlink_mp1_03_s4
+kitchen_devices_socket:
+  name: 厨房插座
+  icon: mdi:power-plug
+  entities:
+    - switch.plug_158d0001b196a8
+hallway_devices_socket:
+  name: 门厅插座
+  icon: mdi:power-plug
+  entities:
+    - switch.broadlink_mp1_01_s1
+    - switch.broadlink_mp1_01_s2
+    - switch.broadlink_mp1_01_s3
+    - switch.broadlink_mp1_01_s4
+    - switch.broadlink_mp1_04_s1
+    - switch.broadlink_mp1_04_s2
+    - switch.broadlink_mp1_04_s3
+    - switch.broadlink_mp1_04_s4
+
+kitchen_media_players:
+  name: 厨房播放器
+  icon: mdi:motion-play
+  entities:
+    - media_player.chu_fang_googlehomemini
+
+livingroom_media_players:
+  name: 客厅播放器
+  icon: mdi:motion-play
+  entities:
+    - media_player.sony_tv
+    - media_player.livingroom_logitech_speaker
+    - media_player.appletv
+    - media_player.livingroom_androidtv
+    - media_player.huzemin_xbox
+    - media_player.forked_daapd_output_oppo_udp_203
+    - media_player.ke_ting_googlehomemini
+
+studyroom_media_players:
+  name: 次卧播放器
+  icon: mdi:motion-play
+  entities:
+    - media_player.ci_wo_chromecast
+    - media_player.ci_wo_googlehomemini
+    - media_player.bedroom_edifier_speaker
+
+bedroom_media_players:
+  name: 主卧播放器
+  icon: mdi:motion-play
+  entities:
+    - media_player.zhu_wo_googlehomemini
+    - media_player.bedroom_sony_tv
+    - media_player.forked_daapd_output_iqycast
+
+google_home_all_speakers:
+  name: 谷歌群组播放器
+  icon: mdi:motion-play
+  entities:
+    - media_player.chromecastgroup
+google_home:
+  name: 谷歌home播放器
+  icon: mdi:motion-play
+  entities:
+    - media_player.chu_fang_googlehomemini
+    - media_player.ke_ting_googlehomemini
+    - media_player.zhu_wo_googlehomemini
+    - media_player.ce_suo_googlehomemini
+    - media_player.ci_wo_googlehomemini
+
+
+
+
+
+
+
+
+
+
+

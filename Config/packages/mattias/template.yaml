@@ -1,0 +1,244 @@
+template:
+
+  ####################################################
+  #                                                  #
+  #                     TEMPLATE                     #
+  #                                                  #
+  ####################################################
+
+  sensor:
+    - unique_id: sidebar
+      state: template
+      attributes:
+        time: >
+          {% set hours = now().strftime('%H') %}
+          {% set minutes = now().strftime('%M') %}
+          <span class="time">
+            {{ hours }}<span class="time-colon">:</span>{{ minutes }}
+          </span>
+        date: |
+          <font color='#6a7377'><b>
+          {%- if strptime(states('sensor.date'), '%Y-%m-%d').day != null %}
+          {%- set days = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'] %}
+          {%- set months = ['一月', '二月', '三月', '四月', '五月', '六月', 
+          '七月', '八月', '九月', '十月', '十一月', '十二月'] %}
+            {{- days[now().weekday()] }}<br>
+            {{ months[now().month-1] }} {{- strptime(states('sensor.date'), '%Y-%m-%d').day }}日
+          {%- endif -%}
+          </b></font>
+        greet: |
+          <b>
+          {%- set time = now().hour %}
+          {%- if time <= 1 -%} 晚安 {{'\U0001F611'}}
+          {%- elif time <= 3 -%} 晚安 {{'\U0001F62A'}}
+          {%- elif time <= 5 -%} 晚安 {{'\U0001F634'}}
+          {%- elif time <= 7 -%} 早上好 {{'\U0001F4A9'}}
+          {%- elif time <= 9 -%} 早上好 {{'\u2615\uFE0F'}}
+          {%- elif time <= 10 -%} 上午好 {{'\U0001F642'}}
+          {%- elif time <= 13 -%} 中午好 {{'\U0001F60A'}}
+          {%- elif time <= 15 -%} 下午好 {{'\U0001F60E'}}
+          {%- elif time <= 17 -%} 下午好 {{'\U0001F44B\U0001F3FB'}}
+          {%- elif time <= 19 -%} 晚上好 {{'\U0001F44B\U0001F3FB'}}
+          {%- elif time <= 22 -%} 晚上好 {{'\U0001F60C'}}
+          {%- elif time <= 23 -%} 晚上好 {{'\U0001F974'}}
+          {%- else %} 晚上好 {{'\U0001F974'}}
+          {%- endif -%}
+          </b>
+        active: |
+          <b>
+          {%- set lights = [
+            states.light.canting_dd,
+            states.light.cesuo_xdd,
+            states.light.chufang_xdd,
+            states.light.dianshiqiang_dd,
+            states.light.dianshiqiang_td,
+            states.light.gateway_light_34ce008c099b,
+            states.light.guodao_dd,
+            states.light.keting_xdd,
+            states.light.menting_xdd,
+            states.light.shufang_xdd,
+            states.light.sonoff01,
+            states.light.sonoff02,
+            states.light.sonoff03,
+            states.light.sonoff11,
+            states.light.woshi_xdd,
+            states.light.midesklamp1s_f8cc,
+            states.light.yeelight_strip4_0x0000000010df65ba,
+            states.switch.dc1_bedroom_4
+          ] %}
+
+          {%- set switches = [
+            states.switch.wol_hzm_pc,
+            states.switch.wol_hzm_lenovo,
+            states.switch.wol_hzm_mac
+          ] %}
+
+          {%- set lights_on = lights | selectattr('state','eq','on') | list %}
+          {%- set lights_name = lights | selectattr('state','eq','on') | map(attribute='name') | join(', ') %}
+
+          {%- set switches_on = switches | selectattr('state','eq','on') | list %} 
+          {%- set switches_name = switches | selectattr('state','eq','on') | map(attribute='name') | join(', ') %}
+
+          {%- if (lights_on | length == 0) and (switches_on | length > 0) -%} 
+            {{ switches_name | regex_replace(',([^,]*)$',' 和\\1') }}开启中...
+
+          {%- elif (lights_on | length == 1) and (switches_on | length == 1) -%}
+            {{ lights_name }}开启中,{{switches_name }}有人使用...
+
+          {%- elif (lights_on | length == 1) and (switches_on | length > 1) -%}
+            {{ lights_name }}开启中,{{ switches_name | regex_replace(',([^,]*)$',' 和\\1') }}有人使用...
+
+          {%- elif (lights_on | length > 1) and (switches_on | length == 1) -%}
+            家中有{{ lights_on | length }}盏灯开启,{{ switches_name }}有人使用...
+
+          {%- elif (lights_on | length > 1) and (switches_on | length > 1) -%}
+            家中有{{ lights_on | length }}盏灯开启,{{ switches_name | regex_replace(',([^,]*)$',' 和\\1') }}有人使用...
+
+          {%- elif (lights_on | length == 1) and (switches_on | length == 0) -%}
+            {{ lights_name }}开启中...
+
+          {%- elif (lights_on | length > 1) and (switches_on | length == 0) -%}
+            家中有{{ lights_on | length }}盏灯开启中...
+
+          {%- else %}
+            <font color='#6a7377'>这几个测试的设备都歇着了...</font>
+          {%- endif -%}
+          </b>
+        vacuum: |
+          {% set entity_id = 'vacuum.xiaomi_vacuum' %}
+          {%- if is_state(entity_id, 'cleaning') -%}
+            <b>扫地机正在吃土...</b>
+          {%- elif is_state(entity_id, 'docked') -%}
+            <b>扫地机正在休息...</b>
+          {%- else %}
+            <b>扫地机在发神经...<b>
+          {%- endif %}
+        weather: |
+          {%- set temperature = states('sensor.home_wen_du') %}
+          {%- set apparent = states('sensor.home_gan_jue_wen_du') | round %}
+          {%- set precip = states('sensor.caiyun_minutely_probability_0') | round %}
+          {% if not is_state('sensor.home_wen_du', 'unknown') %}
+            {%- if temperature | float <= 0.0 -%}
+              今日室外温度{{ apparent }} C°,当前降雪概率为 {{ precip }}% {{'\u2744\uFE0F'}} 
+            {%- elif temperature | float > 0.0 -%} 
+              今日室外温度{{ apparent }} C°,当前降水概率为 {{ precip }}% {{'\u2614\uFE0F' if precip > 30}}
+            {%- endif %}
+          {%- else %}
+            无法加载天气信息...
+          {%- endif %}
+        battery: |
+          {% set entities = [
+            'sensor.hassapp_huzemin_iphone7p_battery_level',
+            'sensor.oneplus_a5010_dian_chi_dian_liang',
+            'sensor.huzemin_ipadair3_battery_level',
+            'sensor.pixel_c_battery_level' ] %}
+          {%- for sensor in entities if states(sensor) | int <= 25 and states(sensor) != 'unknown' %}
+            {%- if loop.first %} {{-'\u26A0\uFE0F'}} 注意!{% else %}, {% endif -%}
+            {{ state_attr(sensor, 'friendly_name') + '电量低,当前只剩' +  states(sensor) + '%,注意充电!' }}
+          {%- endfor %}
+        plex: |
+          {% if is_state('sensor.plex_recently_added_movies', 'unavailable') -%}
+            {{-'\u26A0\uFE0F'}} Plex服务挂了...
+          {%- endif %}
+        nas: |
+          {% if is_state('binary_sensor.ds416p_status', 'off') -%}
+            {{-'\u26A0\uFE0F'}} NAS凑巧也挂了...
+          {%- endif %}
+
+    - unique_id: updates
+      state: template
+      attributes:
+        synology: >
+          {% set installed = device_attr(device_id('sensor.ds416play_volume_1_status'), 'sw_version').split(' ')[1] %}
+          {% set latest = states('sensor.synology_dsm_latest') %}
+          {% if is_state('binary_sensor.ds416play_update_available', 'on') %}
+            <b>Synology DSM</b> {{ installed + ' \u279e ' + latest }}
+          {% endif %}
+
+    - unique_id: fullykiosk_storage
+      icon: mdi:sd
+      unit_of_measurement: '%'
+      state: >
+        {% set FreeSpace = states('sensor.pixel_c_internal_storage_free_space') | float %}
+        {% set TotalSpace = states('sensor.pixel_c_internal_storage_total_space') | float %}
+        {% if not (FreeSpace == 0.0 or TotalSpace == 0.0) %}
+          {{ 100 - (FreeSpace / TotalSpace * 100) | int }}
+        {% endif %}
+
+    - unique_id: fullykiosk_memory
+      icon: mdi:memory
+      unit_of_measurement: '%'
+      state: >
+        {% set FreeMemory = states('sensor.pixel_c_ram_free_memory') | float %}
+        {% set TotalMemory = states('sensor.pixel_c_ram_total_memory') | float %}
+        {% if not (FreeMemory == 0.0 or TotalMemory == 0.0) %}
+          {{ 100 - (FreeMemory / TotalMemory * 100) | int }}
+        {% endif %}
+
+    - unique_id: fullykiosk_last_app_start
+      icon: mdi:update
+      device_class: timestamp
+      state: >
+        {{ states('sensor.pixel_c_last_app_start') | replace(' ','T') }}
+
+    - unique_id: nas_status
+      icon: custom:synology-nas
+      state: >
+        {% set entity_id = 'sensor.ds416play_volume_1_status' %}
+        {% if is_state(entity_id, 'normal') %}
+          良好
+        {% elif is_state(entity_id, 'background') %}
+          待验证
+        {% else %}
+          {{ states(entity_id) }}
+        {% endif %}
+
+    - unique_id: hacs_version
+      state: >
+        {{ device_attr(device_id('sensor.hacs'), 'sw_version') }}
+
+# #legacy
+sensor:
+
+  - platform: template
+    sensors:
+      hass_version:
+        icon_template: mdi:home-assistant
+        friendly_name_template: >
+          Installerad {{ states('sensor.hass_version_installed') }}
+        value_template: >
+          {{ 'Senaste' if states('sensor.hass_version_installed') == 
+          states('sensor.hass_version_latest') else states('sensor.hass_version_latest') }}
+
+      hass_dev_release:
+        icon_template: mdi:dev-to
+        device_class: timestamp
+        friendly_name_template: >
+          {% set release = state_attr('calendar.home_assistant_devs','message') %}
+          {% if release == 'Home Assistant Core Beta Release' %}
+            Nästa beta
+          {% elif release == 'Home Assistant Core Release' %}
+            Nästa release
+          {% else %}
+            {{ release }}
+          {% endif %}
+        value_template: >
+          {{ state_attr('calendar.home_assistant_devs', 'start_time') | replace(' ','T') }}
+
+      nas_net_down:
+        value_template: ' '
+        icon_template: mdi:arrow-down-bold
+        friendly_name_template: >
+          {% set down = states('sensor.ds416play_network_down') | float %}
+          {% if down < 1000 %} {{ down | round(0) }} kb/s
+          {% elif down >= 1000 %} {{ ((down / 1000) | round(2) | string).rstrip('.0') }} Mb/s
+          {% endif %}
+
+      nas_net_up:
+        value_template: ' '
+        icon_template: mdi:arrow-up-bold
+        friendly_name_template: >
+          {% set up = states('sensor.ds416play_network_up') | float %}
+          {% if up < 1000 %} {{ up | round(0) }} kb/s
+          {% elif up >= 1000 %} {{ ((up / 1000) | round(2) | string).rstrip('.0') }} Mb/s
+          {% endif %}

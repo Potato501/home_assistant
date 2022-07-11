@@ -1,0 +1,89 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: '&nbsp; 家用电器'
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards: 
+              - !include
+                - '../../../hki-user/templates/button/button.yaml'
+                - entity: switch.ke_ting_kong_diao_ban_lu
+                  name: 客厅空调
+                  lock: false
+                  label: "[[[ return `${states['sensor.xiaomi_acpartner_kt_load_power'].state} W`; ]]]"
+              - !include
+                - '../../../hki-user/templates/button/button.yaml'
+                - entity: switch.ci_wo_kong_diao_ban_lu
+                  name: 次卧空调
+                  lock: false
+                  label: "[[[ return `${states['sensor.xiaomi_acpartner_cw_load_power'].state} W`; ]]]"
+              - !include
+                - '../../../hki-user/templates/button/button-badge-plug.yaml'
+                - entity: climate.bedroom_acpartner
+                  name: 热水器
+                  lock: false
+                  notification: "[[[ return `${states['sensor.xiaomi_acpartner_zw_load_power'].state} W`; ]]]"
+              # - !include ../../../hki-base/includes/empty-button.yaml
+              
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: '&nbsp; 家用电器'
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards: 
+              - !include
+                - '../../../hki-user/templates/button/button.yaml'
+                - entity: switch.212a01_58b623ed06ca
+                  name: 饮水机
+                  lock: false
+                  notification: "[[[ return `${states['sensor.212a01_58b623ed06ca_power'].state} W`; ]]]"
+              - !include
+                - '../../../hki-user/templates/button/button.yaml'
+                - entity: switch.212a01_58b623ecd9a0
+                  label: "[[[ return `${states['sensor.212a01_58b623ecd9a0_power'].state} W`; ]]]"
+                  name: 洗衣机
+                  lock: true
+              - !include
+                - '../../../hki-user/templates/button/button-badge-plug.yaml'
+                - entity: switch.broadlink_mp1_02_s1
+                  notification:  "[[[ return `${states['sensor.xiaomi_vacuum_battery_level'].state} %`; ]]]"
+                  name: 遥控器
+                  hold_action: more-info
+                  lock: false
+
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: '&nbsp; 厨房电器'
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards: 
+              - !include
+                - '../../../hki-user/templates/button/button.yaml'
+                - entity: switch.212a01_7cc294102437
+                  name: 电冰箱
+                  lock: true
+                  label: "[[[ return `${states['sensor.212a01_7cc294102437_power'].state} W`; ]]]"
+              - !include
+                - '../../../hki-user/templates/button/button.yaml'
+                - entity: switch.212a01_7cc2941041a5
+                  name: 油烟机
+                  lock: true
+                  label: "[[[ return `${states['sensor.212a01_7cc2941041a5_power'].state} W`; ]]]"
+              - !include
+                - '../../../hki-user/templates/button/button.yaml'
+                - entity: switch.plug_158d0001b196a8
+                  name: 洗碗机
+                  lock: true
+                  label: "[[[ return `${states['sensor.xiaomi_plug_zigbee_load_power'].state} W`; ]]]"
+

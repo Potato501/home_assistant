@@ -1,0 +1,90 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 状态监测"
+      - type: horizontal-stack
+        cards:
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 家居平面
+              label: Floorplan
+              icon: mdi:floor-plan
+              navigation_path: /homekit-infused/floorplan
+              # notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['binary_sensor.door_window_sensor_158d0002014310'].state}`; ]]]"
+              # background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 场景模式
+              label: Scenes
+              icon: mdi:home-lightbulb-outline
+              navigation_path: /homekit-infused/scenes
+              # notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['input_select.select_home_scene_model'].state}`; ]]]"
+              # background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 我的房间
+              label: Rooms
+              icon: mdi:door
+              navigation_path: /homekit-infused/house
+              # notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['sensor.mikrotik_wan_rx'].state} Mb`; ]]]"
+              # background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+      - type: horizontal-stack
+        cards:
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 查找定位
+              label: Find_My
+              icon: mdi:map-search
+              navigation_path: /homekit-infused/find_my
+              # notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['sensor.hp_ilo_cpu_fanspeed'].state}%`; ]]]"
+              # background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 地图定位
+              label: Location
+              icon: mdi:map-marker
+              navigation_path: /homekit-infused/location
+              notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['person.sunyujiao'].state}`; ]]]"
+              background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 交通路况
+              label: Traffic
+              icon: mdi:traffic-light
+              navigation_path: /homekit-infused/traffic
+              notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['sensor.traffic_home_to_office'].state} min`; ]]]"
+              background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+      - type: horizontal-stack
+        cards:
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 日历日程
+              label: Calendar
+              icon: mdi:calendar-check
+              navigation_path: /homekit-infused/calendar
+              notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['calendar.todoist_homeassistant'].state}`; ]]]"
+              background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 电池电量
+              label: Battery
+              icon: mdi:battery-high
+              navigation_path: /homekit-infused/battery
+              notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['sensor.current_battery_low'].state} 个低电量`; ]]]"
+              background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"
+          - !include
+            - "../../../hki-base/templates/button/button-badge.yaml"
+            - name: 能耗信息
+              label: Energy
+              icon: mdi:chart-line
+              navigation_path: /homekit-infused/energy
+              notification: "[[[ if (states['input_boolean.button_badge'].state == 'off') return '&nbsp'; else return `${states['sensor.jinri_dianliang'].state} 度`; ]]]"
+              background_color: "[[[ if (states['input_boolean.button_badge'].state == 'off') return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"

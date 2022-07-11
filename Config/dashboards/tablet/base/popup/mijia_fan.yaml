@@ -1,0 +1,102 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: "次卧风扇"
+  card:
+    type: vertical-stack
+    cards:
+      - type: entities
+        show_header_toggle: false
+        card_mod:
+          class: header
+          style: |
+            ha-card {
+              margin: 5px !important;
+            }
+        entities:
+          - type: "custom:fan-xiaomi"
+            # name: 次卧风扇
+            entity: fan.xiaomi_smart_fan
+
+          - type: custom:bar-card
+            width: 55%
+            height: 2em
+            decimal: 0
+            # unit_of_measurement: '%'
+            positions:  #&bar_card_positions
+              icon: outside
+              indicator: 'off'
+              name: outside
+            severity: # &bar_card_severity
+              - color: "#26c941"
+                from: 0
+                to: 20
+              - color: "#64c91c"
+                from: 21
+                to: 30              
+              - color: "#d4c11c"
+                from: 31
+                to: 35              
+              - color: "#d1861d"
+                from: 36
+                to: 40              
+              - color: "#de4314"
+                from: 41
+                to: 45              
+              - color: "#fa0505"
+                from: 46
+                to: 50              
+              - color: "#c92626"
+                from: 51
+                to: 100
+
+            entity_row: true
+            entities:
+
+              - entity: fan.xiaomi_smart_fan
+                attribute: speed
+                name: 运行模式/切换静音
+                # icon: mdi:
+                tap_action: 
+                  action: call-service
+                  service: fan.set_preset_mode
+                  service_data:
+                    entity_id: fan.xiaomi_smart_fan
+                    preset_mode: 'Level 1'
+
+              - entity: fan.xiaomi_smart_fan
+                attribute: percentage
+                name: 风力等级
+                unit_of_measurement: '%'
+                icon: mdi:speedometer-medium
+                tap_action: none
+
+              - entity: fan.xiaomi_smart_fan
+                attribute: angle
+                name: 送风角度/停止摇头
+                unit_of_measurement: '°'
+                icon: mdi:fast-forward-60
+                tap_action: 
+                  action: call-service
+                  service: fan.oscillate
+                  service_data:
+                    entity_id: fan.xiaomi_smart_fan
+                    oscillating: false
+
+      - type: custom:mini-graph-card
+        entities:
+          - color: '#385581'
+            entity: sensor.t2_cloud_qse400
+          - color: green
+            entity: sensor.t2_cloud_qse400_humidity
+        align_state: left
+        group: false
+        points_per_hour: 10
+        line_width: 3
+        hour24: true
+        hours_to_show: 6
+        show:
+          {fill: fade, icon: false, name: false, state: false, 
+          name_adaptive_color: true, labels: hover, legend: false}
+        tap_action:
+          action: none

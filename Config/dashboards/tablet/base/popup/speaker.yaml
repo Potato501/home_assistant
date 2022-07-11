@@ -1,0 +1,80 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: 次卧音箱
+  style:
+    hui-vertical-stack-card:
+      $: |
+        hui-horizontal-stack-card {
+          padding: 0em 2em 2.3em 2em;
+        }
+      $hui-horizontal-stack-card$: |
+        #root {
+          justify-content: space-evenly;
+        }
+  card:
+    type: vertical-stack
+    cards:
+      - type: entities
+        state_color: true
+        card_mod:
+          class: content
+        entities:
+
+          - entity: media_player.bedroom_edifier_speaker
+            secondary_info: last-changed
+
+          - type: custom:slider-entity-row
+            entity: input_number.edifiervolume
+            hide_state: false
+            style: >
+              :host {
+              --paper-item-icon-color:
+                {% if is_state('media_player.bedroom_edifier_speaker', 'on') %}
+                  #FFFFFF20
+                {% elif states(config.entity) | int == 0 %}
+                  #9da0a2
+                {% elif states(config.entity) | int < 60 %}
+                  #3182b7
+                {% else %}
+                  red
+                {% endif %};
+                }
+
+          - entity: automation.ir_edif_volume
+
+          - entity: automation.turn_off_edifier_when_mac_and_pc_power_off
+
+          - automation.turn_on_edifier_when_mac_power_on
+
+      - type: horizontal-stack
+        cards:
+
+          - type: custom:button-card
+            entity: media_player.bedroom_edifier_speaker
+            icon: mdi:volume-mute
+            tap_action:
+              action: call-service
+              service: media_player.volume_mute
+              service_data:
+                entity_id: media_player.bedroom_edifier_speaker
+                is_volume_muted: true
+            template: icon_only
+
+          - type: custom:button-card
+            icon: mdi:volume-minus
+            tap_action:
+              action: call-service
+              service: media_player.volume_down
+              service_data:
+                entity_id: media_player.bedroom_edifier_speaker
+            template: icon_only
+
+          - type: custom:button-card
+            icon: mdi:volume-plus
+            tap_action:
+              action: call-service
+              service: media_player.volume_up
+              service_data:
+                entity_id: media_player.bedroom_edifier_speaker
+            template: icon_only

@@ -1,0 +1,215 @@
+- type: custom:mod-card
+  style: |
+    ha-card {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+  card:
+    type: vertical-stack
+    cards:
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 防火防盗"
+      - type: horizontal-stack
+        cards:
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.motion_sensor_158d0001e521e9
+              name: 门口
+              opacity_off: 0.8
+              icon: mdi:run
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.f282d3f14eb6_lock
+              name: 门锁
+              opacity_off: 0.8
+              # icon: mdi:
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.water_leak_sensor_158d00028ee572
+              name: 漏水
+              opacity_off: 0.8
+              # icon: mdi:
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.smoke_sensor_158d0002cb5a00
+              name: 烟雾
+              opacity_off: 0.8
+              # icon: mdi:
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info
+      - !include
+        - ../../../hki-base/templates/other/title-text.yaml
+        - name: "&nbsp; 门窗状态"
+      - type: horizontal-stack
+        cards:
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.door_window_sensor_158d0002014310
+              # icon: mdi:door-closed
+              opacity_off: 0.8
+              name: 门口
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.door_window_sensor_158d00026ba081
+              # icon: mdi:window-open-variant
+              opacity_off: 0.8
+              name: 客厅
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.door_window_sensor_158d00032605b8
+              # icon: mdi:window-open-variant
+              opacity_off: 0.8
+              name: 主卧
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.door_window_sensor_158d0002a16231
+              # icon: mdi:window-open-variant
+              opacity_off: 0.8
+              name: 次卧
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+
+      - type: horizontal-stack
+        cards:
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.e4aaec34feaa_contact
+              # icon: mdi:door
+              opacity_off: 0.8
+              name: 主卧
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.e4aaec34fe1b_contact
+              # icon: mdi:door
+              opacity_off: 0.8
+              name: 次卧
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.e4aaec34e6c7_contact
+              # icon: mdi:door
+              opacity_off: 0.8
+              name: 厨房
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+          - !include
+            - "../../../hki-base/templates/button/button.yaml"
+            - entity: binary_sensor.door_window_sensor_158d00032604d3
+              # icon: mdi:door
+              opacity_off: 0.8
+              name: 厕所
+              label: !include ../../../hki-base/includes/brightness-label.yaml
+              tap_action: more-info
+              hold_action: more-info #none
+              # lock: true
+              show_last_changed: true
+              show_state: false
+
+      - type: custom:swipe-card
+        parameters:
+          spaceBetween: 8
+          touchEventsTarget: 'container'
+          pagination:
+            type: 'bullets'
+            dynamicBullets: false
+        cards:
+          - type: vertical-stack
+            cards:
+              - !include
+                - ../../../hki-base/templates/other/title-text.yaml
+                - name: "&nbsp; 视频监控"
+              - type: picture-entity
+                style: |
+                  ha-card {
+                    border-radius: var(--border-radius);
+                    box-shadow: var(--box-shadow);
+                    overflow: hidden;
+                  }
+                entity: camera.hikvisioncam_door
+                aspect_ratio: 16x9
+                camera_view: null #null #live
+                show_name: false
+                show_state: false
+                deep_press: true
+                hold_action:
+                  action: call-service
+                  service: camera.snapshot
+                  service_data:
+                    entity_id: camera.hikvisioncam_door
+                    filename: '/config/www/camera/snapshot/outdoor-{{ now().strftime("%Y-%m-%d-%H%M%S") }}.jpg'
+                tap_action:
+                  action: more-info
+          - type: vertical-stack
+            cards:
+              - !include
+                - ../../../hki-base/templates/other/title-text.yaml
+                - name: "&nbsp; 视频监控"
+              - type: picture-entity
+                style: |
+                  ha-card {
+                    border-radius: var(--border-radius);
+                    box-shadow: var(--box-shadow);
+                    overflow: hidden;
+                  }
+                entity: camera.ezvizcam_hallway
+                aspect_ratio: 16x9
+                camera_view: null #null #live
+                show_name: false
+                show_state: false
+                deep_press: true
+                hold_action:
+                  action: call-service
+                  service: camera.snapshot
+                  service_data:
+                    entity_id: camera.ezvizcam_hallway
+                    filename: '/config/www/camera/snapshot/foyer-{{ now().strftime("%Y-%m-%d-%H%M%S") }}.jpg'
+                tap_action:
+                  action: more-info

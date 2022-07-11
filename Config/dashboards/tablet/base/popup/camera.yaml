@@ -1,0 +1,48 @@
+action: fire-dom-event
+browser_mod:
+  command: popup
+  title: 视频监控
+  style:
+    hui-vertical-stack-card:
+      $hui-conditional-card>hui-vertical-stack-card$: |
+        hui-horizontal-stack-card {
+          padding: 0em 2em 2.3em 2em;
+        }
+      $hui-conditional-card>hui-vertical-stack-card$hui-horizontal-stack-card$: |
+        #root {
+          justify-content: space-evenly;
+        }
+  card:
+    type: vertical-stack
+    cards:
+      - type: picture-entity
+        style: |
+          ha-card {
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+          }
+        entity: camera.ezvizcam_hallway
+        aspect_ratio: 16x9
+        camera_view: null #null #live
+        show_name: false
+        show_state: false
+        deep_press: true
+        hold_action:
+          action: call-service
+          service: camera.snapshot
+          service_data:
+            entity_id: camera.ezvizcam_hallway
+            filename: '/config/www/camera/snapshot/foyer-{{ now().strftime("%Y-%m-%d-%H%M%S") }}.jpg'
+        tap_action:
+          action: more-info
+      - type: entities
+        state_color: true
+        card_mod:
+          class: content
+        entities:
+          - sensor.xiaomi_lock_user
+          - sensor.bmcn03_event_647860_lock_lock_action
+          - sensor.bmcn03_event_647860_door_door_status
+          - sensor.bmcn03_event_647860_door_door_time
+          - entity: binary_sensor.f282d3f14eb6_lock

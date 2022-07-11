@@ -1,0 +1,22 @@
+sensor:
+  - platform: rest
+    name: daily_english
+    resource: 'http://open.iciba.com/dsapi/'
+    value_template: >-
+          {% if value_json.dateline == states("sensor.date")  -%}
+            有效
+          {% else %}
+            无效
+          {% endif %}
+    scan_interval: 10800
+    json_attributes:
+      - content
+      - note
+      - picture
+      - tts
+
+homeassistant:
+  customize:
+    sensor.daily_english:
+      friendly_name: 每日谚语
+      icon: mdi:book
